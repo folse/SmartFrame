@@ -1,0 +1,2 @@
+PODS_AVIARYSDK_FRAMEWORK_SEARCH_PATHS = "$(PODS_ROOT)/AviarySDK/AviarySDK-4.0.1/AviarySDK"
+PODS_AVIARYSDK_OTHER_LDFLAGS = -lsqlite3 -lz -framework Accelerate -framework AviarySDK -framework CoreData -framework MessageUI -framework OpenGLES -framework QuartzCore -framework StoreKit

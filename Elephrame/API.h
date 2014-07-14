@@ -14,12 +14,12 @@
 #if TEST
 #define API_BASE_URL @"http://0.com"
 #else
-#define API_BASE_URL @"http://1.duapp.com"
+#define API_BASE_URL @"http://112.126.71.94"
 #endif
 
-#define API_LOGIN [NSString stringWithFormat:@"%@/qmm/wd/app/login",API_BASE_URL]
+#define API_LOGIN [NSString stringWithFormat:@"%@/smart/login.do",API_BASE_URL]
 
-#define API_REG [NSString stringWithFormat:@"%@/qmm/wd/app/reg",API_BASE_URL]
+#define API_REG [NSString stringWithFormat:@"%@/smart/register.do",API_BASE_URL]
 
 
 #endif

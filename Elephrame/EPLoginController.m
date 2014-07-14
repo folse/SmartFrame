@@ -9,6 +9,8 @@
 #import "EPLoginController.h"
 
 @interface EPLoginController ()
+@property (weak, nonatomic) IBOutlet UITextField *mobileTextField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 
 @end
 
@@ -27,17 +29,54 @@
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)loginButtonAction:(id)sender
+{
+    if (_mobileTextField.text.length > 0 && _passwordTextField.text.length > 0) {
+        [_mobileTextField resignFirstResponder];
+        [_passwordTextField resignFirstResponder];
+        
+        [HUD show:YES];
+        
+        NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc] init];
+        [parameterDict setObject:_mobileTextField.text forKey:@"username"];
+        [parameterDict setObject:_passwordTextField.text forKey:@"password"];
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        [manager POST:API_LOGIN parameters:parameterDict success:^(AFHTTPRequestOperation *operation, id JSON) {
+            
+            NSLog(@"%@:%@",operation.response.URL.relativePath,JSON);
+            [HUD hide:YES];
+            if ([[JSON valueForKey:@"code"] isEqualToString:@"1"]) {
+                
+                [MobClick event:@"Success_Login"];
+                NSDictionary *data = (NSDictionary *)[JSON valueForKey:@"data"];
+                
+                NSString *tokenId = [data valueForKey:@"token"];
+                
+                saveValue(tokenId, @"tokenId")
+                saveValue(_mobileTextField.text, @"userMobile");
+                [USER_DEFAULTS setBool:YES forKey:@"userLogined"];
+                
+                [HUD hide:YES];
+                [self dismissViewControllerAnimated:YES completion:nil];
+                
+            }else{
+                
+                NetWork_Error
+            }
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NetWork_Error
+        }];
+    }
 }
 
 #pragma mark - Table view data source

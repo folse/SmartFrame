@@ -42,18 +42,19 @@
 
 - (IBAction)regButtonAction:(id)sender
 {
-    if (_mobileTextField.text.length > 0 && _passwordTextField.text.length > 0) {
+    if (_mobileTextField.text.length > 0 && _passwordTextField.text.length > 0 && _emailTextField.text.length > 0) {
         [_mobileTextField resignFirstResponder];
         [_passwordTextField resignFirstResponder];
         
         [HUD show:YES];
         
         NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc] init];
-        [parameterDict setObject:_mobileTextField.text forKey:@"username"];
+        [parameterDict setObject:_mobileTextField.text forKey:@"tel"];
         [parameterDict setObject:_passwordTextField.text forKey:@"password"];
+        [parameterDict setObject:_emailTextField.text forKey:@"email"];
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
        
-        [manager POST:API_LOGIN parameters:parameterDict success:^(AFHTTPRequestOperation *operation, id JSON) {
+        [manager POST:API_REG parameters:parameterDict success:^(AFHTTPRequestOperation *operation, id JSON) {
             
             NSLog(@"%@:%@",operation.response.URL.relativePath,JSON);
             [HUD hide:YES];
@@ -71,38 +72,23 @@
                 [HUD hide:YES];
                 [self dismissViewControllerAnimated:YES completion:nil];
                 return ;
-            }else{
                 
+            }else{
                 NetWork_Error
             }
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NetWork_Error
         }];
-        
     }
 }
 
 - (IBAction)cancelButtonAction:(id)sender
 {
-    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Table view data source
-//
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//#warning Potentially incomplete method implementation.
-//    // Return the number of sections.
-//    return 0;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//#warning Incomplete method implementation.
-//    // Return the number of rows in the section.
-//    return 0;
-//}
 
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
