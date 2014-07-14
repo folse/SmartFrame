@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="237-Dm-PKG">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <scenes>
+        <!--Login Controller - 登录-->
+        <scene sceneID="ZKn-YD-sfM">
+            <objects>
+                <tableViewController storyboardIdentifier="LoginController" title="登录" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TGv-An-VI0" customClass="EPLoginController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" id="2Qx-AH-BDf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="pJA-TR-7Zq">
+                            <rect key="frame" x="0.0" y="64" width="320" height="69"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </view>
+                        <sections>
+                            <tableViewSection id="HvB-ha-VEO">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="O73-NY-NcF">
+                                        <rect key="frame" x="0.0" y="133" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O73-NY-NcF" id="DP3-ix-pNC">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GO5-YI-9oz">
+                                                    <rect key="frame" x="42" y="7" width="236" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="dQu-68-aHb">
+                                        <rect key="frame" x="0.0" y="177" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dQu-68-aHb" id="9hM-HV-LO2">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QLO-lC-tmD">
+                                                    <rect key="frame" x="42" y="7" width="236" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="TGv-An-VI0" id="FNs-E8-MIy"/>
+                            <outlet property="delegate" destination="TGv-An-VI0" id="XWd-Y5-pAw"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="登录" id="UDB-pP-5tN">
+                        <barButtonItem key="backBarButtonItem" title=" " id="iBh-Vv-h0n"/>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="完成" id="NSv-LK-QeG">
+                            <connections>
+                                <action selector="loginBtnAction:" destination="TGv-An-VI0" id="Anf-c0-BY8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="loginBtn" destination="NSv-LK-QeG" id="FQ3-sk-Uuy"/>
+                        <outlet property="mobileTextField" destination="GO5-YI-9oz" id="wY9-sP-cxW"/>
+                        <outlet property="passwordTextField" destination="QLO-lC-tmD" id="BOd-kI-drV"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ju1-dM-IY6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="945" y="-259"/>
+        </scene>
+        <!--Reg Controller - 注册-->
+        <scene sceneID="3lt-nx-Nkw">
+            <objects>
+                <tableViewController storyboardIdentifier="RegController" title="注册" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bJR-gS-0rG" customClass="EPRegController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" id="O18-Tm-rNr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="Utd-Lr-uqj">
+                            <rect key="frame" x="0.0" y="64" width="320" height="43"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </view>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="H1d-zJ-Id5">
+                            <rect key="frame" x="0.0" y="240" width="320" height="320"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUm-Ic-Uyc">
+                                    <rect key="frame" x="103" y="251" width="114" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="30" id="aI1-sV-YMN"/>
+                                        <constraint firstAttribute="width" constant="114" id="fWu-Y9-T9f"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <state key="normal" title="登录已有账号">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <segue destination="TGv-An-VI0" kind="push" id="rYo-6g-fhc"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="CUm-Ic-Uyc" secondAttribute="bottom" constant="38" id="TtH-Xy-CuZ"/>
+                                <constraint firstAttribute="bottom" secondItem="CUm-Ic-Uyc" secondAttribute="bottom" constant="39" id="WK9-R0-VXq"/>
+                                <constraint firstAttribute="centerX" secondItem="CUm-Ic-Uyc" secondAttribute="centerX" id="dNO-Fa-k2N"/>
+                            </constraints>
+                        </view>
+                        <sections>
+                            <tableViewSection id="RNy-FS-Hs7">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ioj-5N-ORr">
+                                        <rect key="frame" x="0.0" y="107" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ioj-5N-ORr" id="Jqd-sL-0or">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I4n-KZ-V7O">
+                                                    <rect key="frame" x="42" y="7" width="236" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Re4-bS-Dmg">
+                                        <rect key="frame" x="0.0" y="151" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Re4-bS-Dmg" id="go6-NB-jVQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sjv-6f-otJ">
+                                                    <rect key="frame" x="42" y="7" width="236" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" secureTextEntry="YES"/>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ZjW-AQ-Evl">
+                                        <rect key="frame" x="0.0" y="195" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZjW-AQ-Evl" id="5Do-BY-od3">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="邮箱" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gZB-xa-LEx">
+                                                    <rect key="frame" x="42" y="7" width="236" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="bJR-gS-0rG" id="JmH-Qa-e21"/>
+                            <outlet property="delegate" destination="bJR-gS-0rG" id="Tqk-sY-PUC"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="新用户注册" id="q4R-zr-kHs">
+                        <barButtonItem key="backBarButtonItem" title=" " id="jV3-Ze-cZc"/>
+                        <barButtonItem key="leftBarButtonItem" title="取消" id="dY3-PK-bEk">
+                            <connections>
+                                <action selector="cancelButtonAction:" destination="bJR-gS-0rG" id="zbX-Jy-tSi"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="完成" id="ANP-Om-uOS">
+                            <connections>
+                                <action selector="regButtonAction:" destination="bJR-gS-0rG" id="1fb-GB-rdg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="emailTextField" destination="gZB-xa-LEx" id="bao-7A-F14"/>
+                        <outlet property="mobileTextField" destination="I4n-KZ-V7O" id="Ymg-2Y-NXx"/>
+                        <outlet property="passwordTextField" destination="Sjv-6f-otJ" id="noc-1c-SRb"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pEq-1K-EgI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="945" y="452"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ttB-Ei-atf">
+            <objects>
+                <navigationController storyboardIdentifier="loginNavController" definesPresentationContext="YES" id="237-Dm-PKG" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="P9l-Cl-ldh">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="bJR-gS-0rG" kind="relationship" relationship="rootViewController" id="8g9-hM-8Cv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wan-Nc-KZR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="439" y="452"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
