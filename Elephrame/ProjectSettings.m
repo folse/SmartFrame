@@ -35,9 +35,7 @@
 }
 
 -(NSString *)getMD5FilePathWithUrl:(NSString *)url
-{
-    
-    
+{    
     NSString *urlMD5 = [self MD5:url];
     NSArray *documents = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     return [documents[0]stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpg",urlMD5]];

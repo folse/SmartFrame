@@ -53,7 +53,6 @@
         [parameterDict setObject:_passwordTextField.text forKey:@"password"];
         [parameterDict setObject:_emailTextField.text forKey:@"email"];
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-       
         [manager POST:API_REG parameters:parameterDict success:^(AFHTTPRequestOperation *operation, id JSON) {
             
             NSLog(@"%@:%@",operation.response.URL.relativePath,JSON);

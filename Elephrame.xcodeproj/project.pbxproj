@@ -33,6 +33,10 @@
 		A15B574C1973C96B00CCEC32 /* YSpinKitView.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B57491973C96B00CCEC32 /* YSpinKitView.m */; };
 		A15B57521973C9DF00CCEC32 /* JDSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B574F1973C9DF00CCEC32 /* JDSideMenu.m */; };
 		A15B57531973C9DF00CCEC32 /* UIViewController+JDSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B57511973C9DF00CCEC32 /* UIViewController+JDSideMenu.m */; };
+		A1EAE24B19750B7400BF2BE7 /* JDMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EAE24919750B7400BF2BE7 /* JDMenuViewController.m */; };
+		A1EAE24C19750B7400BF2BE7 /* JDMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1EAE24A19750B7400BF2BE7 /* JDMenuViewController.xib */; };
+		A1EAE25019750E0600BF2BE7 /* EPSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EAE24F19750E0600BF2BE7 /* EPSettingsController.m */; };
+		A1EAE25319752BCC00BF2BE7 /* EPFeedbackController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EAE25219752BCC00BF2BE7 /* EPFeedbackController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +92,13 @@
 		A15B574F1973C9DF00CCEC32 /* JDSideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDSideMenu.m; sourceTree = "<group>"; };
 		A15B57501973C9DF00CCEC32 /* UIViewController+JDSideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+JDSideMenu.h"; sourceTree = "<group>"; };
 		A15B57511973C9DF00CCEC32 /* UIViewController+JDSideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+JDSideMenu.m"; sourceTree = "<group>"; };
+		A1EAE24819750B7400BF2BE7 /* JDMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDMenuViewController.h; sourceTree = "<group>"; };
+		A1EAE24919750B7400BF2BE7 /* JDMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDMenuViewController.m; sourceTree = "<group>"; };
+		A1EAE24A19750B7400BF2BE7 /* JDMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JDMenuViewController.xib; sourceTree = "<group>"; };
+		A1EAE24E19750E0600BF2BE7 /* EPSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSettingsController.h; sourceTree = "<group>"; };
+		A1EAE24F19750E0600BF2BE7 /* EPSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSettingsController.m; sourceTree = "<group>"; };
+		A1EAE25119752BCC00BF2BE7 /* EPFeedbackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPFeedbackController.h; sourceTree = "<group>"; };
+		A1EAE25219752BCC00BF2BE7 /* EPFeedbackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPFeedbackController.m; sourceTree = "<group>"; };
 		C70535FA52E04552A6142665 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE0AD39AEA834C48A4AAB4E5 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -244,6 +255,8 @@
 				A11716FE19743E33007AA62D /* EPHomeController.m */,
 				A117170019743E80007AA62D /* EPChooseeDeviceController.h */,
 				A117170119743E80007AA62D /* EPChooseeDeviceController.m */,
+				A1EAE25419752BD300BF2BE7 /* Settings */,
+				A1EAE24D19750B7700BF2BE7 /* Menu */,
 				A117170319743E89007AA62D /* LoginAndRegister */,
 			);
 			name = Controller;
@@ -278,6 +291,27 @@
 				A15B57511973C9DF00CCEC32 /* UIViewController+JDSideMenu.m */,
 			);
 			name = JDSideMenu;
+			sourceTree = "<group>";
+		};
+		A1EAE24D19750B7700BF2BE7 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				A1EAE24819750B7400BF2BE7 /* JDMenuViewController.h */,
+				A1EAE24919750B7400BF2BE7 /* JDMenuViewController.m */,
+				A1EAE24A19750B7400BF2BE7 /* JDMenuViewController.xib */,
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
+		A1EAE25419752BD300BF2BE7 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A1EAE24E19750E0600BF2BE7 /* EPSettingsController.h */,
+				A1EAE24F19750E0600BF2BE7 /* EPSettingsController.m */,
+				A1EAE25119752BCC00BF2BE7 /* EPFeedbackController.h */,
+				A1EAE25219752BCC00BF2BE7 /* EPFeedbackController.m */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -362,6 +396,7 @@
 				A15B570E1973B47A00CCEC32 /* Images.xcassets in Resources */,
 				A15B57001973B47A00CCEC32 /* InfoPlist.strings in Resources */,
 				A15B57091973B47A00CCEC32 /* Main.storyboard in Resources */,
+				A1EAE24C19750B7400BF2BE7 /* JDMenuViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,12 +452,15 @@
 				A15B57531973C9DF00CCEC32 /* UIViewController+JDSideMenu.m in Sources */,
 				A15B572F1973C25B00CCEC32 /* EPLoginController.m in Sources */,
 				A15B574C1973C96B00CCEC32 /* YSpinKitView.m in Sources */,
+				A1EAE25319752BCC00BF2BE7 /* EPFeedbackController.m in Sources */,
+				A1EAE24B19750B7400BF2BE7 /* JDMenuViewController.m in Sources */,
 				A15B57431973C95600CCEC32 /* MBProgressHUD+Category.m in Sources */,
 				A15B57341973C6BB00CCEC32 /* ProjectSettings.m in Sources */,
 				A15B57371973C76E00CCEC32 /* FSTableViewController.m in Sources */,
 				A15B57441973C95600CCEC32 /* MBProgressHUD.m in Sources */,
 				A15B57021973B47A00CCEC32 /* main.m in Sources */,
 				A117170219743E80007AA62D /* EPChooseeDeviceController.m in Sources */,
+				A1EAE25019750E0600BF2BE7 /* EPSettingsController.m in Sources */,
 				A15B573B1973C8FA00CCEC32 /* CTAssetsPickerController.m in Sources */,
 				A15B57061973B47A00CCEC32 /* EPAppDelegate.m in Sources */,
 				A15B572C1973B70200CCEC32 /* EPRegController.m in Sources */,
@@ -552,6 +590,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Elephrame/Elephrame-Prefix.pch";
 				INFOPLIST_FILE = "Elephrame/Elephrame-Info.plist";
@@ -566,6 +605,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Elephrame/Elephrame-Prefix.pch";
 				INFOPLIST_FILE = "Elephrame/Elephrame-Info.plist";

@@ -14,7 +14,7 @@
 #if TEST
 #define API_BASE_URL @"http://0.com"
 #else
-#define API_BASE_URL @"http://112.126.71.94"
+#define API_BASE_URL @"http://112.126.71.94:8080"
 #endif
 
 #define API_LOGIN [NSString stringWithFormat:@"%@/smart/login.do",API_BASE_URL]
