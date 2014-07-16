@@ -10,6 +10,7 @@
 		3D4595429274463D832859A5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C70535FA52E04552A6142665 /* libPods.a */; };
 		A11716FF19743E34007AA62D /* EPHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = A11716FE19743E33007AA62D /* EPHomeController.m */; };
 		A117170219743E80007AA62D /* EPChooseeDeviceController.m in Sources */ = {isa = PBXBuildFile; fileRef = A117170119743E80007AA62D /* EPChooseeDeviceController.m */; };
+		A11BE04419767B64004A8641 /* Images-2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A11BE04319767B64004A8641 /* Images-2.xcassets */; };
 		A15B56F61973B47A00CCEC32 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15B56F51973B47A00CCEC32 /* Foundation.framework */; };
 		A15B56F81973B47A00CCEC32 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15B56F71973B47A00CCEC32 /* CoreGraphics.framework */; };
 		A15B56FA1973B47A00CCEC32 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15B56F91973B47A00CCEC32 /* UIKit.framework */; };
@@ -41,6 +42,7 @@
 		A11716FE19743E33007AA62D /* EPHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPHomeController.m; sourceTree = "<group>"; };
 		A117170019743E80007AA62D /* EPChooseeDeviceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPChooseeDeviceController.h; sourceTree = "<group>"; };
 		A117170119743E80007AA62D /* EPChooseeDeviceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPChooseeDeviceController.m; sourceTree = "<group>"; };
+		A11BE04319767B64004A8641 /* Images-2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Images-2.xcassets"; sourceTree = "<group>"; };
 		A15B56F21973B47A00CCEC32 /* Elephrame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Elephrame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A15B56F51973B47A00CCEC32 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A15B56F71973B47A00CCEC32 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -163,6 +165,7 @@
 				A15B57071973B47A00CCEC32 /* Main.storyboard */,
 				A15B573E1973C91E00CCEC32 /* Controller */,
 				A15B57381973C77200CCEC32 /* Base */,
+				A11BE04319767B64004A8641 /* Images-2.xcassets */,
 				A15B56FC1973B47A00CCEC32 /* Supporting Files */,
 			);
 			path = Elephrame;
@@ -356,6 +359,7 @@
 			files = (
 				A15B57001973B47A00CCEC32 /* InfoPlist.strings in Resources */,
 				A15B57091973B47A00CCEC32 /* Main.storyboard in Resources */,
+				A11BE04419767B64004A8641 /* Images-2.xcassets in Resources */,
 				A1EAE24C19750B7400BF2BE7 /* JDMenuViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -527,6 +531,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EE0AD39AEA834C48A4AAB4E5 /* Pods.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -544,6 +549,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EE0AD39AEA834C48A4AAB4E5 /* Pods.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
