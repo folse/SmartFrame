@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-AFNetworking.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-AviarySDK.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -20,16 +15,6 @@
 			<false/>
 		</dict>
 		<key>Pods-EAIntroView.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-SDWebImage-ProgressView.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -47,42 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>05E1CCE850504471ADA87AB2</key>
+		<key>5149F08C83684438901E5CBE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>233A621F772C46CAAECA81BF</key>
+		<key>7A1462A6129446179855B16B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>65F35CBCEFA64AC690765967</key>
+		<key>7C197D39933E485B9F988151</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>717C6B4889AF47E18BB09F03</key>
+		<key>DCCD15FB06454A4E8E53F790</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7542704104254DEC8302497B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8ECD2D3D5F344C258AB52401</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9705A6A673644E539604399C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DB70123C58EF4C1383229D70</key>
+		<key>F1BE2CB381BA4E4DA1EA7219</key>
 		<dict>
 			<key>primary</key>
 			<true/>

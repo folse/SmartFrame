@@ -49,7 +49,9 @@
         NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc] init];
         [parameterDict setObject:_mobileTextField.text forKey:@"username"];
         [parameterDict setObject:_passwordTextField.text forKey:@"password"];
+
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
         [manager POST:API_LOGIN parameters:parameterDict success:^(AFHTTPRequestOperation *operation, id JSON) {
             
             NSLog(@"%@:%@",operation.response.URL.relativePath,JSON);
@@ -72,7 +74,6 @@
             }
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            s(error)
             NetWork_Error
         }];
     }

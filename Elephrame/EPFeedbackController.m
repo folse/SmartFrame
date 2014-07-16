@@ -61,6 +61,7 @@
         [parameterDict setObject:_contentTextView.text forKey:@"msg"];
         
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
         [manager POST:API_FEEDBACK parameters:parameterDict success:^(AFHTTPRequestOperation *operation, id JSON) {
             
             NSLog(@"%@:%@",operation.response.URL.relativePath,JSON);
