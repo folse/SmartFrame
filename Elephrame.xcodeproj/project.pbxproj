@@ -17,12 +17,6 @@
 		A15B57021973B47A00CCEC32 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B57011973B47A00CCEC32 /* main.m */; };
 		A15B57061973B47A00CCEC32 /* EPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B57051973B47A00CCEC32 /* EPAppDelegate.m */; };
 		A15B57091973B47A00CCEC32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A15B57071973B47A00CCEC32 /* Main.storyboard */; };
-		A15B570E1973B47A00CCEC32 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A15B570D1973B47A00CCEC32 /* Images.xcassets */; };
-		A15B57151973B47A00CCEC32 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15B57141973B47A00CCEC32 /* XCTest.framework */; };
-		A15B57161973B47A00CCEC32 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15B56F51973B47A00CCEC32 /* Foundation.framework */; };
-		A15B57171973B47A00CCEC32 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15B56F91973B47A00CCEC32 /* UIKit.framework */; };
-		A15B571F1973B47A00CCEC32 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A15B571D1973B47A00CCEC32 /* InfoPlist.strings */; };
-		A15B57211973B47A00CCEC32 /* ElephrameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B57201973B47A00CCEC32 /* ElephrameTests.m */; };
 		A15B572C1973B70200CCEC32 /* EPRegController.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B572B1973B70200CCEC32 /* EPRegController.m */; };
 		A15B572F1973C25B00CCEC32 /* EPLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B572E1973C25B00CCEC32 /* EPLoginController.m */; };
 		A15B57341973C6BB00CCEC32 /* ProjectSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B57331973C6BB00CCEC32 /* ProjectSettings.m */; };
@@ -33,21 +27,14 @@
 		A15B574C1973C96B00CCEC32 /* YSpinKitView.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B57491973C96B00CCEC32 /* YSpinKitView.m */; };
 		A15B57521973C9DF00CCEC32 /* JDSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B574F1973C9DF00CCEC32 /* JDSideMenu.m */; };
 		A15B57531973C9DF00CCEC32 /* UIViewController+JDSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B57511973C9DF00CCEC32 /* UIViewController+JDSideMenu.m */; };
+		A1AD0BF519762E7800F2BCD6 /* EPManageDeviceController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1AD0BF419762E7800F2BCD6 /* EPManageDeviceController.m */; };
 		A1EAE24B19750B7400BF2BE7 /* JDMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EAE24919750B7400BF2BE7 /* JDMenuViewController.m */; };
 		A1EAE24C19750B7400BF2BE7 /* JDMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1EAE24A19750B7400BF2BE7 /* JDMenuViewController.xib */; };
 		A1EAE25019750E0600BF2BE7 /* EPSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EAE24F19750E0600BF2BE7 /* EPSettingsController.m */; };
 		A1EAE25319752BCC00BF2BE7 /* EPFeedbackController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EAE25219752BCC00BF2BE7 /* EPFeedbackController.m */; };
+		A1EAE2571975473600BF2BE7 /* EPUploadController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EAE2561975473600BF2BE7 /* EPUploadController.m */; };
+		A1EAE25A19760CF700BF2BE7 /* EPChangePasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EAE25919760CF700BF2BE7 /* EPChangePasswordController.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		A15B57181973B47A00CCEC32 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A15B56EA1973B47A00CCEC32 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A15B56F11973B47A00CCEC32;
-			remoteInfo = Elephrame;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		A11716FD19743E33007AA62D /* EPHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPHomeController.h; sourceTree = "<group>"; };
@@ -65,8 +52,6 @@
 		A15B57041973B47A00CCEC32 /* EPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EPAppDelegate.h; sourceTree = "<group>"; };
 		A15B57051973B47A00CCEC32 /* EPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EPAppDelegate.m; sourceTree = "<group>"; };
 		A15B57081973B47A00CCEC32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A15B570D1973B47A00CCEC32 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		A15B57131973B47A00CCEC32 /* ElephrameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ElephrameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A15B57141973B47A00CCEC32 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		A15B571C1973B47A00CCEC32 /* ElephrameTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ElephrameTests-Info.plist"; sourceTree = "<group>"; };
 		A15B571E1973B47A00CCEC32 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -92,6 +77,8 @@
 		A15B574F1973C9DF00CCEC32 /* JDSideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDSideMenu.m; sourceTree = "<group>"; };
 		A15B57501973C9DF00CCEC32 /* UIViewController+JDSideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+JDSideMenu.h"; sourceTree = "<group>"; };
 		A15B57511973C9DF00CCEC32 /* UIViewController+JDSideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+JDSideMenu.m"; sourceTree = "<group>"; };
+		A1AD0BF319762E7800F2BCD6 /* EPManageDeviceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPManageDeviceController.h; sourceTree = "<group>"; };
+		A1AD0BF419762E7800F2BCD6 /* EPManageDeviceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPManageDeviceController.m; sourceTree = "<group>"; };
 		A1EAE24819750B7400BF2BE7 /* JDMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDMenuViewController.h; sourceTree = "<group>"; };
 		A1EAE24919750B7400BF2BE7 /* JDMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDMenuViewController.m; sourceTree = "<group>"; };
 		A1EAE24A19750B7400BF2BE7 /* JDMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JDMenuViewController.xib; sourceTree = "<group>"; };
@@ -99,6 +86,10 @@
 		A1EAE24F19750E0600BF2BE7 /* EPSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSettingsController.m; sourceTree = "<group>"; };
 		A1EAE25119752BCC00BF2BE7 /* EPFeedbackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPFeedbackController.h; sourceTree = "<group>"; };
 		A1EAE25219752BCC00BF2BE7 /* EPFeedbackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPFeedbackController.m; sourceTree = "<group>"; };
+		A1EAE2551975473600BF2BE7 /* EPUploadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPUploadController.h; sourceTree = "<group>"; };
+		A1EAE2561975473600BF2BE7 /* EPUploadController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPUploadController.m; sourceTree = "<group>"; };
+		A1EAE25819760CF700BF2BE7 /* EPChangePasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPChangePasswordController.h; sourceTree = "<group>"; };
+		A1EAE25919760CF700BF2BE7 /* EPChangePasswordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPChangePasswordController.m; sourceTree = "<group>"; };
 		C70535FA52E04552A6142665 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE0AD39AEA834C48A4AAB4E5 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,16 +103,6 @@
 				A15B56FA1973B47A00CCEC32 /* UIKit.framework in Frameworks */,
 				A15B56F61973B47A00CCEC32 /* Foundation.framework in Frameworks */,
 				3D4595429274463D832859A5 /* libPods.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A15B57101973B47A00CCEC32 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A15B57151973B47A00CCEC32 /* XCTest.framework in Frameworks */,
-				A15B57171973B47A00CCEC32 /* UIKit.framework in Frameworks */,
-				A15B57161973B47A00CCEC32 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,7 +136,6 @@
 			isa = PBXGroup;
 			children = (
 				A15B56F21973B47A00CCEC32 /* Elephrame.app */,
-				A15B57131973B47A00CCEC32 /* ElephrameTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -183,7 +163,6 @@
 				A15B57071973B47A00CCEC32 /* Main.storyboard */,
 				A15B573E1973C91E00CCEC32 /* Controller */,
 				A15B57381973C77200CCEC32 /* Base */,
-				A15B570D1973B47A00CCEC32 /* Images.xcassets */,
 				A15B56FC1973B47A00CCEC32 /* Supporting Files */,
 			);
 			path = Elephrame;
@@ -255,6 +234,8 @@
 				A11716FE19743E33007AA62D /* EPHomeController.m */,
 				A117170019743E80007AA62D /* EPChooseeDeviceController.h */,
 				A117170119743E80007AA62D /* EPChooseeDeviceController.m */,
+				A1EAE2551975473600BF2BE7 /* EPUploadController.h */,
+				A1EAE2561975473600BF2BE7 /* EPUploadController.m */,
 				A1EAE25419752BD300BF2BE7 /* Settings */,
 				A1EAE24D19750B7700BF2BE7 /* Menu */,
 				A117170319743E89007AA62D /* LoginAndRegister */,
@@ -308,8 +289,12 @@
 			children = (
 				A1EAE24E19750E0600BF2BE7 /* EPSettingsController.h */,
 				A1EAE24F19750E0600BF2BE7 /* EPSettingsController.m */,
+				A1EAE25819760CF700BF2BE7 /* EPChangePasswordController.h */,
+				A1EAE25919760CF700BF2BE7 /* EPChangePasswordController.m */,
 				A1EAE25119752BCC00BF2BE7 /* EPFeedbackController.h */,
 				A1EAE25219752BCC00BF2BE7 /* EPFeedbackController.m */,
+				A1AD0BF319762E7800F2BCD6 /* EPManageDeviceController.h */,
+				A1AD0BF419762E7800F2BCD6 /* EPManageDeviceController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -336,24 +321,6 @@
 			productReference = A15B56F21973B47A00CCEC32 /* Elephrame.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A15B57121973B47A00CCEC32 /* ElephrameTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A15B57271973B47A00CCEC32 /* Build configuration list for PBXNativeTarget "ElephrameTests" */;
-			buildPhases = (
-				A15B570F1973B47A00CCEC32 /* Sources */,
-				A15B57101973B47A00CCEC32 /* Frameworks */,
-				A15B57111973B47A00CCEC32 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A15B57191973B47A00CCEC32 /* PBXTargetDependency */,
-			);
-			name = ElephrameTests;
-			productName = ElephrameTests;
-			productReference = A15B57131973B47A00CCEC32 /* ElephrameTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -363,11 +330,6 @@
 				CLASSPREFIX = EP;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Folse;
-				TargetAttributes = {
-					A15B57121973B47A00CCEC32 = {
-						TestTargetID = A15B56F11973B47A00CCEC32;
-					};
-				};
 			};
 			buildConfigurationList = A15B56ED1973B47A00CCEC32 /* Build configuration list for PBXProject "Elephrame" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -383,7 +345,6 @@
 			projectRoot = "";
 			targets = (
 				A15B56F11973B47A00CCEC32 /* Elephrame */,
-				A15B57121973B47A00CCEC32 /* ElephrameTests */,
 			);
 		};
 /* End PBXProject section */
@@ -393,18 +354,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A15B570E1973B47A00CCEC32 /* Images.xcassets in Resources */,
 				A15B57001973B47A00CCEC32 /* InfoPlist.strings in Resources */,
 				A15B57091973B47A00CCEC32 /* Main.storyboard in Resources */,
 				A1EAE24C19750B7400BF2BE7 /* JDMenuViewController.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A15B57111973B47A00CCEC32 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A15B571F1973B47A00CCEC32 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,8 +403,10 @@
 				A11716FF19743E34007AA62D /* EPHomeController.m in Sources */,
 				A15B57531973C9DF00CCEC32 /* UIViewController+JDSideMenu.m in Sources */,
 				A15B572F1973C25B00CCEC32 /* EPLoginController.m in Sources */,
+				A1AD0BF519762E7800F2BCD6 /* EPManageDeviceController.m in Sources */,
 				A15B574C1973C96B00CCEC32 /* YSpinKitView.m in Sources */,
 				A1EAE25319752BCC00BF2BE7 /* EPFeedbackController.m in Sources */,
+				A1EAE2571975473600BF2BE7 /* EPUploadController.m in Sources */,
 				A1EAE24B19750B7400BF2BE7 /* JDMenuViewController.m in Sources */,
 				A15B57431973C95600CCEC32 /* MBProgressHUD+Category.m in Sources */,
 				A15B57341973C6BB00CCEC32 /* ProjectSettings.m in Sources */,
@@ -461,6 +415,7 @@
 				A15B57021973B47A00CCEC32 /* main.m in Sources */,
 				A117170219743E80007AA62D /* EPChooseeDeviceController.m in Sources */,
 				A1EAE25019750E0600BF2BE7 /* EPSettingsController.m in Sources */,
+				A1EAE25A19760CF700BF2BE7 /* EPChangePasswordController.m in Sources */,
 				A15B573B1973C8FA00CCEC32 /* CTAssetsPickerController.m in Sources */,
 				A15B57061973B47A00CCEC32 /* EPAppDelegate.m in Sources */,
 				A15B572C1973B70200CCEC32 /* EPRegController.m in Sources */,
@@ -468,23 +423,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A15B570F1973B47A00CCEC32 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A15B57211973B47A00CCEC32 /* ElephrameTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		A15B57191973B47A00CCEC32 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A15B56F11973B47A00CCEC32 /* Elephrame */;
-			targetProxy = A15B57181973B47A00CCEC32 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A15B56FE1973B47A00CCEC32 /* InfoPlist.strings */ = {
@@ -546,7 +485,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -578,7 +517,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -590,11 +529,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Elephrame/Elephrame-Prefix.pch";
 				INFOPLIST_FILE = "Elephrame/Elephrame-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -605,52 +547,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Elephrame/Elephrame-Prefix.pch";
 				INFOPLIST_FILE = "Elephrame/Elephrame-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		A15B57281973B47A00CCEC32 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Elephrame.app/Elephrame";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Elephrame/Elephrame-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "ElephrameTests/ElephrameTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		A15B57291973B47A00CCEC32 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Elephrame.app/Elephrame";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Elephrame/Elephrame-Prefix.pch";
-				INFOPLIST_FILE = "ElephrameTests/ElephrameTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -671,15 +576,6 @@
 			buildConfigurations = (
 				A15B57251973B47A00CCEC32 /* Debug */,
 				A15B57261973B47A00CCEC32 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A15B57271973B47A00CCEC32 /* Build configuration list for PBXNativeTarget "ElephrameTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A15B57281973B47A00CCEC32 /* Debug */,
-				A15B57291973B47A00CCEC32 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

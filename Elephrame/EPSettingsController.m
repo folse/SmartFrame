@@ -40,6 +40,17 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)menuButtonAction:(id)sender
+{
+    JDSideMenu *sideMenu = (JDSideMenu *)self.navigationController.parentViewController;
+    
+    if (sideMenu.isMenuVisible) {
+        [sideMenu hideMenuAnimated:YES];
+    }else{
+        [sideMenu showMenuAnimated:YES];
+    }
+}
+
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

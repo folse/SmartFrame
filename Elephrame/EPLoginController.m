@@ -68,11 +68,11 @@
                 [self dismissViewControllerAnimated:YES completion:nil];
                 
             }else{
-                
                 NetWork_Error
             }
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            s(error)
             NetWork_Error
         }];
     }

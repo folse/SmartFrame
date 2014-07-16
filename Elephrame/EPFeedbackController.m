@@ -38,6 +38,17 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)menuButtonAction:(id)sender
+{
+    JDSideMenu *sideMenu = (JDSideMenu *)self.navigationController.parentViewController;
+    
+    if (sideMenu.isMenuVisible) {
+        [sideMenu hideMenuAnimated:YES];
+    }else{
+        [sideMenu showMenuAnimated:YES];
+    }
+}
+
 - (IBAction)feedbackButtonAction:(id)sender
 {
     if (_contentTextView.text.length > 0) {
@@ -50,7 +61,7 @@
         [parameterDict setObject:_contentTextView.text forKey:@"msg"];
         
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        [manager POST:API_LOGIN parameters:parameterDict success:^(AFHTTPRequestOperation *operation, id JSON) {
+        [manager POST:API_FEEDBACK parameters:parameterDict success:^(AFHTTPRequestOperation *operation, id JSON) {
             
             NSLog(@"%@:%@",operation.response.URL.relativePath,JSON);
             [HUD hide:YES];

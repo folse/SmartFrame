@@ -391,7 +391,7 @@ NSMutableArray *selectedIndexPathArray;
 
 #pragma mark - Table view delegate
 
-- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return kThumbnailLength + 12;
 }

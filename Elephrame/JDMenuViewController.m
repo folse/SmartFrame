@@ -37,27 +37,28 @@
     self.scrollView.contentSize = CGRectInset(self.scrollView.bounds, 0, -1).size;
 }
 
-- (IBAction)HomeBtnAction:(id)sender
+- (IBAction)firstBtnAction:(id)sender
 {
     UINavigationController *navController = [STORY_BOARD instantiateViewControllerWithIdentifier:@"mainNav"];
     [self.sideMenuController setContentController:navController animated:YES];
 }
 
-- (IBAction)favouriteBtnAction:(id)sender
+- (IBAction)secondBtnAction:(id)sender
 {
     UINavigationController *navController = [STORY_BOARD instantiateViewControllerWithIdentifier:@"categoryNav"];
     [self.sideMenuController setContentController:navController animated:YES];
 }
 
-- (IBAction)moreBtnAction:(id)sender
+- (IBAction)thirdBtnAction:(id)sender
 {
-    UINavigationController *navController = [STORY_BOARD instantiateViewControllerWithIdentifier:@"moreNav"];
+    UINavigationController *navController = [STORY_BOARD instantiateViewControllerWithIdentifier:@"feedbackNav"];
     [self.sideMenuController setContentController:navController animated:YES];
 }
 
-- (IBAction)rewardBtnAction:(id)sender
+- (IBAction)fourthBtnAction:(id)sender
 {
-    UINavigationController *navController = [STORY_BOARD instantiateViewControllerWithIdentifier:@"rewardNav"];
+    UINavigationController *navController = [STORY_BOARD instantiateViewControllerWithIdentifier:@"settingsNav"];
     [self.sideMenuController setContentController:navController animated:YES];
 }
+
 @end

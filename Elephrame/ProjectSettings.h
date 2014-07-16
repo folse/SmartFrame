@@ -22,7 +22,7 @@
 #define USER_ID [USER valueForKey:@"userId"]
 #define USER_NAME [USER valueForKey:@"userName"]
 #define USER_LOGIN [USER boolForKey:@"userLogined"]
-#define APP_COLOR [UIColor colorWithRed:102.0/255.0 green:185.0/255.0 blue:233.0/255.0 alpha:1.0]
+#define APP_COLOR [UIColor colorWithRed:42/255.0 green:215/255.0 blue:205/255.0 alpha:1.0]
 
 #define FIRST_LOAD [USER boolForKey:@"isFirstLoad"]
 #define PAGE_ID [USER valueForKey:@"pageId"]
@@ -45,7 +45,7 @@ HUD.square = YES;\
 HUD.margin = 15;\
 HUD.minShowTime = 1;\
 HUD.mode = MBProgressHUDModeCustomView;\
-HUD.customView = [[YSpinKitView alloc] initWithStyle:YSpinKitViewStyleBounce color:[UIColor colorWithRed:88.0/255.0 green:194.0/255.0 blue:255.0/255.0 alpha:1.0]];\
+HUD.customView = [[YSpinKitView alloc] initWithStyle:YSpinKitViewStyleWave color:APP_COLOR];\
 [[UIApplication sharedApplication].keyWindow addSubview:HUD];\
 
 #define NetWork_Error \
@@ -116,7 +116,7 @@ UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"
 #define UmengCrashEnable 1
 #define UmengLogEnable 0
 #define UmengChannelId  @"App Store"
-#define UMENG_APP_KEY  @"5279e7eb56240b826501cf50"
+#define UMENG_APP_KEY  @"53c5206c56240b45ff08f61e"
 
 #define FONT(x) [UIFont systemFontOfSize:x]
 
