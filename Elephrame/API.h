@@ -38,6 +38,9 @@
 //管理照片
 #define API_MANAGE_PHOTO [NSString stringWithFormat:@"%@/smart/manage.do",API_BASE_URL]
 
+//管理账户
+#define API_MANAGE_ACCOUNT [NSString stringWithFormat:@"%@/smart/account.do",API_BASE_URL]
+
 //解除绑定
 #define API_DELETE_RELATION [NSString stringWithFormat:@"%@/smart/relieve.do",API_BASE_URL]
 

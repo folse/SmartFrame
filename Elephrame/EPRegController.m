@@ -43,6 +43,7 @@
 - (IBAction)regButtonAction:(id)sender
 {
     if (_mobileTextField.text.length > 0 && _passwordTextField.text.length > 0 && _emailTextField.text.length > 0) {
+        
         [_mobileTextField resignFirstResponder];
         [_passwordTextField resignFirstResponder];
         
