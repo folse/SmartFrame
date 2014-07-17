@@ -40,26 +40,23 @@
 
 - (IBAction)changePasswodButtonAction:(id)sender
 {
-    
     if (_currentPasswordTextField.text.length > 0 && _setNewPasswordTextField.text.length > 0 && _againNewPasswordTextField.text.length > 0) {
-    
-//            [_mobileTextField resignFirstResponder];
-//            [_passwordTextField resignFirstResponder];
         
+        if ([_setNewPasswordTextField.text isEqualToString:_againNewPasswordTextField.text]) {
+            [self.view endEditing:YES];
+            
             [HUD show:YES];
             
             NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc] init];
-            [parameterDict setObject:_currentPasswordTextField.text forKey:@"tel"];
+            [parameterDict setObject:_currentPasswordTextField.text forKey:@"old_password"];
             [parameterDict setObject:_setNewPasswordTextField.text forKey:@"password"];
             AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
             manager.requestSerializer = [AFJSONRequestSerializer serializer];
-            [manager POST:API_MANAGE_ACCOUNT parameters:parameterDict success:^(AFHTTPRequestOperation *operation, id JSON) {
-                
+            [manager POST:API_MANAGE_ACCOUNT parameters:parameterDict success:^(AFHTTPRequestOperation *operation, id JSON) {                
                 NSLog(@"%@:%@",operation.response.URL.relativePath,JSON);
                 [HUD hide:YES];
                 if ([[JSON valueForKey:@"code"] isEqualToString:@"1"]) {
                     
-
                     [HUD hide:YES];
                     [self dismissViewControllerAnimated:YES completion:nil];
                     return ;
@@ -71,7 +68,7 @@
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                 NetWork_Error
             }];
-       
+        }
     }
 }
 

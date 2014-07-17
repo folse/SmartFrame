@@ -45,7 +45,7 @@
 
 - (IBAction)secondBtnAction:(id)sender
 {
-    UINavigationController *navController = [STORY_BOARD instantiateViewControllerWithIdentifier:@"categoryNav"];
+    UINavigationController *navController = [STORY_BOARD instantiateViewControllerWithIdentifier:@"manageDeviceNav"];
     [self.sideMenuController setContentController:navController animated:YES];
 }
 

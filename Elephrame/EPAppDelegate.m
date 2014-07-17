@@ -24,14 +24,14 @@
     
     [MobClick startWithAppkey:UMENG_APP_KEY reportPolicy:SEND_INTERVAL channelId:@"AppStore"];
     
-//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    [self.window makeKeyAndVisible];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [self.window makeKeyAndVisible];
     
-//    UIViewController *menuController = [[JDMenuViewController alloc] init];
-//    UINavigationController *navController = [STORY_BOARD instantiateViewControllerWithIdentifier:@"mainNav"];
-//    JDSideMenu *sideMenu = [[JDSideMenu alloc] initWithContentController:navController menuController:menuController];
-//    [sideMenu setBackgroundImage:[UIImage imageNamed:@"bg_menu"]];
-//    self.window.rootViewController = sideMenu;
+    UIViewController *menuController = [[JDMenuViewController alloc] init];
+    UINavigationController *navController = [STORY_BOARD instantiateViewControllerWithIdentifier:@"mainNav"];
+    JDSideMenu *sideMenu = [[JDSideMenu alloc] initWithContentController:navController menuController:menuController];
+    [sideMenu setBackgroundImage:[UIImage imageNamed:@"bg_menu"]];
+    self.window.rootViewController = sideMenu;
     
     return YES;
 }
