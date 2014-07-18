@@ -43,15 +43,37 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
-    
+        
+    [self getDevice];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)getDevice
+{
+    NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc] init];
+    [parameterDict setObject:[USER_DEFAULTS valueForKey:@"tokenId"] forKey:@"token"];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager POST:API_RELATION parameters:parameterDict success:^(AFHTTPRequestOperation *operation, id JSON) {
+        
+        NSLog(@"%@:%@",operation.response.URL.relativePath,JSON);
+        
+        if ([[JSON valueForKey:@"code"] isEqualToString:@"1"]) {
+            
+            NSArray *relationDevices = (NSArray *)[JSON valueForKey:@"relations"];
+            
+            [USER_DEFAULTS setObject:relationDevices forKey:@"devicesArray"];
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
 }
 
 - (IBAction)menuButtonAction:(id)sender
@@ -92,7 +114,7 @@
         
         isFromCamera = YES;
         [self.assets addObject:info[UIImagePickerControllerOriginalImage]];
-        [self uploadImage:info[UIImagePickerControllerOriginalImage]];
+        [self finishChooseImage:info[UIImagePickerControllerOriginalImage]];
     }];
 }
 
@@ -109,12 +131,18 @@
     ALAsset *asset = assets[uploadId];
     UIImage *assetOriImage =[UIImage imageWithCGImage:[[asset defaultRepresentation] fullScreenImage]];
 
-    [self uploadImage:assetOriImage];
+    [self finishChooseImage:assetOriImage];
 }
 
--(void)uploadImage:(UIImage *)image
+-(void)finishChooseImage:(UIImage *)image
 {
+    NSArray *deviceArray = [USER_DEFAULTS objectForKey:@"devicesArray"];
     
+    if (deviceArray.count == 1) {
+        
+    }else{
+        [self performSegueWithIdentifier:@"ChooseDeviceController" sender:self];
+    }
 }
 
 /*

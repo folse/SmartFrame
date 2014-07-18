@@ -27,7 +27,7 @@
 #define API_UPLOAD [NSString stringWithFormat:@"%@/smart/upload.do",API_BASE_URL]
 
 //获取绑定关系
-#define API_RELETION [NSString stringWithFormat:@"%@/smart/relations.do",API_BASE_URL]
+#define API_RELATION [NSString stringWithFormat:@"%@/smart/relations.do",API_BASE_URL]
 
 //上传照片和声音
 #define API_SEND_PHOTO_VOICE [NSString stringWithFormat:@"%@/smart/upload_header.do",API_BASE_URL]

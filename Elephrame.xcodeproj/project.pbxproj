@@ -42,7 +42,6 @@
 		A1EAE24C19750B7400BF2BE7 /* JDMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1EAE24A19750B7400BF2BE7 /* JDMenuViewController.xib */; };
 		A1EAE25019750E0600BF2BE7 /* EPSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EAE24F19750E0600BF2BE7 /* EPSettingsController.m */; };
 		A1EAE25319752BCC00BF2BE7 /* EPFeedbackController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EAE25219752BCC00BF2BE7 /* EPFeedbackController.m */; };
-		A1EAE2571975473600BF2BE7 /* EPUploadController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EAE2561975473600BF2BE7 /* EPUploadController.m */; };
 		A1EAE25A19760CF700BF2BE7 /* EPChangePasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EAE25919760CF700BF2BE7 /* EPChangePasswordController.m */; };
 /* End PBXBuildFile section */
 
@@ -116,8 +115,6 @@
 		A1EAE24F19750E0600BF2BE7 /* EPSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSettingsController.m; sourceTree = "<group>"; };
 		A1EAE25119752BCC00BF2BE7 /* EPFeedbackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPFeedbackController.h; sourceTree = "<group>"; };
 		A1EAE25219752BCC00BF2BE7 /* EPFeedbackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPFeedbackController.m; sourceTree = "<group>"; };
-		A1EAE2551975473600BF2BE7 /* EPUploadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPUploadController.h; sourceTree = "<group>"; };
-		A1EAE2561975473600BF2BE7 /* EPUploadController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPUploadController.m; sourceTree = "<group>"; };
 		A1EAE25819760CF700BF2BE7 /* EPChangePasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPChangePasswordController.h; sourceTree = "<group>"; };
 		A1EAE25919760CF700BF2BE7 /* EPChangePasswordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPChangePasswordController.m; sourceTree = "<group>"; };
 		C70535FA52E04552A6142665 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -266,8 +263,6 @@
 				A11716FE19743E33007AA62D /* EPHomeController.m */,
 				A117170019743E80007AA62D /* EPChooseeDeviceController.h */,
 				A117170119743E80007AA62D /* EPChooseeDeviceController.m */,
-				A1EAE2551975473600BF2BE7 /* EPUploadController.h */,
-				A1EAE2561975473600BF2BE7 /* EPUploadController.m */,
 				A1EAE25419752BD300BF2BE7 /* Settings */,
 				A1EAE24D19750B7700BF2BE7 /* Menu */,
 				A117170319743E89007AA62D /* LoginAndRegister */,
@@ -470,7 +465,6 @@
 				A1EAE25319752BCC00BF2BE7 /* EPFeedbackController.m in Sources */,
 				A16C08501976C21400A6AAF6 /* AFSecurityPolicy.m in Sources */,
 				A16C084C1976C21400A6AAF6 /* AFHTTPRequestOperation.m in Sources */,
-				A1EAE2571975473600BF2BE7 /* EPUploadController.m in Sources */,
 				A1EAE24B19750B7400BF2BE7 /* JDMenuViewController.m in Sources */,
 				A15B57431973C95600CCEC32 /* MBProgressHUD+Category.m in Sources */,
 				A15B57341973C6BB00CCEC32 /* ProjectSettings.m in Sources */,

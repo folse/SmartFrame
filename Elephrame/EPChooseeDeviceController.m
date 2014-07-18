@@ -9,6 +9,9 @@
 #import "EPChooseeDeviceController.h"
 
 @interface EPChooseeDeviceController ()
+{
+    NSArray *deviceArray;
+}
 
 @end
 
@@ -26,7 +29,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    deviceArray = [USER_DEFAULTS objectForKey:@"devicesArray"];
 }
 
 - (void)didReceiveMemoryWarning

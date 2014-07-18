@@ -250,7 +250,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="iZM-XO-kll" kind="push" identifier="ChooseDevice" id="cAT-NH-02D"/>
+                        <segue destination="iZM-XO-kll" kind="push" identifier="ChooseDeviceController" id="cAT-NH-02D"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NuD-BJ-LME" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -281,42 +281,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="选择设备" id="NDn-sM-aOr"/>
-                    <connections>
-                        <segue destination="QVI-pV-Fwy" kind="push" id="LFx-KF-rdp"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tSY-Li-Ieh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1011" y="1243"/>
-        </scene>
-        <!--Upload Controller - 上传照片-->
-        <scene sceneID="G4m-17-lLl">
-            <objects>
-                <tableViewController id="QVI-pV-Fwy" customClass="EPUploadController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="102" sectionHeaderHeight="22" sectionFooterHeight="22" id="uHZ-RH-iYn">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="102" id="mj9-nA-hVc">
-                                <rect key="frame" x="0.0" y="86" width="320" height="102"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mj9-nA-hVc" id="AWT-x1-IPe">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="101"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="QVI-pV-Fwy" id="Bzk-CQ-jky"/>
-                            <outlet property="delegate" destination="QVI-pV-Fwy" id="5UZ-iw-ZFZ"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="上传照片" id="zl2-gH-XK2"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CQL-C6-He4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1508" y="1243"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ttB-Ei-atf">
