@@ -42,6 +42,8 @@
 
 - (IBAction)menuButtonAction:(id)sender
 {
+    [self.view endEditing:YES];
+
     JDSideMenu *sideMenu = (JDSideMenu *)self.navigationController.parentViewController;
     
     if (sideMenu.isMenuVisible) {
@@ -49,6 +51,32 @@
     }else{
         [sideMenu showMenuAnimated:YES];
     }
+}
+
+- (IBAction)logoutButtonAction:(id)sender
+{
+    [self resetDefaults];
+    
+    JDSideMenu *sideMenu = (JDSideMenu *)self.navigationController.parentViewController;
+    UINavigationController *navController = [STORY_BOARD instantiateViewControllerWithIdentifier:@"mainNav"];
+    [sideMenu setContentController:navController animated:NO];
+    
+    UINavigationController *regNavController = [STORY_BOARD instantiateViewControllerWithIdentifier:@"regNav"];
+    
+    [self presentViewController:regNavController animated:YES completion:nil];
+    
+}
+
+- (void)resetDefaults
+{
+    NSUserDefaults * defs = [NSUserDefaults standardUserDefaults];
+    NSDictionary * dict = [defs dictionaryRepresentation];
+    for (id key in dict) {
+        if (![key isEqualToString:@"moreThanFirstLoad"]) {
+            [defs removeObjectForKey:key];
+        }
+    }
+    [defs synchronize];
 }
 
 /*

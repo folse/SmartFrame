@@ -37,6 +37,8 @@
 
 - (IBAction)menuButtonAction:(id)sender
 {
+    [self.view endEditing:YES];
+
     JDSideMenu *sideMenu = (JDSideMenu *)self.navigationController.parentViewController;
     
     if (sideMenu.isMenuVisible) {

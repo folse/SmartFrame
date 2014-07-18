@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		3D4595429274463D832859A5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C70535FA52E04552A6142665 /* libPods.a */; };
 		A11716FF19743E34007AA62D /* EPHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = A11716FE19743E33007AA62D /* EPHomeController.m */; };
-		A117170219743E80007AA62D /* EPChooseeDeviceController.m in Sources */ = {isa = PBXBuildFile; fileRef = A117170119743E80007AA62D /* EPChooseeDeviceController.m */; };
+		A117170219743E80007AA62D /* EPChooseDeviceController.m in Sources */ = {isa = PBXBuildFile; fileRef = A117170119743E80007AA62D /* EPChooseDeviceController.m */; };
 		A11BE04419767B64004A8641 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A11BE04319767B64004A8641 /* Images.xcassets */; };
 		A15B56F61973B47A00CCEC32 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15B56F51973B47A00CCEC32 /* Foundation.framework */; };
 		A15B56F81973B47A00CCEC32 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15B56F71973B47A00CCEC32 /* CoreGraphics.framework */; };
@@ -48,8 +48,8 @@
 /* Begin PBXFileReference section */
 		A11716FD19743E33007AA62D /* EPHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPHomeController.h; sourceTree = "<group>"; };
 		A11716FE19743E33007AA62D /* EPHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPHomeController.m; sourceTree = "<group>"; };
-		A117170019743E80007AA62D /* EPChooseeDeviceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPChooseeDeviceController.h; sourceTree = "<group>"; };
-		A117170119743E80007AA62D /* EPChooseeDeviceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPChooseeDeviceController.m; sourceTree = "<group>"; };
+		A117170019743E80007AA62D /* EPChooseDeviceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPChooseDeviceController.h; sourceTree = "<group>"; };
+		A117170119743E80007AA62D /* EPChooseDeviceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPChooseDeviceController.m; sourceTree = "<group>"; };
 		A11BE04319767B64004A8641 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A15B56F21973B47A00CCEC32 /* Elephrame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Elephrame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A15B56F51973B47A00CCEC32 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -261,8 +261,8 @@
 			children = (
 				A11716FD19743E33007AA62D /* EPHomeController.h */,
 				A11716FE19743E33007AA62D /* EPHomeController.m */,
-				A117170019743E80007AA62D /* EPChooseeDeviceController.h */,
-				A117170119743E80007AA62D /* EPChooseeDeviceController.m */,
+				A117170019743E80007AA62D /* EPChooseDeviceController.h */,
+				A117170119743E80007AA62D /* EPChooseDeviceController.m */,
 				A1EAE25419752BD300BF2BE7 /* Settings */,
 				A1EAE24D19750B7700BF2BE7 /* Menu */,
 				A117170319743E89007AA62D /* LoginAndRegister */,
@@ -342,12 +342,12 @@
 			children = (
 				A1EAE24E19750E0600BF2BE7 /* EPSettingsController.h */,
 				A1EAE24F19750E0600BF2BE7 /* EPSettingsController.m */,
-				A1EAE25819760CF700BF2BE7 /* EPChangePasswordController.h */,
-				A1EAE25919760CF700BF2BE7 /* EPChangePasswordController.m */,
 				A1EAE25119752BCC00BF2BE7 /* EPFeedbackController.h */,
 				A1EAE25219752BCC00BF2BE7 /* EPFeedbackController.m */,
 				A1AD0BF319762E7800F2BCD6 /* EPManageDeviceController.h */,
 				A1AD0BF419762E7800F2BCD6 /* EPManageDeviceController.m */,
+				A1EAE25819760CF700BF2BE7 /* EPChangePasswordController.h */,
+				A1EAE25919760CF700BF2BE7 /* EPChangePasswordController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -472,7 +472,7 @@
 				A15B57441973C95600CCEC32 /* MBProgressHUD.m in Sources */,
 				A16C084E1976C21400A6AAF6 /* AFHTTPSessionManager.m in Sources */,
 				A15B57021973B47A00CCEC32 /* main.m in Sources */,
-				A117170219743E80007AA62D /* EPChooseeDeviceController.m in Sources */,
+				A117170219743E80007AA62D /* EPChooseDeviceController.m in Sources */,
 				A1EAE25019750E0600BF2BE7 /* EPSettingsController.m in Sources */,
 				A16C084D1976C21400A6AAF6 /* AFHTTPRequestOperationManager.m in Sources */,
 				A1EAE25A19760CF700BF2BE7 /* EPChangePasswordController.m in Sources */,

@@ -1,5 +1,5 @@
 //
-//  EPChooseeDeviceController.h
+//  EPChooseDeviceController.h
 //  Elephrame
 //
 //  Created by Jennifer on 7/15/14.
@@ -8,6 +8,8 @@
 
 #import "FSTableViewController.h"
 
-@interface EPChooseeDeviceController : FSTableViewController
+@interface EPChooseDeviceController : FSTableViewController
+
+@property (nonatomic, strong) NSArray *deviceArray;
 
 @end
