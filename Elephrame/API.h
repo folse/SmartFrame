@@ -9,10 +9,10 @@
 #ifndef weidian_ApiDefine_h
 #define weidian_ApiDefine_h
 
-#define TEST FALSE
+#define TEST TRUE
 
 #if TEST
-#define API_BASE_URL @"http://0.com"
+#define API_BASE_URL @"http://202.112.114.13:9999"
 #else
 #define API_BASE_URL @"http://112.126.71.94:8080"
 #endif

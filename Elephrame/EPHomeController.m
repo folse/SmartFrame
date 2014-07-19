@@ -12,7 +12,7 @@
 
 @interface EPHomeController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,CTAssetsPickerControllerDelegate>
 {
-    NSArray *deviceArray;
+    NSMutableArray *deviceArray;
 }
 
 @property (nonatomic, strong) NSMutableArray *assets;
@@ -22,7 +22,6 @@
 
 @implementation EPHomeController
 {
-    BOOL isFromCamera;
     int uploadId;
     BOOL isFinishUploadImage;
 }
@@ -44,41 +43,23 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
-//-(void)viewDidAppear:(BOOL)animated
-//{
-//    if (!USER_LOGIN || [USER_DEFAULTS boolForKey:@"timeout"]) {
-//        
-//        GuideController *guideVC = [GuideController new];
-//        [self presentViewController:guideVC animated:YES completion:^{
-//            if([USER_DEFAULTS boolForKey:@"timeout"]){
-//                [(UIPageControl *)VIEWWITHTAG(guideVC.view, 1012) setCurrentPage:4];
-//                [(SWParallaxScrollView *)VIEWWITHTAG(guideVC.view, 1011) setContentOffset:CGPointMake(SCREEN_WIDTH * 4, 0) animated:NO];
-//            }
-//        }];
-//        return;
-//    }
-//    
-//    if (USER_LOGIN && !MORE_THAN_FIRST_LOAD) {
-//        CGPoint point = CGPointMake(-1000, -1000);
-//        [MLPSpotlight addSpotlightInView:self.view atPoint:point];
-//        guideImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mask_slidescreen"]];
-//        [guideImageView setFrame:CGRectMake(0, SCREEN_HEIGHT - guideImageView.frame.size.height, 300, 310)];
-//        guideImageView.center = CGPointMake(SCREEN_WIDTH/2, guideImageView.frame.origin.y);
-//        guideImageView.userInteractionEnabled = YES;
-//        [self.view addSubview:guideImageView];
-//        [self addGestureRecognizerOnMLPSpotlight];
-//        [USER_DEFAULTS setBool:YES forKey:@"moreThanFirstLoad"];
-//    }
-//}
+-(void)viewDidAppear:(BOOL)animated
+{
+    if (!USER_LOGIN) {
+   
+        UINavigationController *regNavController = [STORY_BOARD instantiateViewControllerWithIdentifier:@"regNav"];
+        
+        [self presentViewController:regNavController animated:YES completion:nil];
+    }
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    deviceArray = [NSMutableArray new];
     
-    //[self getDevice];
-    
-    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(uploadImageToDevice:) name:@"afterChooseDevice" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(uploadImageToDevice:) name:@"afterChooseDevice" object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -94,8 +75,13 @@
 
 -(void)getDevice
 {
+    deviceArray = [USER_DEFAULTS objectForKey:@"deviceArray"];
+    
     NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc] init];
-    [parameterDict setObject:[USER_DEFAULTS valueForKey:@"tokenId"] forKey:@"token"];
+    
+    NSString *tokenId = [USER_DEFAULTS valueForKey:@"tokenId"];
+    
+    [parameterDict setObject:tokenId forKey:@"token"];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -105,9 +91,9 @@
         
         if ([[JSON valueForKey:@"code"] isEqualToString:@"1"]) {
             
-            NSArray *relationDevices = (NSArray *)[JSON valueForKey:@"relations"];
+            deviceArray = (NSMutableArray *)[JSON valueForKey:@"relations"];
             
-            [USER_DEFAULTS setObject:relationDevices forKey:@"devicesArray"];
+            [USER_DEFAULTS setObject:deviceArray forKey:@"deviceArray"];
             
         }else{
             
@@ -122,7 +108,9 @@
 
 -(void)uploadImageToDevice:(NSString *)deviceId
 {
+    s(deviceId)
     
+        
 }
 
 - (IBAction)menuButtonAction:(id)sender
@@ -144,7 +132,10 @@
         UIImagePickerController *controller = [[UIImagePickerController alloc] init];
         controller.delegate = self;
         controller.sourceType = UIImagePickerControllerSourceTypeCamera;
-        [self presentViewController:controller animated:YES completion:nil];
+        [self presentViewController:controller animated:YES completion:^{
+            
+            [[[NSThread alloc] initWithTarget:self selector:@selector(getDevice) object:nil] start];
+        }];
     }
 }
 
@@ -155,7 +146,10 @@
     picker.navigationController.navigationItem.title = @"选取照片";
     picker.assetsFilter = [ALAssetsFilter allPhotos];
     picker.delegate = self;
-    [self presentViewController:picker animated:YES completion:nil];
+    [self presentViewController:picker animated:YES completion:^{
+        
+        [[[NSThread alloc] initWithTarget:self selector:@selector(getDevice) object:nil] start];
+    }];
 }
 
 #pragma mark - UIImagePickerControllerDelegate -
@@ -165,7 +159,6 @@
 {
     [picker dismissViewControllerAnimated:YES completion:^{
         
-        isFromCamera = YES;
         [self.assets addObject:info[UIImagePickerControllerOriginalImage]];
         [self finishChooseImage:info[UIImagePickerControllerOriginalImage]];
     }];
@@ -179,7 +172,6 @@
     [self.addAssets removeAllObjects];
     [self.assets addObjectsFromArray:assets];
     [self.addAssets addObjectsFromArray:assets];
-    isFromCamera = NO;
     uploadId = 0;
     ALAsset *asset = assets[uploadId];
     UIImage *assetOriImage =[UIImage imageWithCGImage:[[asset defaultRepresentation] fullScreenImage]];
@@ -188,8 +180,7 @@
 }
 
 -(void)finishChooseImage:(UIImage *)image
-{
-    deviceArray = [USER_DEFAULTS objectForKey:@"devicesArray"];
+{    
     if (deviceArray.count == 1) {
         
     }else{
@@ -197,6 +188,7 @@
     }
 }
 
+/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -205,11 +197,8 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     
-    if ([segue.identifier isEqualToString:@"ChooseDeviceController"]) {
-        EPChooseDeviceController *chooseDeviceController = segue.destinationViewController;
-        [chooseDeviceController setDeviceArray:deviceArray];
-    }
 }
+*/
 
 
 @end

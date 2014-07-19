@@ -59,8 +59,7 @@
             NSLog(@"%@:%@",operation.response.URL.relativePath,JSON);
             [HUD hide:YES];
             if ([[JSON valueForKey:@"code"] isEqualToString:@"1"]) {
-                
-                [MobClick event:@"Success_Login"];
+                                
                 NSDictionary *data = (NSDictionary *)[JSON valueForKey:@"data"];
                 
                 NSString *tokenId = [data valueForKey:@"token"];

@@ -28,6 +28,7 @@
 		A15B574C1973C96B00CCEC32 /* YSpinKitView.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B57491973C96B00CCEC32 /* YSpinKitView.m */; };
 		A15B57521973C9DF00CCEC32 /* JDSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B574F1973C9DF00CCEC32 /* JDSideMenu.m */; };
 		A15B57531973C9DF00CCEC32 /* UIViewController+JDSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B57511973C9DF00CCEC32 /* UIViewController+JDSideMenu.m */; };
+		A15B5A72197A3DB2004DFBE5 /* EPDeviceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B5A71197A3DB2004DFBE5 /* EPDeviceCell.m */; };
 		A16C084C1976C21400A6AAF6 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A16C083A1976C21400A6AAF6 /* AFHTTPRequestOperation.m */; };
 		A16C084D1976C21400A6AAF6 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A16C083C1976C21400A6AAF6 /* AFHTTPRequestOperationManager.m */; };
 		A16C084E1976C21400A6AAF6 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A16C083E1976C21400A6AAF6 /* AFHTTPSessionManager.m */; };
@@ -87,6 +88,8 @@
 		A15B574F1973C9DF00CCEC32 /* JDSideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDSideMenu.m; sourceTree = "<group>"; };
 		A15B57501973C9DF00CCEC32 /* UIViewController+JDSideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+JDSideMenu.h"; sourceTree = "<group>"; };
 		A15B57511973C9DF00CCEC32 /* UIViewController+JDSideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+JDSideMenu.m"; sourceTree = "<group>"; };
+		A15B5A70197A3DB2004DFBE5 /* EPDeviceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPDeviceCell.h; sourceTree = "<group>"; };
+		A15B5A71197A3DB2004DFBE5 /* EPDeviceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPDeviceCell.m; sourceTree = "<group>"; };
 		A16C08391976C21400A6AAF6 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		A16C083A1976C21400A6AAF6 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		A16C083B1976C21400A6AAF6 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -188,6 +191,7 @@
 				A15B57041973B47A00CCEC32 /* EPAppDelegate.h */,
 				A15B57051973B47A00CCEC32 /* EPAppDelegate.m */,
 				A15B57071973B47A00CCEC32 /* Main.storyboard */,
+				A15B5A73197A3DB5004DFBE5 /* View */,
 				A15B573E1973C91E00CCEC32 /* Controller */,
 				A15B57381973C77200CCEC32 /* Base */,
 				A11BE04319767B64004A8641 /* Images.xcassets */,
@@ -299,6 +303,15 @@
 				A15B57511973C9DF00CCEC32 /* UIViewController+JDSideMenu.m */,
 			);
 			name = JDSideMenu;
+			sourceTree = "<group>";
+		};
+		A15B5A73197A3DB5004DFBE5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A15B5A70197A3DB2004DFBE5 /* EPDeviceCell.h */,
+				A15B5A71197A3DB2004DFBE5 /* EPDeviceCell.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		A16C08381976C21400A6AAF6 /* AFNetworking */ = {
@@ -464,6 +477,7 @@
 				A15B574C1973C96B00CCEC32 /* YSpinKitView.m in Sources */,
 				A1EAE25319752BCC00BF2BE7 /* EPFeedbackController.m in Sources */,
 				A16C08501976C21400A6AAF6 /* AFSecurityPolicy.m in Sources */,
+				A15B5A72197A3DB2004DFBE5 /* EPDeviceCell.m in Sources */,
 				A16C084C1976C21400A6AAF6 /* AFHTTPRequestOperation.m in Sources */,
 				A1EAE24B19750B7400BF2BE7 /* JDMenuViewController.m in Sources */,
 				A15B57431973C95600CCEC32 /* MBProgressHUD+Category.m in Sources */,

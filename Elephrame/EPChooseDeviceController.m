@@ -7,10 +7,12 @@
 //
 
 #import "EPChooseDeviceController.h"
+#import "EPDeviceCell.h"
 
 @interface EPChooseDeviceController ()
 {
     NSInteger selectedId;
+    NSArray *deviceArray;
 }
 
 @end
@@ -30,7 +32,7 @@
 {
     [super viewDidLoad];
     
-    _deviceArray = [USER_DEFAULTS objectForKey:@"devicesArray"];
+    deviceArray = [USER_DEFAULTS objectForKey:@"deviceArray"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,16 +52,15 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return _deviceArray.count;
+    return deviceArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger row = indexPath.row;
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    
-    [cell.textLabel setText:_deviceArray[row][@"name"]];
+    EPDeviceCell *cell = (EPDeviceCell *)[tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    [cell.nameLabel setText:[NSString stringWithFormat:@"%@",deviceArray[row][@"name"]]];
     
     return cell;
 }
@@ -70,7 +71,7 @@
     
     [self.navigationController popViewControllerAnimated:YES];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"afterChooseDevice" object:_deviceArray];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"afterChooseDevice" object:deviceArray];
 }
 
 /*

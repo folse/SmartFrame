@@ -58,9 +58,7 @@
             [HUD hide:YES];
             if ([[JSON valueForKey:@"code"] isEqualToString:@"1"]) {
                 
-                NSDictionary *data = (NSDictionary *)[JSON valueForKey:@"data"];
-                
-                NSString *tokenId = [data valueForKey:@"token"];
+                NSString *tokenId = [NSString stringWithFormat:@"%@",[JSON objectForKey:@"token"]];
                 
                 saveValue(tokenId, @"tokenId")
                 saveValue(_mobileTextField.text, @"userMobile");

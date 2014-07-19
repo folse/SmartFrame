@@ -64,54 +64,7 @@ UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"
 #ifndef weidian_CommonDefine_h
 #define weidian_CommonDefine_h
 
-#pragma mark -
-#pragma mark Toggle Define
-
-#define MIS_APPNAME  @"qmmwd"
-
-//打印函数富文本
-#ifdef DEBUG_LOG_MODE
-#
-#
-#	if   DEBUG_LOG_MODE==0
-#		define QFDebugLog @"QFDebugLogDismiss"
-#		define NSLog(...) /* */
-#       define DLog(fmt, ...) /* */
-#
-#	elif DEBUG_LOG_MODE==1
-#		define QFDebugLog @"QFDebugLog"
-#        define DLog(fmt, ...) /* */
-#
-#	elif DEBUG_LOG_MODE==2
-#		define QFDebugLog @"QFDebugLog"
-#   define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
-#   define DLogRect(rect)  DLog(@"%s x=%f, y=%f, w=%f, h=%f", #rect, rect.origin.x, rect.origin.y,rect.size.width, rect.size.height)
-#   define DLogPoint(pt) DLog(@"%s x=%f, y=%f", #pt, pt.x, pt.y)
-#   define DLogSize(size) DLog(@"%s w=%f, h=%f", #size, size.width, size.height)
-#   define DLogColor(_COLOR) DLog(@"%s h=%f, s=%f, v=%f", #_COLOR, _COLOR.hue, _COLOR.saturation, _COLOR.value)
-#   define DLogSuperViews(_VIEW) { for (UIView* view = _VIEW; view; view = view.superview) { GBLog(@"%@", view); } }
-#   define DLogSubViews(_VIEW) \
-{ for (UIView* view in [_VIEW subviews]) { GBLog(@"%@", view); } }
-#   else
-#   define DLog(...)
-#   define DLogRect(rect)
-#   define DLogPoint(pt)
-#   define DLogSize(size)
-#   define DLogColor(_COLOR)
-#   define DLogSuperViews(_VIEW)
-#   define DLogSubViews(_VIEW)
-#	endif
-#   else
-#	define NSLog(...) /* */
-#	define QFDebugLog @"QFDebugLogDismiss"
-#endif
-
-#pragma Printf C type
-
 #define lg(value)  DLog(@"%@",[@(value) description]);
-
-#pragma mark -
-#pragma mark Umeng and weixin setting
 
 #define UmengCrashEnable 1
 #define UmengLogEnable 0
@@ -211,7 +164,7 @@ __POINTER == (NSString *)[NSNull null] || \
 #define CurrentLanguage ([[NSLocale preferredLanguages] objectAtIndex:0])
 
 #define saveValue(value,key) \
-if ([[NSNull null] isEqual:value]) { \
+if (value == nil) { \
 [USER_DEFAULTS setObject:@"" forKey:key];\
 }else{ \
 [USER_DEFAULTS setObject:value forKey:key]; \

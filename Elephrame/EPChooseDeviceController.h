@@ -10,6 +10,4 @@
 
 @interface EPChooseDeviceController : FSTableViewController
 
-@property (nonatomic, strong) NSArray *deviceArray;
-
 @end

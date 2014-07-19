@@ -9,6 +9,7 @@
 #import "EPChangePasswordController.h"
 
 @interface EPChangePasswordController ()
+
 @property (strong, nonatomic) IBOutlet UITextField *currentPasswordTextField;
 @property (strong, nonatomic) IBOutlet UITextField *setNewPasswordTextField;
 @property (strong, nonatomic) IBOutlet UITextField *againNewPasswordTextField;
@@ -48,7 +49,7 @@
             [HUD show:YES];
             
             NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc] init];
-            [parameterDict setObject:_currentPasswordTextField.text forKey:@"old_password"];
+            //[parameterDict setObject:_currentPasswordTextField.text forKey:@"old_password"];
             [parameterDict setObject:_setNewPasswordTextField.text forKey:@"password"];
             AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
             manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -68,6 +69,11 @@
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                 NetWork_Error
             }];
+            
+        }else{
+            
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"两次输入不一致" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alertView show];
         }
     }
 }
