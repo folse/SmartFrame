@@ -9,10 +9,16 @@
 #import "EPHomeController.h"
 #import "CTAssetsPickerController.h"
 #import "EPChooseDeviceController.h"
+#import <AviarySDK/AviarySDK.h>
 
-@interface EPHomeController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,CTAssetsPickerControllerDelegate>
+@interface EPHomeController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,CTAssetsPickerControllerDelegate,AFPhotoEditorControllerDelegate>
 {
+    int editedId;
+    int uploadId;
+    BOOL isFinishUploadImage;
     NSMutableArray *deviceArray;
+    NSMutableArray *selectedPhotoArray;
+    NSMutableArray *selectedAssetArray;
 }
 
 @property (nonatomic, strong) NSMutableArray *assets;
@@ -21,10 +27,6 @@
 @end
 
 @implementation EPHomeController
-{
-    int uploadId;
-    BOOL isFinishUploadImage;
-}
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -46,7 +48,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     if (!USER_LOGIN) {
-   
+        
         UINavigationController *regNavController = [STORY_BOARD instantiateViewControllerWithIdentifier:@"regNav"];
         
         [self presentViewController:regNavController animated:YES completion:nil];
@@ -58,6 +60,13 @@
     [super viewDidLoad];
     
     deviceArray = [NSMutableArray new];
+    selectedAssetArray = [NSMutableArray new];
+    selectedPhotoArray = [NSMutableArray new];
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [AFPhotoEditorController setAPIKey:@"edc762d6aef61bea" secret:@"73429c0222c8298d"];
+    });
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(uploadImageToDevice:) name:@"afterChooseDevice" object:nil];
 }
@@ -110,7 +119,7 @@
 {
     s(deviceId)
     
-        
+    
 }
 
 - (IBAction)menuButtonAction:(id)sender
@@ -129,11 +138,14 @@
 - (IBAction)cameraButtonAction:(id)sender
 {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        
+        [selectedAssetArray removeAllObjects];
+        [selectedPhotoArray removeAllObjects];
+        
         UIImagePickerController *controller = [[UIImagePickerController alloc] init];
         controller.delegate = self;
         controller.sourceType = UIImagePickerControllerSourceTypeCamera;
         [self presentViewController:controller animated:YES completion:^{
-            
             [[[NSThread alloc] initWithTarget:self selector:@selector(getDevice) object:nil] start];
         }];
     }
@@ -141,8 +153,12 @@
 
 - (IBAction)albumButtonAction:(id)sender
 {
+    editedId = 0;
+    [selectedAssetArray removeAllObjects];
+    [selectedPhotoArray removeAllObjects];
+    
     CTAssetsPickerController *picker = [[CTAssetsPickerController alloc] init];
-    picker.maximumNumberOfSelection = 10 - [self.assets count];
+    picker.maximumNumberOfSelection = 5;
     picker.navigationController.navigationItem.title = @"选取照片";
     picker.assetsFilter = [ALAssetsFilter allPhotos];
     picker.delegate = self;
@@ -159,8 +175,7 @@
 {
     [picker dismissViewControllerAnimated:YES completion:^{
         
-        [self.assets addObject:info[UIImagePickerControllerOriginalImage]];
-        [self finishChooseImage:info[UIImagePickerControllerOriginalImage]];
+        [self displayEditorForImage:info[UIImagePickerControllerOriginalImage]];
     }];
 }
 
@@ -172,33 +187,100 @@
     [self.addAssets removeAllObjects];
     [self.assets addObjectsFromArray:assets];
     [self.addAssets addObjectsFromArray:assets];
-    uploadId = 0;
-    ALAsset *asset = assets[uploadId];
+    
+    selectedAssetArray = [NSMutableArray arrayWithArray:assets];
+    
+    ALAsset *asset = assets[0];
     UIImage *assetOriImage =[UIImage imageWithCGImage:[[asset defaultRepresentation] fullScreenImage]];
-
-    [self finishChooseImage:assetOriImage];
+    
+    WEAKSELF
+    [picker dismissViewControllerAnimated:NO completion:^{
+        STRONGSELF
+        [strongSelf displayEditorForImage:assetOriImage];
+    }];
 }
 
--(void)finishChooseImage:(UIImage *)image
-{    
+#pragma AFPhotoEditorControllerDelegate
+
+- (void)displayEditorForImage:(UIImage *)imageToEdit
+{
+    AFPhotoEditorController *editorController = [[AFPhotoEditorController alloc] initWithImage:imageToEdit];
+    [AFPhotoEditorCustomization setToolOrder:@[kAFEffects,kAFStickers, kAFDraw, kAFText,kAFOrientation,kAFEnhance,kAFAdjustments, kAFSharpness, kAFRedeye, kAFWhiten, kAFBlemish, kAFMeme, kAFFrames, kAFFocus]];
+    [AFPhotoEditorCustomization setStatusBarStyle:UIStatusBarStyleLightContent];
+    [AFPhotoEditorCustomization setNavBarImage:[self imageWithColor:APP_COLOR andSize:CGSizeMake(320, 44)]];
+    [editorController setDelegate:self];
+    [self presentViewController:editorController animated:YES completion:nil];
+}
+
+- (UIImage *)imageWithColor:(UIColor *)color andSize:(CGSize)size;
+{
+    UIImage *img = nil;
+    
+    CGRect rect = CGRectMake(0, 0, size.width, size.height);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context,
+                                   color.CGColor);
+    CGContextFillRect(context, rect);
+    img = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return img;
+}
+
+- (void)photoEditor:(AFPhotoEditorController *)editor finishedWithImage:(UIImage *)image
+{
+    WEAKSELF
+    [editor dismissViewControllerAnimated:YES completion:^{
+        
+        [selectedPhotoArray addObject:image];
+        
+        editedId += 1;
+                
+        if (selectedAssetArray.count > editedId) {
+            
+            ALAsset *asset = selectedAssetArray[editedId];
+            UIImage *assetOriImage =[UIImage imageWithCGImage:[[asset defaultRepresentation] fullScreenImage]];
+            
+            STRONGSELF
+            [strongSelf displayEditorForImage:assetOriImage];
+            
+        }else{
+            
+            [self finishEditingImage];
+        }
+    }];
+}
+
+- (void)photoEditorCanceled:(AFPhotoEditorController *)editor
+{
+    [editor dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)finishEditingImage
+{
     if (deviceArray.count == 1) {
         
+        [self uploadImageToDevice:deviceArray[0][@"frameid"]];
+        
     }else{
+        
         [self performSegueWithIdentifier:@"ChooseDeviceController" sender:self];
     }
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ 
+ }
+ */
 
 
 @end

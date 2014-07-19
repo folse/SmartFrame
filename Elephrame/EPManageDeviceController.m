@@ -54,6 +54,8 @@
             
             deviceArray = (NSMutableArray *)[JSON valueForKey:@"relations"];
             
+            [self.tableView reloadData];
+            
             [USER_DEFAULTS setObject:deviceArray forKey:@"deviceArray"];
             
         }else{
@@ -118,15 +120,13 @@
     return cell;
 }
 
--(void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(editingStyle == UITableViewCellEditingStyleDelete){
         
-        s(indexPath)
-        
         [deviceArray removeObjectAtIndex:indexPath.row];
         
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]withRowAnimation:UITableViewRowAnimationFade];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
         //[self.tableView reloadData];
     }
@@ -136,6 +136,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(UITableViewCellEditingStyle )tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
 }
 
 /*

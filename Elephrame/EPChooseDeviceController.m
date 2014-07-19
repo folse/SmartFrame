@@ -69,9 +69,11 @@
 {
     selectedId = indexPath.row;
     
+    NSString *selectedDeviceId = deviceArray[selectedId][@"frameid"];
+    
     [self.navigationController popViewControllerAnimated:YES];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"afterChooseDevice" object:deviceArray];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"afterChooseDevice" object:selectedDeviceId];
 }
 
 /*
