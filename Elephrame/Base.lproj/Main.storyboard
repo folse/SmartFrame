@@ -204,7 +204,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" alpha="0.89999999999999991" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSL-WK-zOt">
-                                <rect key="frame" x="52" y="406" width="210" height="38"/>
+                                <rect key="frame" x="55" y="406" width="210" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.1647058824" green="0.84313725490000002" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
@@ -217,7 +217,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.89999999999999991" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qU3-xd-Xkz">
-                                <rect key="frame" x="52" y="347" width="210" height="38"/>
+                                <rect key="frame" x="55" y="347" width="210" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.1647058824" green="0.84313725490000002" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
@@ -230,7 +230,7 @@
                                 </connections>
                             </button>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="bg_frame" translatesAutoresizingMaskIntoConstraints="NO" id="MwQ-ye-4Zi">
-                                <rect key="frame" x="-15" y="62" width="350" height="289"/>
+                                <rect key="frame" x="-13" y="62" width="350" height="289"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mpl-jr-FJE">
@@ -247,14 +247,81 @@
                                 <action selector="menuButtonAction:" destination="dGN-bo-Mh6" id="H6F-Sq-Mhj"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="ewu-Bo-cId">
+                            <connections>
+                                <segue destination="BOP-KO-F7u" kind="push" id="uK8-9w-t4k"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="iZM-XO-kll" kind="push" identifier="ChooseDeviceController" id="cAT-NH-02D"/>
+                        <segue destination="BOP-KO-F7u" kind="push" identifier="RecordVoiceController" id="Agg-mk-G06"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NuD-BJ-LME" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="505" y="1243"/>
+        </scene>
+        <!--Record Voice Controller - 发语音-->
+        <scene sceneID="qfD-Au-jvE">
+            <objects>
+                <tableViewController id="BOP-KO-F7u" customClass="EPRecordVoiceController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="kX7-7H-bKA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="b5x-ci-a6s">
+                            <rect key="frame" x="0.0" y="64" width="320" height="506"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" alpha="0.89999997615814209" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iHK-S7-PMW">
+                                    <rect key="frame" x="55" y="336" width="210" height="38"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="0.1647058824" green="0.84313725490000002" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                    <state key="normal" title="按住说话">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                </button>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="说段话一起送出去吧" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDg-no-Bmg">
+                                    <rect key="frame" x="60" y="253" width="200" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IzJ-cK-2pw">
+                                    <rect key="frame" x="43" y="41" width="234" height="179"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" image="mic_normal_358x358">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="playButtonAction:" destination="BOP-KO-F7u" eventType="touchUpInside" id="czZ-DA-haC"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        </view>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="BOP-KO-F7u" id="AbT-pU-PNO"/>
+                            <outlet property="delegate" destination="BOP-KO-F7u" id="UO0-zo-nMH"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="发语音" id="cjg-zs-ElW">
+                        <barButtonItem key="backBarButtonItem" title=" " id="4j9-0m-rUf"/>
+                        <barButtonItem key="rightBarButtonItem" title="完成" id="zkL-Op-uYi"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="playButton" destination="IzJ-cK-2pw" id="7kh-Jp-gON"/>
+                        <outlet property="recordButton" destination="iHK-S7-PMW" id="cXi-Bt-G9l"/>
+                        <segue destination="iZM-XO-kll" kind="push" identifier="ChooseDeviceController" id="06Y-UR-syd"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cka-Yj-1aT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1011" y="1243"/>
         </scene>
         <!--Choose Device Controller - 选择设备-->
         <scene sceneID="O5G-Cn-6am">
@@ -300,7 +367,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tSY-Li-Ieh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1011" y="1243"/>
+            <point key="canvasLocation" x="1523" y="1243"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ttB-Ei-atf">
@@ -740,10 +807,14 @@
         <image name="bg_frame" width="230" height="190"/>
         <image name="btn_menu" width="36" height="31"/>
         <image name="icon_frame" width="100" height="82"/>
+        <image name="mic_normal_358x358" width="179" height="179"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="Agg-mk-G06"/>
+    </inferredMetricsTieBreakers>
 </document>

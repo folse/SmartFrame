@@ -29,6 +29,10 @@
 		A15B57521973C9DF00CCEC32 /* JDSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B574F1973C9DF00CCEC32 /* JDSideMenu.m */; };
 		A15B57531973C9DF00CCEC32 /* UIViewController+JDSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B57511973C9DF00CCEC32 /* UIViewController+JDSideMenu.m */; };
 		A15B5A72197A3DB2004DFBE5 /* EPDeviceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B5A71197A3DB2004DFBE5 /* EPDeviceCell.m */; };
+		A15B5A76197C0495004DFBE5 /* EPRecordVoiceController.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B5A75197C0495004DFBE5 /* EPRecordVoiceController.m */; };
+		A15B5A7B197C0B26004DFBE5 /* LCVoice.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B5A78197C0B26004DFBE5 /* LCVoice.m */; };
+		A15B5A7C197C0B26004DFBE5 /* LCVoiceHud.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B5A7A197C0B26004DFBE5 /* LCVoiceHud.m */; };
+		A15B5A7F197C0C58004DFBE5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15B5A7E197C0C58004DFBE5 /* AVFoundation.framework */; };
 		A16C084C1976C21400A6AAF6 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A16C083A1976C21400A6AAF6 /* AFHTTPRequestOperation.m */; };
 		A16C084D1976C21400A6AAF6 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A16C083C1976C21400A6AAF6 /* AFHTTPRequestOperationManager.m */; };
 		A16C084E1976C21400A6AAF6 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A16C083E1976C21400A6AAF6 /* AFHTTPSessionManager.m */; };
@@ -90,6 +94,13 @@
 		A15B57511973C9DF00CCEC32 /* UIViewController+JDSideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+JDSideMenu.m"; sourceTree = "<group>"; };
 		A15B5A70197A3DB2004DFBE5 /* EPDeviceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPDeviceCell.h; sourceTree = "<group>"; };
 		A15B5A71197A3DB2004DFBE5 /* EPDeviceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPDeviceCell.m; sourceTree = "<group>"; };
+		A15B5A74197C0495004DFBE5 /* EPRecordVoiceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPRecordVoiceController.h; sourceTree = "<group>"; };
+		A15B5A75197C0495004DFBE5 /* EPRecordVoiceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPRecordVoiceController.m; sourceTree = "<group>"; };
+		A15B5A77197C0B26004DFBE5 /* LCVoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCVoice.h; sourceTree = "<group>"; };
+		A15B5A78197C0B26004DFBE5 /* LCVoice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCVoice.m; sourceTree = "<group>"; };
+		A15B5A79197C0B26004DFBE5 /* LCVoiceHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCVoiceHud.h; sourceTree = "<group>"; };
+		A15B5A7A197C0B26004DFBE5 /* LCVoiceHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCVoiceHud.m; sourceTree = "<group>"; };
+		A15B5A7E197C0C58004DFBE5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		A16C08391976C21400A6AAF6 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		A16C083A1976C21400A6AAF6 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		A16C083B1976C21400A6AAF6 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -129,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A15B5A7F197C0C58004DFBE5 /* AVFoundation.framework in Frameworks */,
 				A15B56F81973B47A00CCEC32 /* CoreGraphics.framework in Frameworks */,
 				A15B56FA1973B47A00CCEC32 /* UIKit.framework in Frameworks */,
 				A15B56F61973B47A00CCEC32 /* Foundation.framework in Frameworks */,
@@ -173,6 +185,7 @@
 		A15B56F41973B47A00CCEC32 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A15B5A7E197C0C58004DFBE5 /* AVFoundation.framework */,
 				A15B56F51973B47A00CCEC32 /* Foundation.framework */,
 				A15B56F71973B47A00CCEC32 /* CoreGraphics.framework */,
 				A15B56F91973B47A00CCEC32 /* UIKit.framework */,
@@ -250,6 +263,7 @@
 		A15B573D1973C90100CCEC32 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				A15B5A7D197C0B29004DFBE5 /* LCVoice */,
 				A16C08381976C21400A6AAF6 /* AFNetworking */,
 				A15B57541973C9E200CCEC32 /* JDSideMenu */,
 				A15B574D1973C96F00CCEC32 /* YSpinKitView */,
@@ -265,6 +279,8 @@
 			children = (
 				A11716FD19743E33007AA62D /* EPHomeController.h */,
 				A11716FE19743E33007AA62D /* EPHomeController.m */,
+				A15B5A74197C0495004DFBE5 /* EPRecordVoiceController.h */,
+				A15B5A75197C0495004DFBE5 /* EPRecordVoiceController.m */,
 				A117170019743E80007AA62D /* EPChooseDeviceController.h */,
 				A117170119743E80007AA62D /* EPChooseDeviceController.m */,
 				A1EAE25419752BD300BF2BE7 /* Settings */,
@@ -312,6 +328,17 @@
 				A15B5A71197A3DB2004DFBE5 /* EPDeviceCell.m */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		A15B5A7D197C0B29004DFBE5 /* LCVoice */ = {
+			isa = PBXGroup;
+			children = (
+				A15B5A77197C0B26004DFBE5 /* LCVoice.h */,
+				A15B5A78197C0B26004DFBE5 /* LCVoice.m */,
+				A15B5A79197C0B26004DFBE5 /* LCVoiceHud.h */,
+				A15B5A7A197C0B26004DFBE5 /* LCVoiceHud.m */,
+			);
+			name = LCVoice;
 			sourceTree = "<group>";
 		};
 		A16C08381976C21400A6AAF6 /* AFNetworking */ = {
@@ -477,8 +504,10 @@
 				A15B574C1973C96B00CCEC32 /* YSpinKitView.m in Sources */,
 				A1EAE25319752BCC00BF2BE7 /* EPFeedbackController.m in Sources */,
 				A16C08501976C21400A6AAF6 /* AFSecurityPolicy.m in Sources */,
+				A15B5A76197C0495004DFBE5 /* EPRecordVoiceController.m in Sources */,
 				A15B5A72197A3DB2004DFBE5 /* EPDeviceCell.m in Sources */,
 				A16C084C1976C21400A6AAF6 /* AFHTTPRequestOperation.m in Sources */,
+				A15B5A7C197C0B26004DFBE5 /* LCVoiceHud.m in Sources */,
 				A1EAE24B19750B7400BF2BE7 /* JDMenuViewController.m in Sources */,
 				A15B57431973C95600CCEC32 /* MBProgressHUD+Category.m in Sources */,
 				A15B57341973C6BB00CCEC32 /* ProjectSettings.m in Sources */,
@@ -486,6 +515,7 @@
 				A15B57441973C95600CCEC32 /* MBProgressHUD.m in Sources */,
 				A16C084E1976C21400A6AAF6 /* AFHTTPSessionManager.m in Sources */,
 				A15B57021973B47A00CCEC32 /* main.m in Sources */,
+				A15B5A7B197C0B26004DFBE5 /* LCVoice.m in Sources */,
 				A117170219743E80007AA62D /* EPChooseDeviceController.m in Sources */,
 				A1EAE25019750E0600BF2BE7 /* EPSettingsController.m in Sources */,
 				A16C084D1976C21400A6AAF6 /* AFHTTPRequestOperationManager.m in Sources */,

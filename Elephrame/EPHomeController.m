@@ -318,7 +318,6 @@
     [parameterDict setObject:@"photo" forKey:@"filetype"];
     [parameterDict setObject:[USER_DEFAULTS valueForKeyPath:@"tokenId"] forKey:@"token"];
     
-    
     NSString *UPLOAD_URL = [NSString stringWithFormat:@"%@?token=%@&filetype=photo&filename=%@",API_UPLOAD,[USER_DEFAULTS valueForKeyPath:@"tokenId"],@"1405834462.jpg"];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
