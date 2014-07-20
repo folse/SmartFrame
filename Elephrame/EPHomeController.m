@@ -19,6 +19,7 @@
     NSMutableArray *deviceArray;
     NSMutableArray *selectedPhotoArray;
     NSMutableArray *selectedAssetArray;
+    MBProgressHUD *HUD;
 }
 
 @property (nonatomic, strong) NSMutableArray *assets;
@@ -113,13 +114,6 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
     }];
-}
-
--(void)uploadImageToDevice:(NSString *)deviceId
-{
-    s(deviceId)
-    
-    
 }
 
 - (IBAction)menuButtonAction:(id)sender
@@ -237,7 +231,7 @@
         [selectedPhotoArray addObject:image];
         
         editedId += 1;
-                
+        
         if (selectedAssetArray.count > editedId) {
             
             ALAsset *asset = selectedAssetArray[editedId];
@@ -268,6 +262,88 @@
         
         [self performSegueWithIdentifier:@"ChooseDeviceController" sender:self];
     }
+}
+
+-(void)uploadImageToDevice:(NSNotification *)notification
+{
+//    NSLog(@"%@", [notification.userInfo objectForKey:@"deviceId"]);
+//    
+//    [HUD show:YES];
+//    
+//    NSData *imageData = UIImageJPEGRepresentation(selectedPhotoArray[0], 1.0);
+//    
+//    NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970]];
+//    NSString *photoName = [NSString stringWithFormat:@"%@.jpg", timeSp];
+//    
+//    NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc] init];
+//    
+//    [parameterDict setObject:[USER_DEFAULTS valueForKeyPath:@"tokenId"] forKey:@"token"];
+//    [parameterDict setObject:[NSArray arrayWithObjects:[notification.userInfo objectForKey:@"deviceId"], nil] forKey:@"frameid"];
+//    [parameterDict setObject:[NSArray arrayWithObjects:photoName, nil] forKey:@"photo"];
+//    [parameterDict setObject:[NSArray arrayWithObjects:photoName, nil] forKey:@"voice"];
+//    
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+//    [manager POST:API_SEND_PHOTO_VOICE parameters:parameterDict success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        
+//        NSLog(@"%@:%@",operation.response.URL.relativePath,responseObject);
+//        [HUD hide:YES];
+//        
+//        if ([[responseObject valueForKey:@"code"] isEqualToString:@"1"]) {
+//            
+//            
+//            
+//        }else{
+//            NetWork_Error
+//        }
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NetWork_Error
+//    }];
+    
+    
+     [self uploadImage];
+}
+
+-(void)uploadImage
+{
+    [HUD show:YES];
+    
+    NSData *imageData = UIImageJPEGRepresentation(selectedPhotoArray[0], 1.0);
+    
+    NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970]];
+    NSString *photoName = [NSString stringWithFormat:@"%@.jpg", timeSp];
+    
+    NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc] init];
+    [parameterDict setObject:@"photo" forKey:@"filetype"];
+    [parameterDict setObject:[USER_DEFAULTS valueForKeyPath:@"tokenId"] forKey:@"token"];
+    
+    
+    NSString *UPLOAD_URL = [NSString stringWithFormat:@"%@?token=%@&filetype=photo&filename=%@",API_UPLOAD,[USER_DEFAULTS valueForKeyPath:@"tokenId"],@"1405834462.jpg"];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager POST:UPLOAD_URL parameters:parameterDict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        
+        [formData appendPartWithFileData:imageData name:@"filename" fileName:@"1405834462.jpg" mimeType:@"image/jpeg"];
+        
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSLog(@"%@:%@",operation.response.URL.relativePath,responseObject);
+        [HUD hide:YES];
+        
+        if ([[responseObject valueForKey:@"code"] isEqualToString:@"1"]) {
+            
+            
+            
+        }else{
+            NetWork_Error
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NetWork_Error
+    }];
 }
 
 /*

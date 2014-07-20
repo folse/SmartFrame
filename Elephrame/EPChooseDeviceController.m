@@ -73,7 +73,7 @@
     
     [self.navigationController popViewControllerAnimated:YES];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"afterChooseDevice" object:selectedDeviceId];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"afterChooseDevice" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:selectedDeviceId, @"deviceId", nil]];
 }
 
 /*
