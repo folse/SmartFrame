@@ -9,7 +9,6 @@
 
 #import "LCVoice.h"
 #import "LCVoiceHud.h"
-#import <AVFoundation/AVFoundation.h>
 
 #pragma mark - <DEFINES>
 
@@ -20,25 +19,11 @@
 @interface LCVoice () <AVAudioRecorderDelegate>
 {
     NSTimer * timer_;
-    
     LCVoiceHud * voiceHud_;    
 }
-
-@property(nonatomic,retain) AVAudioRecorder * recorder;
-
 @end
 
 @implementation LCVoice
-
--(void) dealloc{
-    
-    if (self.recorder.isRecording) {
-        [self.recorder stop];
-    }
-    
-    self.recorder = nil;
-    self.recordPath = nil;
-}
 
 #pragma mark - Publick Function
 
@@ -121,7 +106,7 @@
         return;
 	}
 	
-	[_recorder recordForDuration:(NSTimeInterval) 60];
+	[_recorder recordForDuration:(NSTimeInterval) 120];
     
     self.recordTime = 0;
     [self resetTimer];
@@ -178,9 +163,6 @@
         
         voiceHud_ = [[LCVoiceHud alloc] init];
         [voiceHud_ show];
-        
-    }else{
-        
     }
 }
 

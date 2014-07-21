@@ -8,11 +8,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface LCVoice : NSObject
 
-@property(nonatomic,retain) NSString * recordPath;
+@property(nonatomic,retain) NSString *recordPath;
 @property(nonatomic) float recordTime;
+@property(nonatomic,retain) AVAudioRecorder *recorder;
 
 -(void) startRecordWithPath:(NSString *)path;
 -(void) stopRecordWithCompletionBlock:(void (^)())completion;
