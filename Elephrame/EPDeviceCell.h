@@ -12,5 +12,9 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *checkImageView;
+@property (nonatomic) BOOL checked;
+
+- (void) setChecked:(BOOL)checked;
 
 @end

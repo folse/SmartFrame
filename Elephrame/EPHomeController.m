@@ -10,6 +10,7 @@
 #import "CTAssetsPickerController.h"
 #import "EPChooseDeviceController.h"
 #import <AviarySDK/AviarySDK.h>
+#import "EPRecordVoiceController.h"
 
 @interface EPHomeController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,CTAssetsPickerControllerDelegate,AFPhotoEditorControllerDelegate>
 {
@@ -68,19 +69,12 @@
     dispatch_once(&onceToken, ^{
         [AFPhotoEditorController setAPIKey:@"edc762d6aef61bea" secret:@"73429c0222c8298d"];
     });
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(uploadImageToDevice:) name:@"afterChooseDevice" object:nil];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 -(void)getDevice
@@ -254,108 +248,21 @@
 
 -(void)finishEditingImage
 {
-    if (deviceArray.count == 1) {
-        
-        [self uploadImageToDevice:deviceArray[0][@"frameid"]];
-        
-    }else{
-        
-        [self performSegueWithIdentifier:@"ChooseDeviceController" sender:self];
-    }
+     [self performSegueWithIdentifier:@"RecordVoiceController" sender:self];
 }
 
--(void)uploadImageToDevice:(NSNotification *)notification
-{
-//    NSLog(@"%@", [notification.userInfo objectForKey:@"deviceId"]);
-//    
-//    [HUD show:YES];
-//    
-//    NSData *imageData = UIImageJPEGRepresentation(selectedPhotoArray[0], 1.0);
-//    
-//    NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970]];
-//    NSString *photoName = [NSString stringWithFormat:@"%@.jpg", timeSp];
-//    
-//    NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc] init];
-//    
-//    [parameterDict setObject:[USER_DEFAULTS valueForKeyPath:@"tokenId"] forKey:@"token"];
-//    [parameterDict setObject:[NSArray arrayWithObjects:[notification.userInfo objectForKey:@"deviceId"], nil] forKey:@"frameid"];
-//    [parameterDict setObject:[NSArray arrayWithObjects:photoName, nil] forKey:@"photo"];
-//    [parameterDict setObject:[NSArray arrayWithObjects:photoName, nil] forKey:@"voice"];
-//    
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-//    [manager POST:API_SEND_PHOTO_VOICE parameters:parameterDict success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        
-//        NSLog(@"%@:%@",operation.response.URL.relativePath,responseObject);
-//        [HUD hide:YES];
-//        
-//        if ([[responseObject valueForKey:@"code"] isEqualToString:@"1"]) {
-//            
-//            
-//            
-//        }else{
-//            NetWork_Error
-//        }
-//        
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NetWork_Error
-//    }];
-    
-    
-     [self uploadImage];
-}
-
--(void)uploadImage
-{
-    [HUD show:YES];
-    
-    NSData *imageData = UIImageJPEGRepresentation(selectedPhotoArray[0], 1.0);
-    
-    NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970]];
-    NSString *photoName = [NSString stringWithFormat:@"%@.jpg", timeSp];
-    
-    NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc] init];
-    [parameterDict setObject:@"photo" forKey:@"filetype"];
-    [parameterDict setObject:[USER_DEFAULTS valueForKeyPath:@"tokenId"] forKey:@"token"];
-    
-    NSString *UPLOAD_URL = [NSString stringWithFormat:@"%@?token=%@&filetype=photo&filename=%@",API_UPLOAD,[USER_DEFAULTS valueForKeyPath:@"tokenId"],@"1405834462.jpg"];
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager POST:UPLOAD_URL parameters:parameterDict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        
-        [formData appendPartWithFileData:imageData name:@"filename" fileName:@"1405834462.jpg" mimeType:@"image/jpeg"];
-        
-    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSLog(@"%@:%@",operation.response.URL.relativePath,responseObject);
-        [HUD hide:YES];
-        
-        if ([[responseObject valueForKey:@"code"] isEqualToString:@"1"]) {
-            
-            
-            
-        }else{
-            NetWork_Error
-        }
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        NetWork_Error
-    }];
-}
-
-/*
  #pragma mark - Navigation
  
  // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- 
- }
- */
+{
+    if ([segue.identifier isEqual:@"RecordVoiceController"]) {
+        EPRecordVoiceController *recorderVoiceController = segue.destinationViewController;
+        recorderVoiceController.deviceArray = deviceArray;
+        recorderVoiceController.photoArray = selectedPhotoArray;
+    }
+}
+
 
 
 @end

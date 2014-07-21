@@ -11,11 +11,13 @@
 #import <AVFoundation/AVFoundation.h>
 
 @interface EPRecordVoiceController ()<AVAudioPlayerDelegate>
+{
+    NSString *voiceName;
+    NSArray *selectedDeviceArray;
+}
 
 @property(nonatomic,retain) LCVoice * voice;
-
 @property (strong, nonatomic) AVAudioPlayer *player;
-
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UIButton *recordButton;
 
@@ -39,8 +41,6 @@
     self.voice = [[LCVoice alloc] init];
     
     [_recordButton addTarget:self action:@selector(recordStart) forControlEvents:UIControlEventTouchDown];
-//    [_recordButton addTarget:self action:@selector(recordEnd) forControlEvents:UIControlEventTouchDragExit];
-//    [_recordButton addTarget:self action:@selector(recordEnd) forControlEvents:UIControlEventTouchDragInside];
     [_recordButton addTarget:self action:@selector(recordEnd) forControlEvents:UIControlEventTouchDragOutside];
     [_recordButton addTarget:self action:@selector(recordEnd) forControlEvents:UIControlEventTouchUpInside];
     [_recordButton addTarget:self action:@selector(recordEnd) forControlEvents:UIControlEventTouchUpOutside];
@@ -51,6 +51,8 @@
     UITapGestureRecognizer *imageTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(recordEnd)];
     [self.view setUserInteractionEnabled:YES];
     [self.view addGestureRecognizer:imageTap];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishChooseDevice:) name:@"afterChooseDevice" object:nil];
 }
 
 - (IBAction)playButtonAction:(id)sender
@@ -58,7 +60,7 @@
     if (self.player != nil && self.player.playing) {
         
         [_playButton setImage:[UIImage imageNamed:@"mic_play_358x358"] forState:UIControlStateNormal];
-
+        
         [self.player stop];
         
     }else if(self.voice.recordPath.length > 0){
@@ -127,15 +129,121 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)dealloc
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-*/
+
+-(void)finishChooseDevice:(NSNotification *)notification
+{
+    selectedDeviceArray = [notification.userInfo objectForKey:@"deviceArray"];
+    [self sendPhotoAndVoice];
+}
+
+-(void)sendPhotoAndVoice
+{
+    [HUD show:YES];
+    
+    NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970]];
+    voiceName = [NSString stringWithFormat:@"%@.caf", timeSp];
+    
+    NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc] init];
+    
+    [parameterDict setObject:[USER_DEFAULTS valueForKeyPath:@"tokenId"] forKey:@"token"];
+    [parameterDict setObject:selectedDeviceArray forKey:@"frameid"];
+    [parameterDict setObject:_photoArray forKey:@"photo"];
+    [parameterDict setObject:[NSArray arrayWithObject:voiceName] forKey:@"voice"];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager POST:API_SEND_PHOTO_VOICE parameters:parameterDict success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSLog(@"%@:%@",operation.response.URL.relativePath,responseObject);
+        
+        if ([[responseObject valueForKey:@"code"] isEqualToString:@"1"]) {
+            
+             [self uploadPhotoAndVoice];
+            
+        }else{
+            NetWork_Error
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NetWork_Error
+    }];
+}
+
+-(void)uploadPhotoAndVoice
+{
+    NSString *filename;
+    NSString *filetype;
+    NSString *minetype;
+ 
+    
+    if(_photoArray.count > 0){
+        filename =
+    }
+        
+    
+    
+    NSData *imageData = UIImageJPEGRepresentation(_photoArray[0], 1.0);
+    
+    NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc] init];
+    [parameterDict setObject:@"photo" forKey:@"filetype"];
+    [parameterDict setObject:[USER_DEFAULTS valueForKeyPath:@"tokenId"] forKey:@"token"];
+    
+    NSString *UPLOAD_URL = [NSString stringWithFormat:@"%@?token=%@&filetype=photo&filename=%@",API_UPLOAD,[USER_DEFAULTS valueForKeyPath:@"tokenId"],@"1405834462.jpg"];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager POST:UPLOAD_URL parameters:parameterDict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        
+        [formData appendPartWithFileData:imageData name:@"filename" fileName:@"1405834462.jpg" mimeType:@"image/jpeg"];
+        
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSLog(@"%@:%@",operation.response.URL.relativePath,responseObject);
+        [HUD hide:YES];
+        
+        if ([[responseObject valueForKey:@"code"] isEqualToString:@"1"]) {
+            
+            
+            
+        }else{
+            NetWork_Error
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NetWork_Error
+    }];
+}
+
+- (IBAction)sendButtonAction:(id)sender
+{
+    if (_deviceArray.count == 1) {
+        
+        NSString *selectedDeviceId = _deviceArray[0][@"frameid"];
+        
+        selectedDeviceArray = [NSArray arrayWithObject:selectedDeviceId];
+        
+        [self sendPhotoAndVoice];
+        
+    }else{
+        
+        [self performSegueWithIdentifier:@"ChooseDeviceController" sender:self];
+    }
+}
+
+/*
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

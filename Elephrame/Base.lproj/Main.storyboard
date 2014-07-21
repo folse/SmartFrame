@@ -311,7 +311,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="发语音" id="cjg-zs-ElW">
                         <barButtonItem key="backBarButtonItem" title=" " id="4j9-0m-rUf"/>
-                        <barButtonItem key="rightBarButtonItem" title="完成" id="zkL-Op-uYi"/>
+                        <barButtonItem key="rightBarButtonItem" title="发送" id="zkL-Op-uYi">
+                            <connections>
+                                <action selector="sendButtonAction:" destination="BOP-KO-F7u" id="fab-dZ-4yg"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="playButton" destination="IzJ-cK-2pw" id="7kh-Jp-gON"/>
@@ -323,7 +327,7 @@
             </objects>
             <point key="canvasLocation" x="1011" y="1243"/>
         </scene>
-        <!--Choose Device Controller - 选择设备-->
+        <!--Choose Device Controller - 选择相框-->
         <scene sceneID="O5G-Cn-6am">
             <objects>
                 <tableViewController id="iZM-XO-kll" customClass="EPChooseDeviceController" sceneMemberID="viewController">
@@ -350,10 +354,15 @@
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7XT-e4-LVW">
+                                            <rect key="frame" x="260" y="21" width="40" height="40"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="avatarImageView" destination="Bk7-np-uPU" id="dqi-vT-SvK"/>
+                                    <outlet property="checkImageView" destination="7XT-e4-LVW" id="btm-gI-BBd"/>
                                     <outlet property="nameLabel" destination="mNu-kR-bEd" id="ADz-qW-RXq"/>
                                 </connections>
                             </tableViewCell>
@@ -363,7 +372,13 @@
                             <outlet property="delegate" destination="iZM-XO-kll" id="otL-S6-k8h"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="选择设备" id="NDn-sM-aOr"/>
+                    <navigationItem key="navigationItem" title="选择相框" id="NDn-sM-aOr">
+                        <barButtonItem key="rightBarButtonItem" title="完成" id="7Mp-7o-uh0">
+                            <connections>
+                                <action selector="doneButtonAction:" destination="iZM-XO-kll" id="nVW-Vi-GJC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tSY-Li-Ieh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
