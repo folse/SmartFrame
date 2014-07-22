@@ -52,8 +52,7 @@
     if (!USER_LOGIN) {
         
         UINavigationController *regNavController = [STORY_BOARD instantiateViewControllerWithIdentifier:@"regNav"];
-        
-        [self presentViewController:regNavController animated:YES completion:nil];
+        //[self presentViewController:regNavController animated:YES completion:nil];
     }
 }
 

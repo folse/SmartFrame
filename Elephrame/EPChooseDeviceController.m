@@ -98,7 +98,7 @@
     for (int i = 0; i < deviceArray.count; i++) {
         
         if ([deviceArray[i] isChecked]) {
-            [selectedDeviceArray addObject:deviceArray[i]];
+            [selectedDeviceArray addObject:deviceArray[i][@"frameid"]];
         }
     }
     

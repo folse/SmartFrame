@@ -161,7 +161,11 @@
         [photoNameArray addObject:[NSString stringWithFormat:@"%ld.jpg", (long)[[NSDate date] timeIntervalSince1970]]];
     }
     
-    
+//    NSMutableArray *selectedDeviceNameArray = [NSMutableArray new];
+//    for (int i = 0; i < selectedDeviceArray.count; i++) {
+//        [selectedDeviceNameArray addObject:selectedDeviceArray[i][@"frameid"]];
+//    }
+        
     NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970]];
     voiceName = [NSString stringWithFormat:@"%@.caf", timeSp];
     
