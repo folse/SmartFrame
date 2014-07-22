@@ -12,8 +12,13 @@
 
 @interface EPRecordVoiceController ()<AVAudioPlayerDelegate>
 {
+    NSString *filename;
+    NSString *filetype;
+    NSString *mimetype;
+    NSData *fileData;
     NSString *voiceName;
     NSArray *selectedDeviceArray;
+    NSMutableArray *photoNameArray;
 }
 
 @property(nonatomic,retain) LCVoice * voice;
@@ -32,6 +37,12 @@
         // Custom initialization
     }
     return self;
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
 }
 
 - (void)viewDidLoad
@@ -144,6 +155,13 @@
 {
     [HUD show:YES];
     
+    photoNameArray = [NSMutableArray new];
+    
+    for (int i = 0; i < _photoArray.count; i++) {
+        [photoNameArray addObject:[NSString stringWithFormat:@"%ld.jpg", (long)[[NSDate date] timeIntervalSince1970]]];
+    }
+    
+    
     NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970]];
     voiceName = [NSString stringWithFormat:@"%@.caf", timeSp];
     
@@ -151,9 +169,9 @@
     
     [parameterDict setObject:[USER_DEFAULTS valueForKeyPath:@"tokenId"] forKey:@"token"];
     [parameterDict setObject:selectedDeviceArray forKey:@"frameid"];
-    [parameterDict setObject:_photoArray forKey:@"photo"];
+    [parameterDict setObject:photoNameArray forKey:@"photo"];
     [parameterDict setObject:[NSArray arrayWithObject:voiceName] forKey:@"voice"];
-    
+    s(parameterDict)
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager POST:API_SEND_PHOTO_VOICE parameters:parameterDict success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -175,21 +193,36 @@
 
 -(void)uploadPhotoAndVoice
 {
-    NSString *filename;
-    NSString *filetype;
-    NSString *minetype;
- 
-    
     if(_photoArray.count > 0){
-        filename =
-    }
         
-    
-    
-    NSData *imageData = UIImageJPEGRepresentation(_photoArray[0], 1.0);
+        filename = photoNameArray[0];
+        filetype = @"photo";
+        mimetype = @"image/jpeg";
+        
+        fileData = UIImageJPEGRepresentation(_photoArray[0], 1.0);
+        
+    }else if(self.voice != nil && self.voice.recordPath.length > 0){
+        
+        filename = voiceName;
+        filetype = @"voice";
+        mimetype = @"audio/x-caf";
+        
+        NSURL *url = [NSURL fileURLWithPath:self.voice.recordPath];
+        
+        fileData = [NSData dataWithContentsOfURL:url];
+        
+    }else{
+        
+        [HUD setHidden:YES];
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"发送成功" message:@"远方的相框将会收到您的消息" delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+        [alertView show];
+        
+        return;
+    }
     
     NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc] init];
-    [parameterDict setObject:@"photo" forKey:@"filetype"];
+    [parameterDict setObject:filetype forKey:@"filetype"];
     [parameterDict setObject:[USER_DEFAULTS valueForKeyPath:@"tokenId"] forKey:@"token"];
     
     NSString *UPLOAD_URL = [NSString stringWithFormat:@"%@?token=%@&filetype=photo&filename=%@",API_UPLOAD,[USER_DEFAULTS valueForKeyPath:@"tokenId"],@"1405834462.jpg"];
@@ -198,7 +231,7 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager POST:UPLOAD_URL parameters:parameterDict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
-        [formData appendPartWithFileData:imageData name:@"filename" fileName:@"1405834462.jpg" mimeType:@"image/jpeg"];
+        [formData appendPartWithFileData:fileData name:@"filename" fileName:filename mimeType:mimetype];
         
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
@@ -207,7 +240,13 @@
         
         if ([[responseObject valueForKey:@"code"] isEqualToString:@"1"]) {
             
+            if(_photoArray.count > 0){
+                
+                [_photoArray delete:_photoArray[0]];
+                [photoNameArray delete:photoNameArray[0]];
+            }
             
+             [self uploadPhotoAndVoice];
             
         }else{
             NetWork_Error

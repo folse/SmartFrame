@@ -25,7 +25,15 @@
 
 @implementation LCVoice
 
-#pragma mark - Publick Function
+-(void)dealloc
+{
+    if (self.recorder.isRecording) {
+        [self.recorder stop];
+    }
+    
+    self.recorder = nil;
+    self.recordPath = nil;
+}
 
 -(void)startRecordWithPath:(NSString *)path
 {    
@@ -120,6 +128,10 @@
 -(void) stopRecordWithCompletionBlock:(void (^)())completion
 {    
     dispatch_async(dispatch_get_main_queue(),completion);
+    
+    if (self.recorder.isRecording) {
+        [self.recorder stop];
+    }
 
     [self resetTimer];
     [self showVoiceHudOrHide:NO];

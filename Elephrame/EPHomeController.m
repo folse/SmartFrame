@@ -110,6 +110,39 @@
     }];
 }
 
+-(void)getLastPhoto
+{
+    deviceArray = [USER_DEFAULTS objectForKey:@"deviceArray"];
+    
+    NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc] init];
+    
+    NSString *tokenId = [USER_DEFAULTS valueForKey:@"tokenId"];
+    
+    [parameterDict setObject:tokenId forKey:@"token"];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager POST:API_RELATION parameters:parameterDict success:^(AFHTTPRequestOperation *operation, id JSON) {
+        
+        NSLog(@"%@:%@",operation.response.URL.relativePath,JSON);
+        
+        if ([[JSON valueForKey:@"code"] isEqualToString:@"1"]) {
+            
+            deviceArray = (NSMutableArray *)[JSON valueForKey:@"relations"];
+            
+            [USER_DEFAULTS setObject:deviceArray forKey:@"deviceArray"];
+            
+        }else{
+            
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"获取相框信息失败" message:@"请稍后再试" delegate:self cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+            [alertView show];
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+}
+
 - (IBAction)menuButtonAction:(id)sender
 {
     [self.view endEditing:YES];
