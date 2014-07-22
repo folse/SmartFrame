@@ -22,6 +22,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ODU-n8-Q2T">
                             <rect key="frame" x="0.0" y="121" width="320" height="30"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="19"/>
                             <inset key="titleEdgeInsets" minX="-22" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="50" maxY="0.0"/>
                             <state key="normal" title="主页" image="icon_home">
@@ -35,6 +36,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cv2-u7-06v">
                             <rect key="frame" x="0.0" y="200" width="320" height="30"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="19"/>
                             <inset key="titleEdgeInsets" minX="-22" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="50" maxY="0.0"/>
                             <state key="normal" title="相框" image="icon_device">
@@ -45,11 +47,12 @@
                                 <action selector="secondBtnAction:" destination="-1" eventType="touchUpInside" id="fpT-7E-3I4"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Mnc-nT-gq5">
-                            <rect key="frame" x="0.0" y="270" width="320" height="44"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Mnc-nT-gq5">
+                            <rect key="frame" x="0.0" y="279" width="320" height="30"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="20"/>
-                            <state key="normal" title="反馈">
+                            <inset key="titleEdgeInsets" minX="-22" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="50" maxY="0.0"/>
+                            <state key="normal" title="反馈" image="icon_feedback">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -57,11 +60,12 @@
                                 <action selector="thirdBtnAction:" destination="-1" eventType="touchUpInside" id="lTM-hH-OMo"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eQh-hz-ZsT">
-                            <rect key="frame" x="0.0" y="352" width="320" height="44"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eQh-hz-ZsT">
+                            <rect key="frame" x="0.0" y="361" width="320" height="30"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="20"/>
-                            <state key="normal" title="更多">
+                            <inset key="titleEdgeInsets" minX="-22" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="50" maxY="0.0"/>
+                            <state key="normal" title="更多" image="icon_settings">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -80,6 +84,8 @@
     </objects>
     <resources>
         <image name="icon_device" width="25" height="25"/>
+        <image name="icon_feedback" width="25" height="25"/>
         <image name="icon_home" width="25" height="25"/>
+        <image name="icon_settings" width="25" height="25"/>
     </resources>
 </document>
