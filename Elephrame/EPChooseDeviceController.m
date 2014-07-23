@@ -42,6 +42,7 @@
     for (int i = 0; i < deviceDataArray.count; i++) {
         EPDevice *device = [[EPDevice alloc] init];
         device.name = deviceDataArray[i][@"name"];
+        device.deviceId = deviceDataArray[i][@"frameid"];
         device.isChecked = NO;
         [deviceArray addObject:device];
     }
@@ -98,7 +99,7 @@
     for (int i = 0; i < deviceArray.count; i++) {
         
         if ([deviceArray[i] isChecked]) {
-            [selectedDeviceArray addObject:deviceArray[i][@"frameid"]];
+            [selectedDeviceArray addObject:[deviceArray[i] deviceId]];
         }
     }
     

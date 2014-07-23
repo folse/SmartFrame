@@ -10,6 +10,4 @@
 
 @interface EPHomeController : UIViewController
 
-@property (nonatomic, strong) NSString *deviceId;
-
 @end

@@ -11,6 +11,6 @@
 @interface EPRecordVoiceController : FSTableViewController
 
 @property (nonatomic, strong) NSArray *deviceArray;
-@property (nonatomic, strong) NSArray *photoArray;
+@property (nonatomic, strong) NSMutableArray *photoArray;
 
 @end

@@ -57,7 +57,7 @@
             [self.tableView reloadData];
             
             [USER_DEFAULTS setObject:deviceArray forKey:@"deviceArray"];
-            
+                        
         }else{
             
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"获取相框信息失败" message:@"请稍后再试" delegate:self cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];

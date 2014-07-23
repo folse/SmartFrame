@@ -22,6 +22,7 @@
     NSMutableArray *selectedAssetArray;
     MBProgressHUD *HUD;
 }
+@property (strong, nonatomic) IBOutlet UIImageView *lastPhotoImageView;
 
 @property (nonatomic, strong) NSMutableArray *assets;
 @property (nonatomic, strong) NSMutableArray *addAssets;
@@ -52,7 +53,7 @@
     if (!USER_LOGIN) {
         
         UINavigationController *regNavController = [STORY_BOARD instantiateViewControllerWithIdentifier:@"regNav"];
-        //[self presentViewController:regNavController animated:YES completion:nil];
+        [self presentViewController:regNavController animated:YES completion:nil];
     }
 }
 
@@ -68,6 +69,10 @@
     dispatch_once(&onceToken, ^{
         [AFPhotoEditorController setAPIKey:@"edc762d6aef61bea" secret:@"73429c0222c8298d"];
     });
+    
+    [[[NSThread alloc] initWithTarget:self selector:@selector(getDevice) object:nil] start];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setHomeImage:) name:@"afterSendPhoto" object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -98,10 +103,45 @@
             
             [USER_DEFAULTS setObject:deviceArray forKey:@"deviceArray"];
             
+            if (deviceArray.count == 0) {
+                [_lastPhotoImageView setImage:[UIImage imageNamed:@"need_bind_device"]];
+            }else{
+                [self getUserPhotos];
+            }
+            
         }else{
             
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"获取相框信息失败" message:@"请稍后再试" delegate:self cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
             [alertView show];
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+}
+
+-(void)getUserPhotos
+{
+    deviceArray = [USER_DEFAULTS objectForKey:@"deviceArray"];
+    
+    NSMutableDictionary *parameterDict = [NSMutableDictionary new];
+    NSString *tokenId = [USER_DEFAULTS valueForKey:@"tokenId"];
+    [parameterDict setObject:[deviceArray lastObject][@"frameid"] forKey:@"frameid"];
+    [parameterDict setObject:@"frame" forKey:@"type"];
+    [parameterDict setObject:tokenId forKey:@"token"];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager POST:API_MANAGE_PHOTO parameters:parameterDict success:^(AFHTTPRequestOperation *operation, id JSON) {
+        
+        NSLog(@"%@:%@",operation.response.URL.relativePath,JSON);
+        
+        if ([[JSON valueForKey:@"code"] isEqualToString:@"1"]) {
+            
+            NSArray *photoData = (NSArray *)[JSON valueForKey:@"date_photos"];
+            NSArray *photos = (NSArray *)[photoData[0] valueForKey:@"photos"];
+            
+            [_lastPhotoImageView sd_setImageWithURL:[NSURL URLWithString:photos[0]] placeholderImage:[UIImage imageNamed:@"default_photo"]];
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -142,6 +182,14 @@
     }];
 }
 
+-(void)setHomeImage:(NSNotification *)notification
+{
+    [_lastPhotoImageView setImage:[notification.userInfo objectForKey:@"sentPhoto"]];
+        
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"发送成功" message:@"远方的相框将会收到您的消息" delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+    [alertView show];
+}
+
 - (IBAction)menuButtonAction:(id)sender
 {
     [self.view endEditing:YES];
@@ -165,9 +213,7 @@
         UIImagePickerController *controller = [[UIImagePickerController alloc] init];
         controller.delegate = self;
         controller.sourceType = UIImagePickerControllerSourceTypeCamera;
-        [self presentViewController:controller animated:YES completion:^{
-            [[[NSThread alloc] initWithTarget:self selector:@selector(getDevice) object:nil] start];
-        }];
+        [self presentViewController:controller animated:YES completion:nil];
     }
 }
 
@@ -182,10 +228,7 @@
     picker.navigationController.navigationItem.title = @"选取照片";
     picker.assetsFilter = [ALAssetsFilter allPhotos];
     picker.delegate = self;
-    [self presentViewController:picker animated:YES completion:^{
-        
-        [[[NSThread alloc] initWithTarget:self selector:@selector(getDevice) object:nil] start];
-    }];
+    [self presentViewController:picker animated:YES completion:nil];
 }
 
 #pragma mark - UIImagePickerControllerDelegate -
@@ -280,13 +323,13 @@
 
 -(void)finishEditingImage
 {
-     [self performSegueWithIdentifier:@"RecordVoiceController" sender:self];
+    [self performSegueWithIdentifier:@"RecordVoiceController" sender:self];
 }
 
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqual:@"RecordVoiceController"]) {
         EPRecordVoiceController *recorderVoiceController = segue.destinationViewController;
@@ -294,7 +337,5 @@
         recorderVoiceController.photoArray = selectedPhotoArray;
     }
 }
-
-
 
 @end

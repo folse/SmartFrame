@@ -160,11 +160,6 @@
     for (int i = 0; i < _photoArray.count; i++) {
         [photoNameArray addObject:[NSString stringWithFormat:@"%ld.jpg", (long)[[NSDate date] timeIntervalSince1970]]];
     }
-    
-//    NSMutableArray *selectedDeviceNameArray = [NSMutableArray new];
-//    for (int i = 0; i < selectedDeviceArray.count; i++) {
-//        [selectedDeviceNameArray addObject:selectedDeviceArray[i][@"frameid"]];
-//    }
         
     NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970]];
     voiceName = [NSString stringWithFormat:@"%@.caf", timeSp];
@@ -219,8 +214,10 @@
         
         [HUD setHidden:YES];
         
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"发送成功" message:@"远方的相框将会收到您的消息" delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
-        [alertView show];
+        [self.navigationController popViewControllerAnimated:YES];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"afterSendPhoto" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:_photoArray[0], @"sentPhoto", nil]];
+
         
         return;
     }
@@ -246,8 +243,8 @@
             
             if(_photoArray.count > 0){
                 
-                [_photoArray delete:_photoArray[0]];
-                [photoNameArray delete:photoNameArray[0]];
+                [_photoArray removeObjectAtIndex:0];
+                [photoNameArray removeObjectAtIndex:0];
             }
             
              [self uploadPhotoAndVoice];
