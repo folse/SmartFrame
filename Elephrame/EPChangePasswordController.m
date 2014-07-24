@@ -48,21 +48,19 @@
             
             [HUD show:YES];
             
-            NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc] init];
-            [parameterDict setObject:_currentPasswordTextField.text forKey:@"old_password"];
-            [parameterDict setObject:_setNewPasswordTextField.text forKey:@"password"];
-            [parameterDict setObject:[USER_DEFAULTS valueForKeyPath:@"tokenId"] forKey:@"token"];
+            NSString *MANAGE_ACCOUNT = [NSString stringWithFormat:@"%@?token=%@&password=%@&old_password=%@",API_MANAGE_ACCOUNT,[USER_DEFAULTS valueForKeyPath:@"tokenId"],_setNewPasswordTextField.text,_currentPasswordTextField.text];
             
             AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
             manager.requestSerializer = [AFJSONRequestSerializer serializer];
-            [manager POST:API_MANAGE_ACCOUNT parameters:parameterDict success:^(AFHTTPRequestOperation *operation, id JSON) {                
+            [manager POST:MANAGE_ACCOUNT parameters:nil success:^(AFHTTPRequestOperation *operation, id JSON) {
                 NSLog(@"%@:%@",operation.response.URL.relativePath,JSON);
                 [HUD hide:YES];
                 if ([[JSON valueForKey:@"code"] isEqualToString:@"1"]) {
                     
                     [HUD hide:YES];
-                    [self dismissViewControllerAnimated:YES completion:nil];
-                    return ;
+                    
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"修改成功" delegate:self cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+                    [alertView show];
                     
                 }else{
                     NetWork_Error
