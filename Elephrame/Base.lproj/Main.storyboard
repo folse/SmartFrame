@@ -788,6 +788,11 @@
                                 <action selector="menuButtonAction:" destination="deT-ub-rvs" id="dn2-up-oY5"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="管理" id="znW-qv-NTy">
+                            <connections>
+                                <action selector="editButtonAction:" destination="deT-ub-rvs" id="ncP-u9-bhW"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ec9-Nm-8U7" userLabel="First Responder" sceneMemberID="firstResponder"/>

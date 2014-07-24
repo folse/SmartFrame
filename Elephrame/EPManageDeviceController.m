@@ -126,9 +126,7 @@
         
         [deviceArray removeObjectAtIndex:indexPath.row];
         
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        
-        //[self.tableView reloadData];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 
