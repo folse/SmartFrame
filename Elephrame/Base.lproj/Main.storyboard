@@ -237,7 +237,7 @@
                                 <rect key="frame" x="-13" y="62" width="350" height="289"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mpl-jr-FJE">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mpl-jr-FJE">
                                 <rect key="frame" x="78" y="146" width="158" height="114"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -249,11 +249,6 @@
                         <barButtonItem key="leftBarButtonItem" image="btn_menu" id="s7z-v4-eey">
                             <connections>
                                 <action selector="menuButtonAction:" destination="dGN-bo-Mh6" id="H6F-Sq-Mhj"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="ewu-Bo-cId">
-                            <connections>
-                                <segue destination="BOP-KO-F7u" kind="push" id="uK8-9w-t4k"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -746,7 +741,7 @@
             </objects>
             <point key="canvasLocation" x="-21" y="2747"/>
         </scene>
-        <!--Manage Device Controller - 管理相框-->
+        <!--Manage Device Controller - 相框-->
         <scene sceneID="ZYj-X9-nxi">
             <objects>
                 <tableViewController id="deT-ub-rvs" customClass="EPManageDeviceController" sceneMemberID="viewController">
@@ -786,16 +781,11 @@
                             <outlet property="delegate" destination="deT-ub-rvs" id="DNA-Zh-WDv"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="管理相框" id="t0S-hh-sbf">
+                    <navigationItem key="navigationItem" title="相框" id="t0S-hh-sbf">
                         <barButtonItem key="backBarButtonItem" title=" " id="aIJ-Oz-Q6o"/>
                         <barButtonItem key="leftBarButtonItem" image="btn_menu" id="HkD-gO-pfv">
                             <connections>
                                 <action selector="menuButtonAction:" destination="deT-ub-rvs" id="dn2-up-oY5"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="WbH-Ab-s3E">
-                            <connections>
-                                <action selector="editButtonAction:" destination="deT-ub-rvs" id="aFR-ej-zf1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -836,7 +826,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="Agg-mk-G06"/>
-    </inferredMetricsTieBreakers>
 </document>

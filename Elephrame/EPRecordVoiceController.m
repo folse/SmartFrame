@@ -12,10 +12,11 @@
 
 @interface EPRecordVoiceController ()<AVAudioPlayerDelegate>
 {
+    UIImage *firstImage;
+    NSData *fileData;
     NSString *filename;
     NSString *filetype;
     NSString *mimetype;
-    NSData *fileData;
     NSString *voiceName;
     NSArray *selectedDeviceArray;
     NSMutableArray *photoNameArray;
@@ -155,6 +156,8 @@
 {
     [HUD show:YES];
     
+    firstImage = _photoArray[0];
+    
     photoNameArray = [NSMutableArray new];
     
     for (int i = 0; i < _photoArray.count; i++) {
@@ -212,12 +215,11 @@
         
     }else{
         
-        [HUD setHidden:YES];
-        
         [self.navigationController popViewControllerAnimated:YES];
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"afterSendPhoto" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:_photoArray[0], @"sentPhoto", nil]];
-
+        [HUD setHidden:YES];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"afterSendPhoto" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:firstImage, @"sentPhoto", nil]];
         
         return;
     }
@@ -247,7 +249,18 @@
                 [photoNameArray removeObjectAtIndex:0];
             }
             
-             [self uploadPhotoAndVoice];
+            if ([filetype isEqualToString:@"voice"]) {
+                
+                [self.navigationController popViewControllerAnimated:YES];
+                
+                [HUD setHidden:YES];
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"afterSendPhoto" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:firstImage, @"sentPhoto", nil]];
+                
+            }else{
+                
+                [self uploadPhotoAndVoice];
+            }
             
         }else{
             NetWork_Error

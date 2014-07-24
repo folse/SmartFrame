@@ -49,8 +49,10 @@
             [HUD show:YES];
             
             NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc] init];
-            //[parameterDict setObject:_currentPasswordTextField.text forKey:@"old_password"];
+            [parameterDict setObject:_currentPasswordTextField.text forKey:@"old_password"];
             [parameterDict setObject:_setNewPasswordTextField.text forKey:@"password"];
+            [parameterDict setObject:[USER_DEFAULTS valueForKeyPath:@"tokenId"] forKey:@"token"];
+            
             AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
             manager.requestSerializer = [AFJSONRequestSerializer serializer];
             [manager POST:API_MANAGE_ACCOUNT parameters:parameterDict success:^(AFHTTPRequestOperation *operation, id JSON) {                

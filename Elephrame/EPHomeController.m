@@ -70,9 +70,13 @@
         [AFPhotoEditorController setAPIKey:@"edc762d6aef61bea" secret:@"73429c0222c8298d"];
     });
     
-    [[[NSThread alloc] initWithTarget:self selector:@selector(getDevice) object:nil] start];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setHomeImage:) name:@"afterSendPhoto" object:nil];
+    
+    if (USER_LOGIN) {
+        
+        [[[NSThread alloc] initWithTarget:self selector:@selector(getDevice) object:nil] start];
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -126,7 +130,7 @@
     
     NSMutableDictionary *parameterDict = [NSMutableDictionary new];
     NSString *tokenId = [USER_DEFAULTS valueForKey:@"tokenId"];
-    [parameterDict setObject:[deviceArray lastObject][@"frameid"] forKey:@"frameid"];
+    [parameterDict setObject:[deviceArray firstObject][@"frameid"] forKey:@"frameid"];
     [parameterDict setObject:@"frame" forKey:@"type"];
     [parameterDict setObject:tokenId forKey:@"token"];
     
@@ -149,42 +153,11 @@
     }];
 }
 
--(void)getLastPhoto
-{
-    deviceArray = [USER_DEFAULTS objectForKey:@"deviceArray"];
-    
-    NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc] init];
-    
-    NSString *tokenId = [USER_DEFAULTS valueForKey:@"tokenId"];
-    
-    [parameterDict setObject:tokenId forKey:@"token"];
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager POST:API_RELATION parameters:parameterDict success:^(AFHTTPRequestOperation *operation, id JSON) {
-        
-        NSLog(@"%@:%@",operation.response.URL.relativePath,JSON);
-        
-        if ([[JSON valueForKey:@"code"] isEqualToString:@"1"]) {
-            
-            deviceArray = (NSMutableArray *)[JSON valueForKey:@"relations"];
-            
-            [USER_DEFAULTS setObject:deviceArray forKey:@"deviceArray"];
-            
-        }else{
-            
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"获取相框信息失败" message:@"请稍后再试" delegate:self cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
-            [alertView show];
-        }
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-    }];
-}
-
 -(void)setHomeImage:(NSNotification *)notification
 {
-    [_lastPhotoImageView setImage:[notification.userInfo objectForKey:@"sentPhoto"]];
+    UIImage *sentPhoto = [notification.userInfo objectForKey:@"sentPhoto"];
+    
+    [_lastPhotoImageView setImage:sentPhoto];
         
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"发送成功" message:@"远方的相框将会收到您的消息" delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
     [alertView show];
@@ -271,6 +244,8 @@
     [AFPhotoEditorCustomization setToolOrder:@[kAFEffects,kAFStickers, kAFDraw, kAFText,kAFOrientation,kAFEnhance,kAFAdjustments, kAFSharpness, kAFRedeye, kAFWhiten, kAFBlemish, kAFMeme, kAFFrames, kAFFocus]];
     [AFPhotoEditorCustomization setStatusBarStyle:UIStatusBarStyleLightContent];
     [AFPhotoEditorCustomization setNavBarImage:[self imageWithColor:APP_COLOR andSize:CGSizeMake(320, 44)]];
+    [AFPhotoEditorCustomization setLeftNavigationBarButtonTitle:@"取消"];
+    [AFPhotoEditorCustomization setRightNavigationBarButtonTitle:@"完成"];
     [editorController setDelegate:self];
     [self presentViewController:editorController animated:YES completion:nil];
 }

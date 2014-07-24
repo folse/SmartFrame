@@ -61,6 +61,7 @@
         
         NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc] init];
         [parameterDict setObject:_contentTextView.text forKey:@"msg"];
+        [parameterDict setObject:[USER_DEFAULTS valueForKeyPath:@"tokenId"] forKey:@"token"];
         
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         manager.requestSerializer = [AFJSONRequestSerializer serializer];
