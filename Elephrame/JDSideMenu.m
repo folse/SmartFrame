@@ -144,16 +144,16 @@ const CGFloat JDSideMenuDefaultCloseAnimationTime = 0.4;
             break;
         }
         case UIGestureRecognizerStateChanged: {
-            [recognizer.view setTransform:CGAffineTransformMakeTranslation(MAX(0,translation.x), 0)];
-            [self statusBarView].transform = recognizer.view.transform;
+//            [recognizer.view setTransform:CGAffineTransformMakeTranslation(MAX(0,translation.x), 0)];
+//            [self statusBarView].transform = recognizer.view.transform;
             break;
         }
         case UIGestureRecognizerStateEnded:
         case UIGestureRecognizerStateCancelled: {
             if (velocity.x > 5.0 || (velocity.x >= -1.0 && translation.x > JDSideMenuMinimumRelativePanDistanceToOpen*self.menuWidth)) {
-                CGFloat transformedVelocity = velocity.x/ABS(self.menuWidth - translation.x);
-                CGFloat duration = JDSideMenuDefaultOpenAnimationTime * 0.66;
-                [self showMenuAnimated:YES duration:duration initialVelocity:transformedVelocity];
+//                CGFloat transformedVelocity = velocity.x/ABS(self.menuWidth - translation.x);
+//                CGFloat duration = JDSideMenuDefaultOpenAnimationTime * 0.66;
+//                [self showMenuAnimated:YES duration:duration initialVelocity:transformedVelocity];
             } else {
                 [self hideMenuAnimated:YES];
             }

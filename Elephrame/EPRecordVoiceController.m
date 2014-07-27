@@ -18,6 +18,7 @@
     NSString *filetype;
     NSString *mimetype;
     NSString *voiceName;
+    NSString *UPLOAD_URL;
     NSArray *selectedDeviceArray;
     NSMutableArray *photoNameArray;
 }
@@ -160,20 +161,29 @@
     
     photoNameArray = [NSMutableArray new];
     
-    for (int i = 0; i < _photoArray.count; i++) {
-        [photoNameArray addObject:[NSString stringWithFormat:@"%ld.jpg", (long)[[NSDate date] timeIntervalSince1970]]];
-    }
-        
-    NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970]];
-    voiceName = [NSString stringWithFormat:@"%@.caf", timeSp];
-    
     NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc] init];
+    
+    NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970]];
+    
+    for (int i = 0; i < _photoArray.count; i++) {
+        [photoNameArray addObject:[NSString stringWithFormat:@"%@.jpg", timeSp]];
+    }
     
     [parameterDict setObject:[USER_DEFAULTS valueForKeyPath:@"tokenId"] forKey:@"token"];
     [parameterDict setObject:selectedDeviceArray forKey:@"frameid"];
     [parameterDict setObject:photoNameArray forKey:@"photo"];
+
+    if (self.voice != nil && self.voice.recordPath.length > 0) {
+        
+        voiceName = [NSString stringWithFormat:@"%@.caf", timeSp];
+        
+    }else{
+        
+        voiceName = @"";
+    }
+    
     [parameterDict setObject:[NSArray arrayWithObject:voiceName] forKey:@"voice"];
-    s(parameterDict)
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager POST:API_SEND_PHOTO_VOICE parameters:parameterDict success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -224,11 +234,9 @@
         return;
     }
     
-    NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc] init];
-    [parameterDict setObject:filetype forKey:@"filetype"];
-    [parameterDict setObject:[USER_DEFAULTS valueForKeyPath:@"tokenId"] forKey:@"token"];
+    UPLOAD_URL = [NSString stringWithFormat:@"%@?token=%@&filetype=%@&filename=%@",API_UPLOAD,[USER_DEFAULTS valueForKeyPath:@"tokenId"],filetype,filename];
     
-    NSString *UPLOAD_URL = [NSString stringWithFormat:@"%@?token=%@&filetype=photo&filename=%@",API_UPLOAD,[USER_DEFAULTS valueForKeyPath:@"tokenId"],@"1405834462.jpg"];
+    NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc] init];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
