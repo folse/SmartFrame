@@ -54,18 +54,22 @@
     self.voice = [[LCVoice alloc] init];
     
     [_recordButton addTarget:self action:@selector(recordStart) forControlEvents:UIControlEventTouchDown];
-    [_recordButton addTarget:self action:@selector(recordEnd) forControlEvents:UIControlEventTouchDragOutside];
     [_recordButton addTarget:self action:@selector(recordEnd) forControlEvents:UIControlEventTouchUpInside];
-    [_recordButton addTarget:self action:@selector(recordEnd) forControlEvents:UIControlEventTouchUpOutside];
+    [_recordButton addTarget:self action:@selector(recordCancel) forControlEvents:UIControlEventTouchUpOutside];
+    [_recordButton addTarget:self action:@selector(recordCancel) forControlEvents:UIControlEventTouchCancel];
+    [_recordButton addTarget:self action:@selector(recordCancel) forControlEvents:UIControlEventTouchDragOutside];
+    [_recordButton addTarget:self action:@selector(recordCancel) forControlEvents:UIControlEventTouchDragExit];
+    [_recordButton addTarget:self action:@selector(recordCancel) forControlEvents:UIControlEventTouchDragExit];
     
     [_recordButton setTitle:@"按住说话" forState:UIControlStateNormal];
     [_recordButton setTitle:@"松手结束" forState:UIControlStateHighlighted];
     
-    UITapGestureRecognizer *imageTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(recordEnd)];
-    [self.view setUserInteractionEnabled:YES];
-    [self.view addGestureRecognizer:imageTap];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishChooseDevice:) name:@"afterChooseDevice" object:nil];
+}
+
+-(void) recordCancel
+{
+    [self.voice cancelled];
 }
 
 - (IBAction)playButtonAction:(id)sender

@@ -12,6 +12,7 @@
 @interface EPManageDeviceController ()
 {
     NSMutableArray *deviceArray;
+    NSString *seletedFrameId;
 }
 
 @end
@@ -31,13 +32,13 @@
 {
     [super viewDidLoad];
     
-    [self getDevice];
+    deviceArray = [NSMutableArray new];
+    
+    [deviceArray addObjectsFromArray:[USER_DEFAULTS objectForKey:@"deviceArray"]];
 }
 
 -(void)getDevice
 {
-    deviceArray = [USER_DEFAULTS objectForKey:@"deviceArray"];
-    
     NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc] init];
     
     NSString *tokenId = [USER_DEFAULTS valueForKey:@"tokenId"];
@@ -54,10 +55,37 @@
             
             deviceArray = (NSMutableArray *)[JSON valueForKey:@"relations"];
             
-            [self.tableView reloadData];
-            
             [USER_DEFAULTS setObject:deviceArray forKey:@"deviceArray"];
                         
+        }else{
+            
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"获取相框信息失败" message:@"请稍后再试" delegate:self cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+            [alertView show];
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+}
+
+-(void)deleteDevice
+{
+    NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc] init];
+    
+    NSString *tokenId = [USER_DEFAULTS valueForKey:@"tokenId"];
+    [parameterDict setObject:[NSArray arrayWithObject:seletedFrameId] forKey:@"frameid"];
+    [parameterDict setObject:tokenId forKey:@"token"];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager POST:API_DELETE_RELATION parameters:parameterDict success:^(AFHTTPRequestOperation *operation, id JSON) {
+        
+        NSLog(@"%@:%@",operation.response.URL.relativePath,JSON);
+        
+        if ([[JSON valueForKey:@"code"] isEqualToString:@"1"]) {
+            
+            [self getDevice];
+            
         }else{
             
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"获取相框信息失败" message:@"请稍后再试" delegate:self cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
@@ -124,9 +152,23 @@
 {
     if(editingStyle == UITableViewCellEditingStyleDelete){
         
-        [deviceArray removeObjectAtIndex:indexPath.row];
-        
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        @try{
+            
+            seletedFrameId = deviceArray[indexPath.row][@"frameid"];
+            
+            [deviceArray removeObjectAtIndex:indexPath.row];
+            
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            
+            [self deleteDevice];
+            
+        }
+        @catch(NSException *exception) {
+            NSLog(@"exception:%@", exception);
+        }
+        @finally {
+            
+        }
     }
 }
 
