@@ -58,8 +58,6 @@
     [_recordButton addTarget:self action:@selector(recordCancel) forControlEvents:UIControlEventTouchUpOutside];
     [_recordButton addTarget:self action:@selector(recordCancel) forControlEvents:UIControlEventTouchCancel];
     [_recordButton addTarget:self action:@selector(recordCancel) forControlEvents:UIControlEventTouchDragOutside];
-    [_recordButton addTarget:self action:@selector(recordCancel) forControlEvents:UIControlEventTouchDragExit];
-    [_recordButton addTarget:self action:@selector(recordCancel) forControlEvents:UIControlEventTouchDragExit];
     
     [_recordButton setTitle:@"按住说话" forState:UIControlStateNormal];
     [_recordButton setTitle:@"松手结束" forState:UIControlStateHighlighted];
