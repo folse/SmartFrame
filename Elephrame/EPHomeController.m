@@ -50,7 +50,11 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    if (!USER_LOGIN) {
+    if (USER_LOGIN) {
+        
+        [[[NSThread alloc] initWithTarget:self selector:@selector(getDevice) object:nil] start];
+        
+    }else{
         
         UINavigationController *regNavController = [STORY_BOARD instantiateViewControllerWithIdentifier:@"regNav"];
         [self presentViewController:regNavController animated:YES completion:nil];
@@ -72,11 +76,6 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setHomeImage:) name:@"afterSendPhoto" object:nil];
     
-    if (USER_LOGIN) {
-        
-        [[[NSThread alloc] initWithTarget:self selector:@selector(getDevice) object:nil] start];
-        
-    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -108,8 +107,10 @@
             [USER_DEFAULTS setObject:deviceArray forKey:@"deviceArray"];
             
             if (deviceArray.count == 0) {
+                
                 [_lastPhotoImageView setImage:[UIImage imageNamed:@"need_bind_device"]];
             }else{
+                
                 [self getUserPhotos];
             }
             

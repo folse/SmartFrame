@@ -31,7 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     deviceArray = [NSMutableArray new];
     
     [deviceArray addObjectsFromArray:[USER_DEFAULTS objectForKey:@"deviceArray"]];
@@ -116,11 +116,11 @@
     
     if(self.tableView.editing){
         
-        [self.navigationItem.rightBarButtonItem setTitle:@"Done"];
+        [self.navigationItem.rightBarButtonItem setTitle:@"完成"];
         
     }else{
         
-        [self.navigationItem.rightBarButtonItem setTitle:@"Edit"];
+        [self.navigationItem.rightBarButtonItem setTitle:@"管理"];
     }
 }
 
