@@ -278,6 +278,8 @@
         
         editedId += 1;
         
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil,nil);
+        
         if (selectedAssetArray.count > editedId) {
             
             ALAsset *asset = selectedAssetArray[editedId];
