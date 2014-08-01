@@ -298,6 +298,11 @@
     }
 }
 
+- (IBAction)skipButton:(id)sender
+{
+    [self performSegueWithIdentifier:@"ChooseDeviceController" sender:self];
+}
+
 /*
  #pragma mark - Navigation
  

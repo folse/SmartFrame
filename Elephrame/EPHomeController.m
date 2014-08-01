@@ -242,11 +242,12 @@
 - (void)displayEditorForImage:(UIImage *)imageToEdit
 {
     AFPhotoEditorController *editorController = [[AFPhotoEditorController alloc] initWithImage:imageToEdit];
-    [AFPhotoEditorCustomization setToolOrder:@[kAFEffects,kAFStickers, kAFDraw, kAFText,kAFOrientation,kAFEnhance,kAFAdjustments, kAFSharpness, kAFRedeye, kAFWhiten, kAFBlemish, kAFMeme, kAFFrames, kAFFocus]];
+    [AFPhotoEditorCustomization setToolOrder:@[kAFEffects,kAFCrop,kAFStickers, kAFDraw, kAFText,kAFOrientation,kAFEnhance,kAFAdjustments, kAFSharpness, kAFRedeye, kAFWhiten, kAFBlemish, kAFMeme, kAFFrames, kAFFocus]];
     [AFPhotoEditorCustomization setStatusBarStyle:UIStatusBarStyleLightContent];
     [AFPhotoEditorCustomization setNavBarImage:[self imageWithColor:APP_COLOR andSize:CGSizeMake(320, 44)]];
     [AFPhotoEditorCustomization setLeftNavigationBarButtonTitle:@"取消"];
     [AFPhotoEditorCustomization setRightNavigationBarButtonTitle:@"完成"];
+    [AFPhotoEditorCustomization setCropToolCustomEnabled:YES];
     [editorController setDelegate:self];
     [self presentViewController:editorController animated:YES completion:nil];
 }

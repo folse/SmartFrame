@@ -59,7 +59,7 @@
                     
                     [HUD hide:YES];
                     
-                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"修改成功" delegate:self cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"修改成功" delegate:self cancelButtonTitle:@"返回首页" otherButtonTitles:nil, nil];
                     [alertView show];
                     
                 }else{
