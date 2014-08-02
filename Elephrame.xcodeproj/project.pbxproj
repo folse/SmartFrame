@@ -125,6 +125,8 @@
 		A16C084B1976C21400A6AAF6 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		A1AD0BF319762E7800F2BCD6 /* EPManageDeviceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPManageDeviceController.h; sourceTree = "<group>"; };
 		A1AD0BF419762E7800F2BCD6 /* EPManageDeviceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPManageDeviceController.m; sourceTree = "<group>"; };
+		A1DCD08A198D326900A48000 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		A1DCD08B198D326900A48000 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		A1EAE24819750B7400BF2BE7 /* JDMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDMenuViewController.h; sourceTree = "<group>"; };
 		A1EAE24919750B7400BF2BE7 /* JDMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDMenuViewController.m; sourceTree = "<group>"; };
 		A1EAE24A19750B7400BF2BE7 /* JDMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JDMenuViewController.xib; sourceTree = "<group>"; };
@@ -449,6 +451,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = A15B56E91973B47A00CCEC32;
 			productRefGroup = A15B56F31973B47A00CCEC32 /* Products */;
@@ -555,6 +558,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				A15B56FF1973B47A00CCEC32 /* en */,
+				A1DCD08A198D326900A48000 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -571,6 +575,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				A15B571E1973B47A00CCEC32 /* en */,
+				A1DCD08B198D326900A48000 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

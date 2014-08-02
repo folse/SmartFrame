@@ -41,12 +41,6 @@
     return self;
 }
 
--(void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -58,9 +52,6 @@
     [_recordButton addTarget:self action:@selector(recordCancel) forControlEvents:UIControlEventTouchUpOutside];
     [_recordButton addTarget:self action:@selector(recordCancel) forControlEvents:UIControlEventTouchCancel];
     [_recordButton addTarget:self action:@selector(recordCancel) forControlEvents:UIControlEventTouchDragOutside];
-    
-    [_recordButton setTitle:@"按住说话" forState:UIControlStateNormal];
-    [_recordButton setTitle:@"松手结束" forState:UIControlStateHighlighted];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishChooseDevice:) name:@"afterChooseDevice" object:nil];
 }
@@ -159,6 +150,9 @@
 {
     [HUD show:YES];
     
+    self.navigationItem.leftBarButtonItem = nil;
+    self.navigationItem.rightBarButtonItem = nil;
+    
     firstImage = _photoArray[0];
     
     photoNameArray = [NSMutableArray new];
@@ -227,9 +221,9 @@
         
     }else{
         
-        [self.navigationController popViewControllerAnimated:YES];
+        [HUD hide:YES];
         
-        [HUD setHidden:YES];
+        [self.navigationController popToRootViewControllerAnimated:NO];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"afterSendPhoto" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:firstImage, @"sentPhoto", nil]];
         
@@ -261,11 +255,14 @@
             
             if ([filetype isEqualToString:@"voice"]) {
                 
-                [self.navigationController popViewControllerAnimated:YES];
+                [HUD hide:YES];
                 
-                [HUD setHidden:YES];
+                UIAlertView *alertView = [UIAlertView alloc] bk_
                 
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"afterSendPhoto" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:firstImage, @"sentPhoto", nil]];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"发送成功" message:@"远方的相框将会收到您的消息" delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+                [alertView show];
+                
+                [self.navigationController popToRootViewControllerAnimated:NO];
                 
             }else{
                 
@@ -300,6 +297,8 @@
 
 - (IBAction)skipButton:(id)sender
 {
+    voiceName = @"";
+    
     [self performSegueWithIdentifier:@"ChooseDeviceController" sender:self];
 }
 

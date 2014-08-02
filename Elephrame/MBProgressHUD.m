@@ -207,9 +207,9 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		[self registerForKVO];
 		[self registerForNotifications];
         
-        UITapGestureRecognizer *imageTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
-        [self setUserInteractionEnabled:YES];
-        [self addGestureRecognizer:imageTap];
+//        UITapGestureRecognizer *imageTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
+//        [self setUserInteractionEnabled:YES];
+//        [self addGestureRecognizer:imageTap];
         
 	}
 	return self;

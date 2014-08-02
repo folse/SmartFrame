@@ -21,6 +21,7 @@
     NSMutableArray *selectedPhotoArray;
     NSMutableArray *selectedAssetArray;
     MBProgressHUD *HUD;
+    NSString *photoType;
 }
 @property (strong, nonatomic) IBOutlet UIImageView *lastPhotoImageView;
 
@@ -73,9 +74,6 @@
     dispatch_once(&onceToken, ^{
         [AFPhotoEditorController setAPIKey:@"edc762d6aef61bea" secret:@"73429c0222c8298d"];
     });
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setHomeImage:) name:@"afterSendPhoto" object:nil];
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -154,16 +152,6 @@
     }];
 }
 
--(void)setHomeImage:(NSNotification *)notification
-{
-    UIImage *sentPhoto = [notification.userInfo objectForKey:@"sentPhoto"];
-    
-    [_lastPhotoImageView setImage:sentPhoto];
-        
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"发送成功" message:@"远方的相框将会收到您的消息" delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
-    [alertView show];
-}
-
 - (IBAction)menuButtonAction:(id)sender
 {
     [self.view endEditing:YES];
@@ -187,11 +175,18 @@
         UIImagePickerController *controller = [[UIImagePickerController alloc] init];
         controller.delegate = self;
         controller.sourceType = UIImagePickerControllerSourceTypeCamera;
-        [self presentViewController:controller animated:YES completion:nil];
+        [self presentViewController:controller animated:YES completion:^{
+            photoType = @"CAMERA";
+        }];
     }
 }
 
 - (IBAction)albumButtonAction:(id)sender
+{
+    [self openAlbum:YES];
+}
+
+-(void)openAlbum:(BOOL)animated
 {
     editedId = 0;
     [selectedAssetArray removeAllObjects];
@@ -202,7 +197,9 @@
     picker.navigationController.navigationItem.title = @"选取照片";
     picker.assetsFilter = [ALAssetsFilter allPhotos];
     picker.delegate = self;
-    [self presentViewController:picker animated:YES completion:nil];
+    [self presentViewController:picker animated:animated completion:^{
+        photoType = @"ALBUM";
+    }];
 }
 
 #pragma mark - UIImagePickerControllerDelegate -
@@ -297,7 +294,12 @@
 
 - (void)photoEditorCanceled:(AFPhotoEditorController *)editor
 {
-    [editor dismissViewControllerAnimated:YES completion:nil];
+    [editor dismissViewControllerAnimated:NO completion:^{
+        
+        if ([photoType isEqualToString:@"ALBUM"]) {
+            [self openAlbum:NO];
+        }
+    }];
 }
 
 -(void)finishEditingImage

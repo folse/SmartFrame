@@ -9,6 +9,7 @@
 #import "API.h"
 #import "MobClick.h"
 #import "JDSideMenu.h"
+#import <BlocksKit.h>
 #import "YSpinKitView.h"
 #import "AFNetworking.h"
 #import "MBProgressHUD.h"
