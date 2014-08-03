@@ -257,13 +257,13 @@
                 
                 [HUD hide:YES];
                 
-                UIAlertView *alertView = [UIAlertView alloc] bk_
-                
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"发送成功" message:@"远方的相框将会收到您的消息" delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
-                [alertView show];
-                
-                [self.navigationController popToRootViewControllerAnimated:NO];
-                
+                UIAlertView *av = [UIAlertView bk_alertViewWithTitle:@"发送成功" message:@"远方的相框将会收到您的消息"];
+                [av bk_addButtonWithTitle:@"好" handler:^{
+
+                    [self.navigationController popToRootViewControllerAnimated:NO];
+                }];
+                [av show];
+
             }else{
                 
                 [self uploadPhotoAndVoice];
