@@ -44,6 +44,7 @@
 		A16C08531976C21400A6AAF6 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = A16C08491976C21400A6AAF6 /* AFURLResponseSerialization.m */; };
 		A16C08541976C21400A6AAF6 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A16C084B1976C21400A6AAF6 /* AFURLSessionManager.m */; };
 		A1AD0BF519762E7800F2BCD6 /* EPManageDeviceController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1AD0BF419762E7800F2BCD6 /* EPManageDeviceController.m */; };
+		A1DF8B4B198FDBF40041D871 /* EPSuccessController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DF8B4A198FDBF40041D871 /* EPSuccessController.m */; };
 		A1EAE24B19750B7400BF2BE7 /* JDMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EAE24919750B7400BF2BE7 /* JDMenuViewController.m */; };
 		A1EAE24C19750B7400BF2BE7 /* JDMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1EAE24A19750B7400BF2BE7 /* JDMenuViewController.xib */; };
 		A1EAE25019750E0600BF2BE7 /* EPSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EAE24F19750E0600BF2BE7 /* EPSettingsController.m */; };
@@ -127,6 +128,8 @@
 		A1AD0BF419762E7800F2BCD6 /* EPManageDeviceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPManageDeviceController.m; sourceTree = "<group>"; };
 		A1DCD08A198D326900A48000 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		A1DCD08B198D326900A48000 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		A1DF8B49198FDBF40041D871 /* EPSuccessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSuccessController.h; sourceTree = "<group>"; };
+		A1DF8B4A198FDBF40041D871 /* EPSuccessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSuccessController.m; sourceTree = "<group>"; };
 		A1EAE24819750B7400BF2BE7 /* JDMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDMenuViewController.h; sourceTree = "<group>"; };
 		A1EAE24919750B7400BF2BE7 /* JDMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDMenuViewController.m; sourceTree = "<group>"; };
 		A1EAE24A19750B7400BF2BE7 /* JDMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JDMenuViewController.xib; sourceTree = "<group>"; };
@@ -289,6 +292,8 @@
 				A15B5A75197C0495004DFBE5 /* EPRecordVoiceController.m */,
 				A117170019743E80007AA62D /* EPChooseDeviceController.h */,
 				A117170119743E80007AA62D /* EPChooseDeviceController.m */,
+				A1DF8B49198FDBF40041D871 /* EPSuccessController.h */,
+				A1DF8B4A198FDBF40041D871 /* EPSuccessController.m */,
 				A1EAE25419752BD300BF2BE7 /* Settings */,
 				A1EAE24D19750B7700BF2BE7 /* Menu */,
 				A117170319743E89007AA62D /* LoginAndRegister */,
@@ -527,6 +532,7 @@
 				A1EAE25319752BCC00BF2BE7 /* EPFeedbackController.m in Sources */,
 				A16C08501976C21400A6AAF6 /* AFSecurityPolicy.m in Sources */,
 				A15B5A76197C0495004DFBE5 /* EPRecordVoiceController.m in Sources */,
+				A1DF8B4B198FDBF40041D871 /* EPSuccessController.m in Sources */,
 				A15B5A72197A3DB2004DFBE5 /* EPDeviceCell.m in Sources */,
 				A16C084C1976C21400A6AAF6 /* AFHTTPRequestOperation.m in Sources */,
 				A15B5A7C197C0B26004DFBE5 /* LCVoiceHud.m in Sources */,

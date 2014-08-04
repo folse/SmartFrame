@@ -143,15 +143,17 @@
 -(void)finishChooseDevice:(NSNotification *)notification
 {
     selectedDeviceArray = [notification.userInfo objectForKey:@"deviceArray"];
+    
+    self.navigationItem.leftBarButtonItem = nil;
+    self.navigationItem.rightBarButtonItem = nil;
+    self.title = @"发送照片";
+    
     [self sendPhotoAndVoice];
 }
 
 -(void)sendPhotoAndVoice
 {
     [HUD show:YES];
-    
-    self.navigationItem.leftBarButtonItem = nil;
-    self.navigationItem.rightBarButtonItem = nil;
     
     firstImage = _photoArray[0];
     
@@ -257,12 +259,7 @@
                 
                 [HUD hide:YES];
                 
-                UIAlertView *av = [UIAlertView bk_alertViewWithTitle:@"发送成功" message:@"远方的相框将会收到您的消息"];
-                [av bk_addButtonWithTitle:@"好" handler:^{
-
-                    [self.navigationController popToRootViewControllerAnimated:NO];
-                }];
-                [av show];
+                [self performSegueWithIdentifier:@"SuccessController" sender:self];
 
             }else{
                 
