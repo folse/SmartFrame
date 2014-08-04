@@ -74,6 +74,19 @@
     dispatch_once(&onceToken, ^{
         [AFPhotoEditorController setAPIKey:@"edc762d6aef61bea" secret:@"73429c0222c8298d"];
     });
+    
+    UITapGestureRecognizer *imageTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideMenu)];
+    [self.view setUserInteractionEnabled:YES];
+    [self.view addGestureRecognizer:imageTap];
+}
+
+-(void)hideMenu
+{
+    JDSideMenu *sideMenu = (JDSideMenu *)self.navigationController.parentViewController;
+    
+    if (sideMenu.isMenuVisible) {
+        [sideMenu hideMenuAnimated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning
