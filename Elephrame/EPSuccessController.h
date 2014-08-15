@@ -10,4 +10,6 @@
 
 @interface EPSuccessController : FSTableViewController
 
+@property (nonatomic, strong) UIImage *firstImage;
+
 @end

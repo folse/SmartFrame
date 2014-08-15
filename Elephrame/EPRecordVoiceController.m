@@ -9,6 +9,7 @@
 #import "EPRecordVoiceController.h"
 #import "LCVoice.h"
 #import <AVFoundation/AVFoundation.h>
+#import "EPSuccessController.h"
 
 @interface EPRecordVoiceController ()<AVAudioPlayerDelegate>
 {
@@ -21,6 +22,7 @@
     NSString *UPLOAD_URL;
     NSArray *selectedDeviceArray;
     NSMutableArray *photoNameArray;
+    BOOL needDoSomething;
 }
 
 @property(nonatomic,retain) LCVoice * voice;
@@ -41,6 +43,22 @@
     return self;
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if(needDoSomething){
+        
+        needDoSomething = NO;
+        
+        self.navigationItem.leftBarButtonItem = nil;
+        self.navigationItem.rightBarButtonItem = nil;
+        self.title = @"发送照片";
+        
+        [self sendPhotoAndVoice];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -53,7 +71,7 @@
     [_recordButton addTarget:self action:@selector(recordCancel) forControlEvents:UIControlEventTouchCancel];
     [_recordButton addTarget:self action:@selector(recordCancel) forControlEvents:UIControlEventTouchDragOutside];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishChooseDevice:) name:@"afterChooseDevice" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(afterChooseDevice:) name:@"afterChooseDevice" object:nil];
 }
 
 -(void) recordCancel
@@ -140,15 +158,11 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
--(void)finishChooseDevice:(NSNotification *)notification
+-(void)afterChooseDevice:(NSNotification *)notification
 {
     selectedDeviceArray = [notification.userInfo objectForKey:@"deviceArray"];
     
-    self.navigationItem.leftBarButtonItem = nil;
-    self.navigationItem.rightBarButtonItem = nil;
-    self.title = @"发送照片";
-    
-    [self sendPhotoAndVoice];
+    needDoSomething = YES;
 }
 
 -(void)sendPhotoAndVoice
@@ -224,10 +238,8 @@
     }else{
         
         [HUD hide:YES];
-        
-        [self.navigationController popToRootViewControllerAnimated:NO];
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"afterSendPhoto" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:firstImage, @"sentPhoto", nil]];
+
+        [self performSegueWithIdentifier:@"SuccessController" sender:self];
         
         return;
     }
@@ -299,15 +311,16 @@
     [self performSegueWithIdentifier:@"ChooseDeviceController" sender:self];
 }
 
-/*
+
  #pragma mark - Navigation
  
  // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
  {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
+     if ([segue.identifier isEqualToString:@"SuccessController"]) {
+         EPSuccessController *successController = segue.destinationViewController;
+         successController.firstImage = firstImage;
+     }
  }
- */
-
+ 
 @end

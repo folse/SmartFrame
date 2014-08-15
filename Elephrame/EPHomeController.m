@@ -120,6 +120,7 @@
             if (deviceArray.count == 0) {
                 
                 [_lastPhotoImageView setImage:[UIImage imageNamed:@"need_bind_device"]];
+                
             }else{
                 
                 [self getUserPhotos];

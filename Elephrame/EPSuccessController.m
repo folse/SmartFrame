@@ -38,6 +38,8 @@
 - (IBAction)successButtonAction:(id)sender
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"afterSendPhoto" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:_firstImage, @"sentPhoto", nil]];
 }
 
 /*
