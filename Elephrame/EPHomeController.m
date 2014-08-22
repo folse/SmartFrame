@@ -156,9 +156,13 @@
         if ([[JSON valueForKey:@"code"] isEqualToString:@"1"]) {
             
             NSArray *photoData = (NSArray *)[JSON valueForKey:@"date_photos"];
-            NSArray *photos = (NSArray *)[photoData[0] valueForKey:@"photos"];
             
-            [_lastPhotoImageView sd_setImageWithURL:[NSURL URLWithString:photos[0]] placeholderImage:[UIImage imageNamed:@"default_photo"]];
+            if (photoData.count > 0) {
+                
+                NSArray *photos = (NSArray *)[photoData[0] valueForKey:@"photos"];
+                
+                [_lastPhotoImageView sd_setImageWithURL:[NSURL URLWithString:photos[0]] placeholderImage:[UIImage imageNamed:@"default_photo"]];
+            }
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

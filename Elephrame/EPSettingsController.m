@@ -7,8 +7,15 @@
 //
 
 #import "EPSettingsController.h"
+#import "CTAssetsPickerController.h"
+#import <AviarySDK/AviarySDK.h>
 
-@interface EPSettingsController ()
+@interface EPSettingsController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,CTAssetsPickerControllerDelegate,AFPhotoEditorControllerDelegate>
+
+@property (weak, nonatomic) IBOutlet UIImageView *userAvatarImageView;
+
+@property (nonatomic, strong) NSMutableArray *assets;
+@property (nonatomic, strong) NSMutableArray *addAssets;
 
 @end
 
@@ -27,11 +34,122 @@
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    [self.userAvatarImageView setUserInteractionEnabled:YES];
+    [self.userAvatarImageView bk_whenTapped:^{
+        UIActionSheet *actionSheet = [UIActionSheet bk_actionSheetWithTitle:nil];
+        [actionSheet bk_addButtonWithTitle:@"从相册选取" handler:^{
+            [MobClick event:@"Select_Album"];
+            [self openAlbum];
+        }];
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            [actionSheet bk_addButtonWithTitle:@"现在拍一张" handler:^{
+                [MobClick event:@"Select_Camera"];
+                [self openCamera];
+            }];
+        }
+        [actionSheet bk_setCancelButtonWithTitle:@"取消" handler:nil];
+        [actionSheet showInView:self.view];
+    }];
+}
+
+- (void)openCamera
+{
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                
+        UIImagePickerController *controller = [[UIImagePickerController alloc] init];
+        controller.delegate = self;
+        controller.sourceType = UIImagePickerControllerSourceTypeCamera;
+        [self presentViewController:controller animated:YES completion:^{
+            
+        }];
+    }
+}
+
+-(void)openAlbum
+{
+    CTAssetsPickerController *picker = [[CTAssetsPickerController alloc] init];
+    picker.maximumNumberOfSelection = 5;
+    picker.navigationController.navigationItem.title = @"选取照片";
+    picker.assetsFilter = [ALAssetsFilter allPhotos];
+    picker.delegate = self;
+    [self presentViewController:picker animated:YES completion:^{
+        
+    }];
+}
+
+#pragma mark - UIImagePickerControllerDelegate -
+#pragma mark  From Camera Image
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [picker dismissViewControllerAnimated:YES completion:^{
+        
+        [self displayEditorForImage:info[UIImagePickerControllerOriginalImage]];
+    }];
+}
+
+#pragma AFPhotoEditorControllerDelegate
+
+- (void)displayEditorForImage:(UIImage *)imageToEdit
+{
+    AFPhotoEditorController *editorController = [[AFPhotoEditorController alloc] initWithImage:imageToEdit];
+    [AFPhotoEditorCustomization setToolOrder:@[kAFEffects,kAFCrop,kAFStickers, kAFDraw, kAFText,kAFOrientation,kAFEnhance,kAFAdjustments, kAFSharpness, kAFRedeye, kAFWhiten, kAFBlemish, kAFMeme, kAFFrames, kAFFocus]];
+    [AFPhotoEditorCustomization setStatusBarStyle:UIStatusBarStyleLightContent];
+    [AFPhotoEditorCustomization setNavBarImage:[self imageWithColor:APP_COLOR andSize:CGSizeMake(320, 44)]];
+    [AFPhotoEditorCustomization setLeftNavigationBarButtonTitle:@"取消"];
+    [AFPhotoEditorCustomization setRightNavigationBarButtonTitle:@"完成"];
+    [AFPhotoEditorCustomization setCropToolCustomEnabled:YES];
+    [editorController setDelegate:self];
+    [self presentViewController:editorController animated:YES completion:nil];
+}
+
+- (UIImage *)imageWithColor:(UIColor *)color andSize:(CGSize)size;
+{
+    UIImage *img = nil;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    CGRect rect = CGRectMake(0, 0, size.width, size.height);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context,
+                                   color.CGColor);
+    CGContextFillRect(context, rect);
+    img = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return img;
+}
+
+- (void)photoEditor:(AFPhotoEditorController *)editor finishedWithImage:(UIImage *)image
+{
+    WEAKSELF
+    [editor dismissViewControllerAnimated:YES completion:^{
+        
+       
+        
+        
+        
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil,nil);
+        
+            ALAsset *asset = image;
+            UIImage *assetOriImage =[UIImage imageWithCGImage:[[asset defaultRepresentation] fullScreenImage]];
+            
+            STRONGSELF
+            [strongSelf displayEditorForImage:assetOriImage];
+
+    }];
+}
+
+- (void)photoEditorCanceled:(AFPhotoEditorController *)editor
+{
+    [editor dismissViewControllerAnimated:NO completion:^{
+
+    }];
+}
+
+-(void)finishEditingImage
+{
+    [self performSegueWithIdentifier:@"RecordVoiceController" sender:self];
 }
 
 - (void)didReceiveMemoryWarning

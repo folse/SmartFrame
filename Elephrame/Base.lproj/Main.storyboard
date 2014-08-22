@@ -509,7 +509,7 @@
             </objects>
             <point key="canvasLocation" x="-21" y="1243"/>
         </scene>
-        <!--Settings Controller - 设置-->
+        <!--Settings Controller - 更多-->
         <scene sceneID="Gcq-v6-uwU">
             <objects>
                 <tableViewController id="fWZ-wn-FiS" customClass="EPSettingsController" sceneMemberID="viewController">
@@ -517,8 +517,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="lIJ-mw-G3K">
+                            <rect key="frame" x="0.0" y="64" width="320" height="145"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jha-l0-pko">
+                                    <rect key="frame" x="115" y="28" width="90" height="90"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="A4a-EM-Hf7">
-                            <rect key="frame" x="0.0" y="241" width="320" height="71"/>
+                            <rect key="frame" x="0.0" y="351" width="320" height="71"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KQ4-eU-XY7">
@@ -540,7 +551,7 @@
                             <tableViewSection id="wX0-3f-KIg">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="N8S-r6-heD">
-                                        <rect key="frame" x="0.0" y="99" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="209" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="N8S-r6-heD" id="s12-WA-Ff7">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -560,7 +571,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="HYo-as-7nD">
-                                        <rect key="frame" x="0.0" y="143" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="253" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HYo-as-7nD" id="mDN-Ux-VXl">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -577,7 +588,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="vhm-kb-MMp">
-                                        <rect key="frame" x="0.0" y="187" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="297" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vhm-kb-MMp" id="rcG-pt-Y7I">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -605,7 +616,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="设置" id="W2y-3A-jjU">
+                    <navigationItem key="navigationItem" title="更多" prompt="" id="W2y-3A-jjU">
                         <barButtonItem key="backBarButtonItem" title=" " id="wRk-tj-cyz"/>
                         <barButtonItem key="leftBarButtonItem" image="btn_menu" id="aV9-4V-lra">
                             <connections>
@@ -614,6 +625,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="userAvatarImageView" destination="jha-l0-pko" id="yMR-Ay-TgP"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ESu-sC-LJt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
