@@ -57,8 +57,6 @@
 -(void)sendPhoto:(UIImage *)image
 {
     NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc] init];
-    [parameterDict setObject:[USER_DEFAULTS valueForKeyPath:@"tokenId"] forKey:@"token"];
-    [parameterDict setObject:@"personal" forKey:@"type"];
     
     NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970]];
     
@@ -66,7 +64,7 @@
     
     NSData *fileData = UIImageJPEGRepresentation(image, 1.0);
     
-    NSString *UPLOAD_URL = [NSString stringWithFormat:@"%@?token=%@&filetype=%@&filename=%@",API_UPLOAD,[USER_DEFAULTS valueForKeyPath:@"tokenId"],@"photo",fileName];
+    NSString *UPLOAD_URL = [NSString stringWithFormat:@"%@?token=%@&type=%@&filename=%@",API_PORTRAIT,[USER_DEFAULTS valueForKeyPath:@"tokenId"],@"personal",fileName];
     s(UPLOAD_URL)
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

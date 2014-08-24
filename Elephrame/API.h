@@ -26,6 +26,9 @@
 //上传文件
 #define API_UPLOAD [NSString stringWithFormat:@"%@/smart/upload.do",API_BASE_URL]
 
+//上传头像
+#define API_PORTRAIT [NSString stringWithFormat:@"%@/smart/portrait.do",API_BASE_URL]
+
 //获取绑定关系
 #define API_RELATION [NSString stringWithFormat:@"%@/smart/relations.do",API_BASE_URL]
 
