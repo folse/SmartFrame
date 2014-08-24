@@ -7,15 +7,14 @@
 //
 
 #import "EPSettingsController.h"
-#import "CTAssetsPickerController.h"
 #import <AviarySDK/AviarySDK.h>
 
-@interface EPSettingsController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,CTAssetsPickerControllerDelegate,AFPhotoEditorControllerDelegate>
+@interface EPSettingsController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,AFPhotoEditorControllerDelegate>
+{
+    UIImagePickerController *imagePickerController;
+}
 
 @property (weak, nonatomic) IBOutlet UIImageView *userAvatarImageView;
-
-@property (nonatomic, strong) NSMutableArray *assets;
-@property (nonatomic, strong) NSMutableArray *addAssets;
 
 @end
 
@@ -35,6 +34,9 @@
     [super viewDidLoad];
     
     [self.userAvatarImageView setUserInteractionEnabled:YES];
+    [self.userAvatarImageView.layer setMasksToBounds:YES];
+    [self.userAvatarImageView.layer setBorderWidth:1.8];
+    [self.userAvatarImageView.layer setBorderColor:[APP_COLOR CGColor]];
     [self.userAvatarImageView bk_whenTapped:^{
         UIActionSheet *actionSheet = [UIActionSheet bk_actionSheetWithTitle:nil];
         [actionSheet bk_addButtonWithTitle:@"从相册选取" handler:^{
@@ -49,6 +51,45 @@
         }
         [actionSheet bk_setCancelButtonWithTitle:@"取消" handler:nil];
         [actionSheet showInView:self.view];
+    }];
+}
+
+-(void)sendPhoto:(UIImage *)image
+{
+    NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc] init];
+    [parameterDict setObject:[USER_DEFAULTS valueForKeyPath:@"tokenId"] forKey:@"token"];
+    [parameterDict setObject:@"personal" forKey:@"type"];
+    
+    NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970]];
+    
+    NSString *fileName = [NSString stringWithFormat:@"%@.jpg", timeSp];
+    
+    NSData *fileData = UIImageJPEGRepresentation(image, 1.0);
+    
+    NSString *UPLOAD_URL = [NSString stringWithFormat:@"%@?token=%@&filetype=%@&filename=%@",API_UPLOAD,[USER_DEFAULTS valueForKeyPath:@"tokenId"],@"photo",fileName];
+    s(UPLOAD_URL)
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager POST:UPLOAD_URL parameters:parameterDict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        
+        [formData appendPartWithFileData:fileData name:@"filename" fileName:fileName mimeType:@"image/jpeg"];
+        
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSLog(@"%@:%@",operation.response.URL.relativePath,responseObject);
+        [HUD hide:YES];
+        
+        if ([[responseObject valueForKey:@"code"] isEqualToString:@"1"]) {
+
+            
+        }else{
+            NetWork_Error
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NetWork_Error
     }];
 }
 
@@ -67,25 +108,13 @@
 
 -(void)openAlbum
 {
-    CTAssetsPickerController *picker = [[CTAssetsPickerController alloc] init];
-    picker.maximumNumberOfSelection = 5;
-    picker.navigationController.navigationItem.title = @"选取照片";
-    picker.assetsFilter = [ALAssetsFilter allPhotos];
-    picker.delegate = self;
-    [self presentViewController:picker animated:YES completion:^{
-        
-    }];
-}
-
-#pragma mark - UIImagePickerControllerDelegate -
-#pragma mark  From Camera Image
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    [picker dismissViewControllerAnimated:YES completion:^{
-        
-        [self displayEditorForImage:info[UIImagePickerControllerOriginalImage]];
-    }];
+    imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.delegate = self;
+    [imagePickerController setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    [imagePickerController setMediaTypes:[UIImagePickerController availableMediaTypesForSourceType:imagePickerController.sourceType]];
+    [self presentViewController:imagePickerController animated:YES completion:nil];
+    
+    [MobClick event:@"CLICK_SELECT_PIC_FROM_MOBILE"];
 }
 
 #pragma AFPhotoEditorControllerDelegate
@@ -120,36 +149,31 @@
     return img;
 }
 
+#pragma mark - UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    __block UIImage *image = info[UIImagePickerControllerOriginalImage];
+    
+    [picker dismissViewControllerAnimated:NO completion:^{
+        
+        [self displayEditorForImage:image];
+    }];
+}
+
+#pragma AFPhotoEditorControllerDelegate
+
 - (void)photoEditor:(AFPhotoEditorController *)editor finishedWithImage:(UIImage *)image
 {
-    WEAKSELF
     [editor dismissViewControllerAnimated:YES completion:^{
-        
-       
-        
-        
-        
-        UIImageWriteToSavedPhotosAlbum(image, nil, nil,nil);
-        
-            ALAsset *asset = image;
-            UIImage *assetOriImage =[UIImage imageWithCGImage:[[asset defaultRepresentation] fullScreenImage]];
-            
-            STRONGSELF
-            [strongSelf displayEditorForImage:assetOriImage];
-
+        [_userAvatarImageView setImage:image];
+        [self sendPhoto:image];
     }];
 }
 
 - (void)photoEditorCanceled:(AFPhotoEditorController *)editor
 {
-    [editor dismissViewControllerAnimated:NO completion:^{
-
-    }];
-}
-
--(void)finishEditingImage
-{
-    [self performSegueWithIdentifier:@"RecordVoiceController" sender:self];
+    [editor dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning
