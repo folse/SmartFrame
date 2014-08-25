@@ -50,7 +50,8 @@
     intro.tapToNext = YES;
     intro.swipeToExit = YES;
     intro.skipButton = nil;
-            
+    intro.pageControlY = 80;
+
     [intro setDelegate:self];
     
     [intro showInView:[[[UIApplication sharedApplication] delegate] window] animateDuration:0.3];

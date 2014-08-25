@@ -239,8 +239,10 @@
     page3.bgImage = [UIImage imageNamed:@"c"];
     
     EAIntroView *intro = [[EAIntroView alloc] initWithFrame:self.view.bounds andPages:@[page1,page2,page3]];
+    intro.pageControlY = 110;
+    [intro setFrame:CGRectMake(0,64, SCREEN_WIDTH, SCREEN_HEIGHT)];
     intro.tapToNext = YES;
-    intro.swipeToExit = NO;
+    intro.swipeToExit = YES;
     intro.skipButton = nil;
     
     [intro setDelegate:self];
