@@ -8,8 +8,9 @@
 
 #import "EPSettingsController.h"
 #import <AviarySDK/AviarySDK.h>
+#import "EAIntroView.h"
 
-@interface EPSettingsController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,AFPhotoEditorControllerDelegate>
+@interface EPSettingsController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,AFPhotoEditorControllerDelegate,EAIntroDelegate>
 {
     UIImagePickerController *imagePickerController;
 }
@@ -217,6 +218,34 @@
         }
     }
     [defs synchronize];
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 1) {
+         [self showIntroView];
+    }
+}
+
+-(void)showIntroView
+{
+    EAIntroPage *page1 = [EAIntroPage page];
+    page1.bgImage = [UIImage imageNamed:@"a"];
+    
+    EAIntroPage *page2 = [EAIntroPage page];
+    page2.bgImage = [UIImage imageNamed:@"b"];
+    
+    EAIntroPage *page3 = [EAIntroPage page];
+    page3.bgImage = [UIImage imageNamed:@"c"];
+    
+    EAIntroView *intro = [[EAIntroView alloc] initWithFrame:self.view.bounds andPages:@[page1,page2,page3]];
+    intro.tapToNext = YES;
+    intro.swipeToExit = NO;
+    intro.skipButton = nil;
+    
+    [intro setDelegate:self];
+    
+    [intro showInView:[[[UIApplication sharedApplication] delegate] window] animateDuration:0.0];
 }
 
 /*

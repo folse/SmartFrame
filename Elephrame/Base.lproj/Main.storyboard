@@ -484,7 +484,7 @@
                         </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="bJR-gS-0rG" kind="relationship" relationship="rootViewController" id="8g9-hM-8Cv"/>
+                        <segue destination="bJR-gS-0rG" kind="relationship" relationship="rootViewController" id="pZc-d6-Sq5"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wan-Nc-KZR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -529,7 +529,7 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="A4a-EM-Hf7">
-                            <rect key="frame" x="0.0" y="351" width="320" height="71"/>
+                            <rect key="frame" x="0.0" y="351" width="320" height="130"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KQ4-eU-XY7">
@@ -933,7 +933,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Logo" width="76" height="76"/>
+        <image name="Logo" width="72" height="72"/>
         <image name="bg_frame" width="262" height="202"/>
         <image name="btn_menu" width="36" height="31"/>
         <image name="default_avatar" width="159" height="159"/>

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "95CD35D2B56145E8842490AA"
+               BlueprintIdentifier = "5BA6F4822B5D44BFAE0B0F10"
                BuildableName = "libPods-AviarySDK.a"
                BlueprintName = "Pods-AviarySDK"
                ReferencedContainer = "container:Pods.xcodeproj">
