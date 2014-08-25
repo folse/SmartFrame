@@ -53,6 +53,13 @@
         [actionSheet bk_setCancelButtonWithTitle:@"取消" handler:nil];
         [actionSheet showInView:self.view];
     }];
+    
+    
+    NSString *avatarUrl = [USER_DEFAULTS valueForKey:@"avatarUrl"];
+    if(avatarUrl != nil && avatarUrl.length > 0){
+        [_userAvatarImageView sd_setImageWithURL:[NSURL URLWithString:avatarUrl]];
+    }
+        
 }
 
 -(void)sendPhoto:(UIImage *)image
@@ -80,7 +87,8 @@
         [HUD hide:YES];
         
         if ([[responseObject valueForKey:@"code"] isEqualToString:@"1"]) {
-
+            NSString *avatarUrl = [responseObject objectForKey:@"portrait"];
+            saveValue(avatarUrl, @"avatarUrl")
             
         }else{
             NetWork_Error

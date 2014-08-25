@@ -82,11 +82,9 @@
             NSLog(@"%@:%@",operation.response.URL.relativePath,JSON);
             [HUD hide:YES];
             if ([[JSON valueForKey:@"code"] isEqualToString:@"1"]) {
-                                
-                NSDictionary *data = (NSDictionary *)[JSON valueForKey:@"data"];
-                
-                NSString *tokenId = [data valueForKey:@"token"];
-                
+          
+                NSString *tokenId = [JSON valueForKey:@"token"];
+                s(tokenId)
                 saveValue(tokenId, @"tokenId")
                 saveValue(_mobileTextField.text, @"userMobile");
                 [USER_DEFAULTS setBool:YES forKey:@"userLogined"];

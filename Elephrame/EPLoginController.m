@@ -58,9 +58,11 @@
             [HUD hide:YES];
             if ([[JSON valueForKey:@"code"] isEqualToString:@"1"]) {
                 
-                NSString *tokenId = [NSString stringWithFormat:@"%@",[JSON objectForKey:@"token"]];
+                NSString *tokenId = [JSON objectForKey:@"token"];
+                NSString *avatarUrl = [JSON objectForKey:@"portrait"];
                 
                 saveValue(tokenId, @"tokenId")
+                saveValue(avatarUrl, @"avatarUrl")
                 saveValue(_mobileTextField.text, @"userMobile");
                 [USER_DEFAULTS setBool:YES forKey:@"userLogined"];
                 
