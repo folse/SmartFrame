@@ -208,7 +208,7 @@
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="default_photo" translatesAutoresizingMaskIntoConstraints="NO" id="mpl-jr-FJE">
-                                <rect key="frame" x="57" y="137" width="210" height="146"/>
+                                <rect key="frame" x="58" y="137" width="206" height="146"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" alpha="0.89999999999999991" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSL-WK-zOt">
@@ -545,6 +545,13 @@
                                         <action selector="logoutButtonAction:" destination="fWZ-wn-FiS" eventType="touchUpInside" id="Lxr-25-aTQ"/>
                                     </connections>
                                 </button>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzt-jc-mqV">
+                                    <rect key="frame" x="100" y="100" width="120" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                         </view>
                         <sections>
@@ -627,6 +634,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="userAvatarImageView" destination="jha-l0-pko" id="yMR-Ay-TgP"/>
+                        <outlet property="versionLabel" destination="bzt-jc-mqV" id="enH-is-raN"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ESu-sC-LJt" userLabel="First Responder" sceneMemberID="firstResponder"/>

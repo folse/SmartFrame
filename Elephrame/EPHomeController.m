@@ -22,6 +22,7 @@
     NSMutableArray *selectedAssetArray;
     MBProgressHUD *HUD;
     NSString *photoType;
+    UIImagePickerController *imagePickerController;
 }
 @property (strong, nonatomic) IBOutlet UIImageView *lastPhotoImageView;
 
@@ -47,10 +48,7 @@
     [super viewWillAppear:animated];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-}
-
--(void)viewDidAppear:(BOOL)animated
-{
+    
     if (USER_LOGIN) {
         
         [[[NSThread alloc] initWithTarget:self selector:@selector(getDevice) object:nil] start];
@@ -58,8 +56,13 @@
     }else{
         
         UINavigationController *regNavController = [STORY_BOARD instantiateViewControllerWithIdentifier:@"regNav"];
-        [self presentViewController:regNavController animated:YES completion:nil];
+        [self presentViewController:regNavController animated:NO completion:nil];
     }
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+
 }
 
 - (void)viewDidLoad
@@ -190,10 +193,10 @@
         [selectedAssetArray removeAllObjects];
         [selectedPhotoArray removeAllObjects];
         
-        UIImagePickerController *controller = [[UIImagePickerController alloc] init];
-        controller.delegate = self;
-        controller.sourceType = UIImagePickerControllerSourceTypeCamera;
-        [self presentViewController:controller animated:YES completion:^{
+        imagePickerController = [[UIImagePickerController alloc] init];
+        imagePickerController.delegate = self;
+        imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+        [self presentViewController:imagePickerController animated:YES completion:^{
             photoType = @"CAMERA";
         }];
     }
@@ -229,6 +232,10 @@
         
         [self displayEditorForImage:info[UIImagePickerControllerOriginalImage]];
     }];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark Assets Picker Delegate

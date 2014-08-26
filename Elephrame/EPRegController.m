@@ -54,7 +54,7 @@
 
     [intro setDelegate:self];
     
-    [intro showInView:[[[UIApplication sharedApplication] delegate] window] animateDuration:0.3];
+    [intro showInView:[[[UIApplication sharedApplication] delegate] window] animateDuration:0];
 }
 
 - (void)didReceiveMemoryWarning

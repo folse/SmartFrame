@@ -14,6 +14,7 @@
 {
     UIImagePickerController *imagePickerController;
 }
+@property (strong, nonatomic) IBOutlet UILabel *versionLabel;
 
 @property (weak, nonatomic) IBOutlet UIImageView *userAvatarImageView;
 
@@ -59,7 +60,8 @@
     if(avatarUrl != nil && avatarUrl.length > 0){
         [_userAvatarImageView sd_setImageWithURL:[NSURL URLWithString:avatarUrl]];
     }
-        
+    
+    [_versionLabel setText:[NSString stringWithFormat:@"v%@",AppVersionShort]];
 }
 
 -(void)sendPhoto:(UIImage *)image
@@ -166,6 +168,11 @@
         
         [self displayEditorForImage:image];
     }];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 #pragma AFPhotoEditorControllerDelegate

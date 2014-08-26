@@ -290,6 +290,18 @@
 
 - (IBAction)sendButtonAction:(id)sender
 {
+    [self next];
+}
+
+- (IBAction)skipButton:(id)sender
+{
+    voiceName = @"";
+    
+    [self next];
+}
+
+-(void)next
+{
     if (_deviceArray.count == 1) {
         
         NSString *selectedDeviceId = _deviceArray[0][@"frameid"];
@@ -302,13 +314,6 @@
         
         [self performSegueWithIdentifier:@"ChooseDeviceController" sender:self];
     }
-}
-
-- (IBAction)skipButton:(id)sender
-{
-    voiceName = @"";
-    
-    [self performSegueWithIdentifier:@"ChooseDeviceController" sender:self];
 }
 
 
