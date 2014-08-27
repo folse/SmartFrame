@@ -32,7 +32,10 @@
 {
     [super viewDidLoad];
     
-    [self showIntroView];
+    if (![USER_DEFAULTS boolForKey:@"moreThanFirstLoad"]) {
+        [self showIntroView];
+        [USER_DEFAULTS setBool:YES forKey:@"moreThanFirstLoad"];
+    }
 }
 
 -(void)showIntroView

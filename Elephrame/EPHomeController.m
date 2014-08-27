@@ -14,8 +14,8 @@
 
 @interface EPHomeController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,CTAssetsPickerControllerDelegate,AFPhotoEditorControllerDelegate>
 {
-    int editedId;
     int uploadId;
+    BOOL needBindDevice;
     BOOL isFinishUploadImage;
     NSMutableArray *deviceArray;
     NSMutableArray *selectedPhotoArray;
@@ -122,13 +122,16 @@
             
             if (deviceArray.count == 0) {
                 
+                needBindDevice = YES;
+                
                 [_lastPhotoImageView setImage:[UIImage imageNamed:@"need_bind_device"]];
                 
             }else{
                 
+                needBindDevice = NO;
+                
                 [self getUserPhotos];
             }
-            
         }else{
             
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"获取相框信息失败" message:@"请稍后再试" delegate:self cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
@@ -188,28 +191,41 @@
 
 - (IBAction)cameraButtonAction:(id)sender
 {
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+    if (needBindDevice) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请绑定相框后发照片哦" delegate:self cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+        [alertView show];
+    }else{
         
         [selectedAssetArray removeAllObjects];
         [selectedPhotoArray removeAllObjects];
         
         imagePickerController = [[UIImagePickerController alloc] init];
         imagePickerController.delegate = self;
-        imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-        [self presentViewController:imagePickerController animated:YES completion:^{
-            photoType = @"CAMERA";
-        }];
+        
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self presentViewController:imagePickerController animated:YES completion:^{
+                photoType = @"CAMERA";
+            }];
+        }
     }
 }
 
 - (IBAction)albumButtonAction:(id)sender
 {
-    [self openAlbum:YES];
+    if (needBindDevice) {
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请绑定相框后发照片哦" delegate:self cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+        [alertView show];
+        
+    }else{
+        
+         [self openAlbum:YES];
+    }
 }
 
 -(void)openAlbum:(BOOL)animated
-{
-    editedId = 0;
+{    
     [selectedAssetArray removeAllObjects];
     [selectedPhotoArray removeAllObjects];
     
@@ -293,27 +309,14 @@
 
 - (void)photoEditor:(AFPhotoEditorController *)editor finishedWithImage:(UIImage *)image
 {
-    WEAKSELF
     [editor dismissViewControllerAnimated:YES completion:^{
         
         [selectedPhotoArray addObject:image];
         
-        editedId += 1;
-        
         UIImageWriteToSavedPhotosAlbum(image, nil, nil,nil);
         
-        if (selectedAssetArray.count > editedId) {
-            
-            ALAsset *asset = selectedAssetArray[editedId];
-            UIImage *assetOriImage =[UIImage imageWithCGImage:[[asset defaultRepresentation] fullScreenImage]];
-            
-            STRONGSELF
-            [strongSelf displayEditorForImage:assetOriImage];
-            
-        }else{
-            
-            [self finishEditingImage];
-        }
+        [self finishEditingImage];
+        
     }];
 }
 

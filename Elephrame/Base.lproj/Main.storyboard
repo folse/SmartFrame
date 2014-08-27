@@ -85,11 +85,11 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUm-Ic-Uyc">
-                                    <rect key="frame" x="103" y="190" width="114" height="44"/>
+                                    <rect key="frame" x="103" y="30" width="114" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="44" id="aI1-sV-YMN"/>
-                                        <constraint firstAttribute="width" constant="114" id="fWu-Y9-T9f"/>
+                                        <constraint firstAttribute="width" constant="114" id="495-MH-HDr"/>
+                                        <constraint firstAttribute="height" constant="44" id="gcU-G3-Drv"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <state key="normal" title="点此登录">
@@ -100,18 +100,23 @@
                                         <segue destination="TGv-An-VI0" kind="push" id="rYo-6g-fhc"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="已有账号?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UOq-WU-1Md">
-                                    <rect key="frame" x="61" y="164" width="200" height="21"/>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已有账号?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UOq-WU-1Md">
+                                    <rect key="frame" x="100" y="18" width="120" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="120" id="D7f-Ks-PFC"/>
+                                        <constraint firstAttribute="height" constant="21" id="d1N-0j-HHr"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                             <constraints>
-                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="CUm-Ic-Uyc" secondAttribute="bottom" constant="8" id="TtH-Xy-CuZ"/>
-                                <constraint firstAttribute="bottom" secondItem="CUm-Ic-Uyc" secondAttribute="bottom" constant="16" id="WK9-R0-VXq"/>
-                                <constraint firstAttribute="centerX" secondItem="CUm-Ic-Uyc" secondAttribute="centerX" id="dNO-Fa-k2N"/>
+                                <constraint firstItem="UOq-WU-1Md" firstAttribute="leading" secondItem="H1d-zJ-Id5" secondAttribute="leading" constant="100" id="EzW-g0-gWT"/>
+                                <constraint firstItem="CUm-Ic-Uyc" firstAttribute="top" secondItem="H1d-zJ-Id5" secondAttribute="top" constant="30" id="V8V-6w-Bcb"/>
+                                <constraint firstAttribute="trailing" secondItem="CUm-Ic-Uyc" secondAttribute="trailing" constant="103" id="cYc-TZ-rN0"/>
+                                <constraint firstItem="UOq-WU-1Md" firstAttribute="top" secondItem="H1d-zJ-Id5" secondAttribute="top" constant="18" id="dE5-Wu-9vL"/>
                             </constraints>
                         </view>
                         <sections>
