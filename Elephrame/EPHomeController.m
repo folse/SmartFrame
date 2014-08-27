@@ -14,9 +14,12 @@
 
 @interface EPHomeController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,CTAssetsPickerControllerDelegate,AFPhotoEditorControllerDelegate>
 {
+    int editedId;
     int uploadId;
     BOOL needBindDevice;
+    BOOL notUpdateDevive;
     BOOL isFinishUploadImage;
+    UIImage *imageBefore;
     NSMutableArray *deviceArray;
     NSMutableArray *selectedPhotoArray;
     NSMutableArray *selectedAssetArray;
@@ -51,18 +54,15 @@
     
     if (USER_LOGIN) {
         
-        [[[NSThread alloc] initWithTarget:self selector:@selector(getDevice) object:nil] start];
+        if (!notUpdateDevive) {
+            [[[NSThread alloc] initWithTarget:self selector:@selector(getDevice) object:nil] start];
+        }
         
     }else{
         
         UINavigationController *regNavController = [STORY_BOARD instantiateViewControllerWithIdentifier:@"regNav"];
         [self presentViewController:regNavController animated:NO completion:nil];
     }
-}
-
--(void)viewDidAppear:(BOOL)animated
-{
-
 }
 
 - (void)viewDidLoad
@@ -107,6 +107,8 @@
     NSString *tokenId = [USER_DEFAULTS valueForKey:@"tokenId"];
     
     [parameterDict setObject:tokenId forKey:@"token"];
+    
+    s(parameterDict)
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -170,7 +172,6 @@
                 [_lastPhotoImageView sd_setImageWithURL:[NSURL URLWithString:photos[0]] placeholderImage:[UIImage imageNamed:@"default_photo"]];
             }
         }
-        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
     }];
@@ -190,10 +191,12 @@
 }
 
 - (IBAction)cameraButtonAction:(id)sender
-{
+{    
     if (needBindDevice) {
+        
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请绑定相框后发照片哦" delegate:self cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
         [alertView show];
+        
     }else{
         
         [selectedAssetArray removeAllObjects];
@@ -220,12 +223,13 @@
         
     }else{
         
-         [self openAlbum:YES];
+        [self openAlbum:YES];
     }
 }
 
 -(void)openAlbum:(BOOL)animated
-{    
+{
+    editedId = 0;
     [selectedAssetArray removeAllObjects];
     [selectedPhotoArray removeAllObjects];
     
@@ -287,7 +291,10 @@
     [AFPhotoEditorCustomization setRightNavigationBarButtonTitle:@"完成"];
     [AFPhotoEditorCustomization setCropToolCustomEnabled:YES];
     [editorController setDelegate:self];
-    [self presentViewController:editorController animated:YES completion:nil];
+    [self presentViewController:editorController animated:YES completion:^{
+        notUpdateDevive = YES;
+        imageBefore = imageToEdit;
+    }];
 }
 
 - (UIImage *)imageWithColor:(UIColor *)color andSize:(CGSize)size;
@@ -309,14 +316,28 @@
 
 - (void)photoEditor:(AFPhotoEditorController *)editor finishedWithImage:(UIImage *)image
 {
+    WEAKSELF
     [editor dismissViewControllerAnimated:YES completion:^{
         
         [selectedPhotoArray addObject:image];
         
-        UIImageWriteToSavedPhotosAlbum(image, nil, nil,nil);
+        editedId += 1;
         
-        [self finishEditingImage];
+        [self saveToAlbum:image];
         
+        if (selectedAssetArray.count > editedId) {
+            
+            ALAsset *asset = selectedAssetArray[editedId];
+            
+            imageBefore =[UIImage imageWithCGImage:[[asset defaultRepresentation] fullScreenImage]];
+            
+            STRONGSELF
+            [strongSelf displayEditorForImage:imageBefore];
+            
+        }else{
+            
+            [self finishEditingImage];
+        }
     }];
 }
 
@@ -332,7 +353,19 @@
 
 -(void)finishEditingImage
 {
+    notUpdateDevive = NO;
     [self performSegueWithIdentifier:@"RecordVoiceController" sender:self];
+}
+
+-(void)saveToAlbum:(UIImage *)image
+{
+    NSData *imageBeforeData = UIImageJPEGRepresentation(imageBefore, 1.0);
+    
+    NSData *imageAfterData = UIImageJPEGRepresentation(image, 1.0);
+    
+    if (imageBeforeData.length != imageAfterData.length) {
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil,nil);
+    }
 }
 
 #pragma mark - Navigation

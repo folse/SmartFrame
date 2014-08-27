@@ -169,6 +169,8 @@
 {
     [HUD show:YES];
     
+    s(_photoArray)
+    
     firstImage = _photoArray[0];
     
     photoNameArray = [NSMutableArray new];
