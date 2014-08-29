@@ -81,6 +81,8 @@
     UITapGestureRecognizer *imageTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideMenu)];
     [self.view setUserInteractionEnabled:YES];
     [self.view addGestureRecognizer:imageTap];
+    
+    [self getUUID];
 }
 
 -(void)hideMenu
@@ -191,7 +193,7 @@
 }
 
 - (IBAction)cameraButtonAction:(id)sender
-{    
+{
     if (needBindDevice) {
         
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请绑定相框后发照片哦" delegate:self cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
@@ -365,6 +367,22 @@
     
     if (imageBeforeData.length != imageAfterData.length) {
         UIImageWriteToSavedPhotosAlbum(image, nil, nil,nil);
+    }
+}
+
+-(void)getUUID
+{
+    NSString *uuid = [USER_DEFAULTS valueForKey:@"uuid"];
+    
+    if (uuid == nil || uuid.length == 0) {
+        CFUUIDRef puuid = CFUUIDCreate( nil );
+        CFStringRef uuidString = CFUUIDCreateString( nil, puuid );
+        NSString *result = (NSString *)CFBridgingRelease(CFStringCreateCopy( NULL, uuidString));
+        
+        [USER_DEFAULTS setValue:result forKey:@"uuid"];
+        
+        CFRelease(puuid);
+        CFRelease(uuidString);
     }
 }
 

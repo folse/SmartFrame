@@ -169,18 +169,19 @@
 {
     [HUD show:YES];
     
-    s(_photoArray)
-    
     firstImage = _photoArray[0];
     
     photoNameArray = [NSMutableArray new];
     
     NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc] init];
     
-    NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970]];
+    long timeSp = (long)[[NSDate date] timeIntervalSince1970];
+    
+    NSString *uuid = [USER_DEFAULTS valueForKey:@"uuid"];
     
     for (int i = 0; i < _photoArray.count; i++) {
-        [photoNameArray addObject:[NSString stringWithFormat:@"%@.jpg", timeSp]];
+        timeSp += 1;
+        [photoNameArray addObject:[NSString stringWithFormat:@"%@%ld.jpg", uuid, timeSp]];
     }
     
     [parameterDict setObject:[USER_DEFAULTS valueForKeyPath:@"tokenId"] forKey:@"token"];
@@ -189,7 +190,7 @@
 
     if (self.voice != nil && self.voice.recordPath.length > 0) {
         
-        voiceName = [NSString stringWithFormat:@"%@.caf", timeSp];
+        voiceName = [NSString stringWithFormat:@"%@%ld.caf", uuid, timeSp];
         
     }else{
         
@@ -222,6 +223,8 @@
     if(_photoArray.count > 0){
         
         filename = photoNameArray[0];
+        s(photoNameArray)
+        s(filename)
         filetype = @"photo";
         mimetype = @"image/jpeg";
         
