@@ -445,7 +445,7 @@
 				ORGANIZATIONNAME = Folse;
 				TargetAttributes = {
 					A15B56F11973B47A00CCEC32 = {
-						DevelopmentTeam = 6XX8659PN2;
+						DevelopmentTeam = V68CP8VT5Z;
 					};
 				};
 			};
@@ -666,6 +666,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Elephrame/Elephrame-Prefix.pch";
@@ -684,15 +685,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Qfpay Technology Company Limited";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Qfpay Technology Company Limited";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: feng zhu (V68CP8VT5Z)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: feng zhu (V68CP8VT5Z)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Elephrame/Elephrame-Prefix.pch";
 				INFOPLIST_FILE = "Elephrame/Elephrame-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7c165593-676b-451e-90ae-daee7ac77ce9";
+				PROVISIONING_PROFILE = "9cb5fcdd-5eba-4f1b-a962-d88cf30bbdf2";
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = app;
 			};
